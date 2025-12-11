@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { ThemeToggle } from "@/components/theme-toggle";
+import Image from "next/image";
 
 export default function HomePage() {
   const t = useTranslations("home");
@@ -30,13 +31,13 @@ export default function HomePage() {
 
           <div className="flex flex-wrap items-center gap-4 md:gap-6">
             <div className="flex items-center rounded-lg border border-black/5 bg-black/[0.03] p-1 dark:border-white/10 dark:bg-white/5">
-              <Link href="/en" locale="en" className={getLinkClass("en")}>
+              <Link href="/" locale="en" className={getLinkClass("en")}>
                 EN
               </Link>
-              <Link href="/si" locale="si" className={getLinkClass("si")}>
+              <Link href="/" locale="si" className={getLinkClass("si")}>
                 සිංහල
               </Link>
-              <Link href="/ta" locale="ta" className={getLinkClass("ta")}>
+              <Link href="/" locale="ta" className={getLinkClass("ta")}>
                 தமிழ்
               </Link>
             </div>
@@ -47,46 +48,60 @@ export default function HomePage() {
           </div>
         </header>
 
-        {/* Hero Section */}
-        <section className="py-12 text-left md:pt-20 md:pb-32">
-          <div className="mb-6 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
-            {tApp("subtitle")}
+        {/* Hero Section with Background Image */}
+        <section className="relative flex flex-col items-start justify-center overflow-hidden rounded-[32px] px-8 py-20 text-left md:min-h-[600px] md:px-16">
+          {/* Background Image Absolute */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/hero-compass.jpg"
+              alt="Background"
+              fill
+              className="object-cover opacity-20 dark:opacity-30 mix-blend-multiply dark:mix-blend-overlay"
+              priority
+            />
+            {/* Gradient Overlay to fade it out and ensure text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
           </div>
 
-          <h1 className="mb-8 text-5xl font-extrabold leading-[1.1] tracking-tight text-foreground md:text-[72px]">
-            The P.A.T.H.
-            <span className="block text-gold-text">Political Alignment</span>
-            <span className="block text-gold-text">
-              Testing Hub - Sri Lanka
-            </span>
-          </h1>
+          {/* Content Relative z-10 */}
+          <div className="relative z-10 max-w-[650px]">
+            <div className="mb-6 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+              {tApp("subtitle")}
+            </div>
 
-          <p className="mb-12 max-w-[600px] text-xl leading-[1.7] text-foreground/70">
-            {t("intro")}
-          </p>
+            <h1 className="mb-8 text-5xl font-extrabold leading-[1.1] tracking-tight text-foreground md:text-[72px]">
+              The P.A.T.H.
+              <span className="block text-gold-text">Political Alignment</span>
+              <span className="block text-gold-text">Testing Hub</span>
+            </h1>
 
-          <div className="flex flex-col gap-4 md:flex-row md:items-center">
-            <Link
-              href="/quiz"
-              className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#FDB913] to-[#f5a623] px-10 py-[18px] text-lg font-bold text-black shadow-[0_4px_20px_rgba(253,185,19,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_30px_rgba(253,185,19,0.5)] text-center"
-            >
-              {t("startQuiz")}
-            </Link>
+            <p className="mb-12 text-xl leading-[1.7] text-foreground/80 font-medium">
+              {t("intro")}
+            </p>
 
-            <button className="rounded-xl border border-foreground/20 bg-transparent px-8 py-[18px] text-base font-semibold text-foreground transition-all hover:bg-foreground/5 hover:border-gold/50">
-              {t("howItWorks")}
-            </button>
-          </div>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <Link
+                href="/quiz"
+                className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#FDB913] to-[#f5a623] px-10 py-[18px] text-lg font-bold text-black shadow-[0_4px_20px_rgba(253,185,19,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_30px_rgba(253,185,19,0.5)] text-center"
+              >
+                {t("startQuiz")}
+              </Link>
 
-          <div className="mt-4 text-sm text-foreground/50">
-            ⏱️ Takes approximately 5 minutes
+              <button className="rounded-xl border border-foreground/20 bg-white/5 backdrop-blur-sm px-8 py-[18px] text-base font-semibold text-foreground transition-all hover:bg-foreground/10 hover:border-gold/50">
+                {t("howItWorks")}
+              </button>
+            </div>
+
+            <div className="mt-4 text-sm text-foreground/60 font-medium">
+              ⏱️ Takes approximately 5 minutes
+            </div>
           </div>
         </section>
 
         {/* Steps Section */}
-        <section className="pb-24 pt-8">
+        <section className="pb-24 pt-12">
           <div className="grid gap-8 md:grid-cols-3">
-            {/* Steps with Glass Card Class */}
             {[
               {
                 num: 1,
@@ -99,16 +114,17 @@ export default function HomePage() {
             ].map((step) => (
               <div
                 key={step.num}
-                className="glass-card group relative overflow-hidden rounded-[20px] p-8 transition-all duration-400 hover:-translate-y-2 hover:border-gold/30"
+                className="theme-card group relative overflow-hidden rounded-[20px] p-8 transition-all duration-400 hover:-translate-y-2 hover:border-gold/30"
               >
-                {/* Top Gradient */}
                 <div className="absolute top-0 left-0 right-0 h-[3px] scale-x-0 bg-gradient-to-r from-[#FDB913] to-[#f5a623] transition-transform duration-400 group-hover:scale-x-100" />
 
                 <div className="mb-6 flex items-center gap-4">
                   <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full border-[2px] border-gold/30 bg-gold/10 text-2xl font-extrabold text-gold-text">
                     {step.num}
                   </div>
-                  <div className="text-3xl opacity-60">{step.icon}</div>
+                  <div className="text-3xl opacity-60 grayscale transition-all group-hover:grayscale-0">
+                    {step.icon}
+                  </div>
                 </div>
 
                 <h3 className="mb-3 text-2xl font-bold text-foreground">

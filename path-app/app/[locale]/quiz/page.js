@@ -75,13 +75,13 @@ export default function QuizPage() {
       <div className="relative z-10 w-full max-w-[800px] space-y-8">
         {/* Header / Progress */}
         <div className="space-y-3">
-          <div className="flex items-center justify-between text-sm font-bold tracking-wide uppercase text-white/70">
+          <div className="flex items-center justify-between text-sm font-bold tracking-wide uppercase text-foreground/70">
             <span>
               Question {currentQuestion + 1}/{questions.length}
             </span>
-            <span className="text-[#FDB913]">{Math.round(progress)}%</span>
+            <span className="text-gold-text">{Math.round(progress)}%</span>
           </div>
-          <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
             <div
               className="h-full bg-gradient-to-r from-[#FDB913] to-[#f5a623] transition-all duration-500 ease-out shadow-[0_0_10px_rgba(253,185,19,0.5)]"
               style={{ width: `${progress}%` }}
@@ -89,12 +89,12 @@ export default function QuizPage() {
           </div>
         </div>
 
-        {/* Glass Card */}
-        <div className="glass-card relative overflow-hidden rounded-[24px] p-8 md:p-12 transition-all hover:bg-white/5">
-          {/* Top Highlight */}
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        {/* Theme Aware Card */}
+        <div className="theme-card relative overflow-hidden rounded-[24px] p-8 md:p-12 transition-all">
+          {/* Top Highlight (Dark Mode Only usually, but gold looks good on both) */}
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-gold/50 to-transparent opacity-50" />
 
-          <h2 className="mb-12 text-center text-3xl font-bold leading-tight text-white md:text-4xl">
+          <h2 className="mb-12 text-center text-2xl font-bold leading-tight text-foreground md:text-3xl">
             {question.text[locale]}
           </h2>
 
@@ -110,7 +110,7 @@ export default function QuizPage() {
             <button
               onClick={handlePrevious}
               disabled={currentQuestion === 0}
-              className="h-[52px] flex-1 rounded-xl border border-white/20 bg-transparent text-base font-semibold text-white transition-all hover:bg-white/10 hover:border-[#FDB913]/30 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="h-[52px] flex-1 rounded-xl border border-foreground/20 bg-transparent text-base font-semibold text-foreground transition-all hover:bg-foreground/5 hover:border-gold/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {t("previous")}
             </button>
@@ -128,7 +128,7 @@ export default function QuizPage() {
         <div className="text-center">
           <button
             onClick={() => router.push("/")}
-            className="text-sm font-medium text-white/40 hover:text-white/80 hover:underline transition-colors"
+            className="text-sm font-medium text-foreground/40 hover:text-foreground/80 hover:underline transition-colors"
           >
             Cancel Quiz
           </button>
