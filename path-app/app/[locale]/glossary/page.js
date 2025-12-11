@@ -1,0 +1,112 @@
+"use client";
+
+import { useTranslations, useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { glossaryTerms } from "@/data/glossary";
+
+export default function GlossaryPage() {
+  const t = useTranslations("app");
+  const locale = useLocale();
+
+  const getLinkClass = (lang) => {
+    const base =
+      "rounded px-3 py-1.5 text-sm font-medium transition-all hover:bg-black/5 dark:hover:bg-white/10";
+    const active = "bg-[#FDB913] text-black font-bold shadow-sm";
+    const inactive = "text-foreground/60 hover:text-foreground";
+    return `${base} ${locale === lang ? active : inactive}`;
+  };
+
+  return (
+    <div className="relative min-h-screen">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
+        {/* Header (Shared) */}
+        <header className="flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
+          <Link
+            href="/"
+            className="text-2xl font-bold tracking-[0.5px] text-gold-text hover:opacity-80 transition-opacity"
+          >
+            The P.A.T.H.
+          </Link>
+
+          <div className="flex flex-wrap items-center gap-4 md:gap-6">
+            <div className="flex items-center rounded-lg border border-black/5 bg-black/[0.03] p-1 dark:border-white/10 dark:bg-white/5">
+              <Link href="/glossary" locale="en" className={getLinkClass("en")}>
+                EN
+              </Link>
+              <Link href="/glossary" locale="si" className={getLinkClass("si")}>
+                සිංහල
+              </Link>
+              <Link href="/glossary" locale="ta" className={getLinkClass("ta")}>
+                தமிழ்
+              </Link>
+            </div>
+
+            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-black/5 bg-black/[0.03] transition-all hover:border-gold/30 dark:border-white/10 dark:bg-white/5">
+              <ThemeToggle className="text-foreground" />
+            </div>
+          </div>
+        </header>
+
+        {/* Content */}
+        <div className="py-12">
+          <div className="mb-12 text-center">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+              Education Center
+            </div>
+            <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              Political Glossary
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-foreground/70">
+              {locale === "en" &&
+                "Understanding the terminology behind Sri Lankan politics."}
+              {locale === "si" &&
+                "ශ්‍රී ලාංකීය දේශපාලනය පිටුපස ඇති පාරිභාෂිතය අවබෝධ කර ගැනීම."}
+              {locale === "ta" &&
+                "இலங்கை அரசியலின் பின்னணியில் உள்ள சொற்களைப் புரிந்துகொள்ளுதல்."}
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2">
+            {glossaryTerms.map((item) => (
+              <div
+                key={item.id}
+                className="theme-card relative overflow-hidden rounded-[24px] p-8 transition-all hover:-translate-y-1 hover:shadow-lg"
+              >
+                <div className="absolute top-0 left-0 w-[4px] bottom-0 bg-gold/50" />
+
+                <h3 className="mb-4 text-2xl font-bold text-foreground">
+                  {item.title[locale]}
+                </h3>
+
+                <p className="mb-6 text-base leading-relaxed text-foreground/80">
+                  {item.definition[locale]}
+                </p>
+
+                <div className="rounded-xl bg-foreground/5 p-4 text-sm">
+                  <span className="font-bold text-gold-text uppercase tracking-wider text-xs block mb-2">
+                    {locale === "en"
+                      ? "Sri Lankan Context"
+                      : "ශ්‍රී ලංකා සන්දර්භය"}
+                  </span>
+                  <span className="text-foreground/60 italic">
+                    {item.context[locale]}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/60 hover:text-gold-text transition-colors"
+            >
+              ← Back to Home
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

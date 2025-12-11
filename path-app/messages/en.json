@@ -9,12 +9,15 @@
     "intro": "Take our comprehensive political compass quiz to discover your alignment on economic and social issues in the Sri Lankan context.",
     "startQuiz": "Start Quiz",
     "howItWorks": "How It Works",
-    "step1": "Answer 20 questions about economic and social issues",
-    "step2": "Get your position on the political compass",
-    "step3": "See which historical Sri Lankan politician you align with most"
+    "step1Title": "Answer Questions",
+    "step1Text": "Take our concise quiz covering key economic and social issues in Sri Lanka.",
+    "step2Title": "Get Your Analysis",
+    "step2Text": "See exactly where your political ideology lands on the compass grid.",
+    "step3Title": "Find Your Match",
+    "step3Text": "Discover which historical or current Sri Lankan leader aligns with your views."
   },
   "quiz": {
-    "progress": "Question {current} of {total}",
+    "progress": "Question {current} / {total}",
     "stronglyDisagree": "Strongly Disagree",
     "disagree": "Disagree",
     "neutral": "Neutral",
@@ -33,7 +36,7 @@
     "right": "Right",
     "authoritarian": "Authoritarian",
     "liberal": "Liberal",
-    "closestMatch": "Your ideology is closest to",
+    "closestMatch": "Your Ideology is Closest to",
     "distance": "Distance",
     "shareResults": "Share Results",
     "retakeQuiz": "Retake Quiz",

@@ -1,214 +1,205 @@
-/**
- * Political Compass Questions for Sri Lanka
- * Each question has:
- * - id: unique identifier
- * - axis: 'economic' or 'social'
- * - value: score when user agrees (-2 to +2)
- * - text: question text in all three languages
- */
-
 export const questions = [
-  // ECONOMIC AXIS QUESTIONS (1-10)
+  // ECONOMIC AXIS (-10 Left to 10 Right)
   {
     id: 1,
-    axis: "economic",
-    value: 2, // Right
+    category: "economic",
     text: {
-      en: "Loss-making SOEs like SriLankan Airlines must be fully privatized.",
-      si: "ශ්‍රී ලංකන් ගුවන් සේවය වැනි පාඩු ලබන රාජ්‍ය ආයතන සම්පූර්ණයෙන්ම පුද්ගලීකරණය කළ යුතුය.",
-      ta: "இலங்கை விமானச் சேவை போன்ற நஷ்டத்தில் இயங்கும் அரச நிறுவனங்கள் முழுமையாக தனியார்மயமாக்கப்பட வேண்டும்.",
+      en: "The government should tax the rich more to provide for the poor.",
+      si: "දුප්පතුන්ට සහාය වීම සඳහා රජය ධනවතුන්ගෙන් වැඩි බදු අය කළ යුතුය.",
+      ta: "ஏழைகளுக்கு உதவ அரசாங்கம் பணக்காரர்களிடம் அதிக வரி வசூலிக்க வேண்டும்.",
     },
+    weight: -1, // Left
   },
   {
     id: 2,
-    axis: "economic",
-    value: 2, // Right
+    category: "economic",
     text: {
-      en: "Government should reduce taxes on high earners to stimulate investment.",
-      si: "ආයෝජන උත්තේජනය කිරීම සඳහා රජය ඉහළ ආදායම්ලාභීන්ගේ බදු අඩු කළ යුතුය.",
-      ta: "முதலீட்டை ஊக்குவிக்க அரசாங்கம் அதிக வருமானம் ஈட்டுபவர்களின் வரிகளை குறைக்க வேண்டும்.",
+      en: "Basic industries like electricity and water should be controlled by the state.",
+      si: "විදුලිය සහ ජලය වැනි මූලික කර්මාන්ත රජය විසින් පාලනය කළ යුතුය.",
+      ta: "மின்சாரம் மற்றும் நீர் போன்ற அடிப்படை தொழில்கள் அரசால் கட்டுப்படுத்தப்பட வேண்டும்.",
     },
+    weight: -1, // Left
   },
   {
     id: 3,
-    axis: "economic",
-    value: -2, // Left
+    category: "economic",
     text: {
-      en: "Food subsidies should be maintained even if it increases the deficit.",
-      si: "අර්බුදය වැඩි වුවද ආහාර සහනාධාර පවත්වා ගත යුතුය.",
-      ta: "பற்றாக்குறை அதிகரித்தாலும் உணவு மானியங்கள் தொடர வேண்டும்.",
+      en: "The free market is the best way to distribute goods and services.",
+      si: "භාණ්ඩ හා සේවා බෙදා හැරීමට හොඳම ක්‍රමය නිදහස් වෙළඳපොලයි.",
+      ta: "பொருட்கள் மற்றும் சேவைகளை விநியோகிக்க திறந்த சந்தையே சிறந்த வழியாகும்.",
     },
+    weight: 1, // Right
   },
   {
     id: 4,
-    axis: "economic",
-    value: -2, // Left
+    category: "economic",
     text: {
-      en: "The state should guarantee jobs for all university graduates.",
-      si: "සියලුම විශ්ව විද්‍යාල උපාධිධාරීන් සඳහා රජය රැකියා සහතික කළ යුතුය.",
-      ta: "அனைத்து பல்கலைக்கழக பட்டதாரிகளுக்கும் அரசு வேலைவாய்ப்பை உறுதி செய்ய வேண்டும்.",
+      en: "International trade is beneficial and should be encouraged.",
+      si: "ජාත්‍යන්තර වෙළඳාම වාසිදායක වන අතර එය දිරිමත් කළ යුතුය.",
+      ta: "சர்வதேச வர்த்தகம் நன்மை பயக்கும் மற்றும் ஊக்குவிக்கப்பட வேண்டும்.",
     },
+    weight: 1, // Right
   },
   {
     id: 5,
-    axis: "economic",
-    value: 2, // Right
+    category: "economic",
     text: {
-      en: "Foreign ownership of strategic land (e.g., Port City) is beneficial.",
-      si: "වරාය නගරය වැනි උපායමාර්ගික ඉඩම් විදේශීය අයිතිය ප්‍රයෝජනවත් වේ.",
-      ta: "துறைமுக நகரம் போன்ற மூலோபாய நிலங்களின் வெளிநாட்டு உரிமை நன்மை பயக்கும்.",
+      en: "From each according to his ability, to each according to his need.",
+      si: "සෑම කෙනෙකුම තම හැකියාව අනුව දායක විය යුතු අතර, අවශ්‍යතාවය අනුව ප්‍රතිලාභ ලැබිය යුතුය.",
+      ta: "ஒவ்வொருவரிடமிருந்தும் அவரது திறமைக்கு ஏற்ப, ஒவ்வொருவருக்கும் அவரது தேவைக்கு ஏற்ப.",
     },
+    weight: -1, // Left
   },
   {
     id: 6,
-    axis: "economic",
-    value: -2, // Left
+    category: "economic",
     text: {
-      en: "Wealth tax should be significantly increased on the richest 1%.",
-      si: "ධනවත්ම 1% ඉහළ ධන බද්ද සැලකිය යුතු ලෙස වැඩි කළ යුතුය.",
-      ta: "மிகவும் பணக்கார 1% மீதான செல்வ வரி கணிசமாக அதிகரிக்கப்பட வேண்டும்.",
+      en: "It is regrettable that many personal fortunes are made by people who simply manipulate money and contribute nothing to their society.",
+      si: "මුදල් හැසිරවීමෙන් පමණක් ධනවත් වන මිනිසුන් සමාජයට කිසිවක් දායක නොකිරීම කණගාටුදායකය.",
+      ta: "பணத்தை கையாளுவதன் மூலம் மட்டுமே செல்வம் ஈட்டும் மக்கள் சமூகத்திற்கு எதுவும் பங்களிக்காதது வருந்தத்தக்கது.",
     },
+    weight: -1, // Left
   },
   {
     id: 7,
-    axis: "economic",
-    value: -2, // Left
+    category: "economic",
     text: {
-      en: "The army running agriculture projects is acceptable for food security.",
-      si: "ආහාර ආරක්ෂාව සඳහා හමුදාව කෘෂිකාර්මික ව්‍යාපෘති පවත්වාගෙන යාම පිළිගත හැකිය.",
-      ta: "உணவுப் பாதுகாப்பிற்காக இராணுவம் விவசாய திட்டங்களை நடத்துவது ஏற்றுக்கொள்ளத்தக்கது.",
+      en: "Protectionism is sometimes necessary in trade.",
+      si: "වෙළඳාමේදී දේශීය කර්මාන්ත ආරක්ෂා කිරීම සමහර විට අත්‍යවශ්‍ය වේ.",
+      ta: "வர்த்தகத்தில் பாதுகாப்புவாதம் சில நேரங்களில் அவசியமானது.",
     },
+    weight: -1, // Left (Nationalist Econ)
   },
   {
     id: 8,
-    axis: "economic",
-    value: 2, // Right
+    category: "economic",
     text: {
-      en: "Central Bank independence is more important than political control.",
-      si: "මහ බැංකු ස්වාධීනත්වය දේශපාලන පාලනයට වඩා වැදගත් වේ.",
-      ta: "மத்திய வங்கி சுதந்திரம் அரசியல் கட்டுப்பாட்டை விட முக்கியமானது.",
+      en: "The only social responsibility of a company should be to deliver a profit to its shareholders.",
+      si: "සමාගමක එකම සමාජ වගකීම විය යුත්තේ කොටස් හිමියන්ට ලාභ ලබා දීමයි.",
+      ta: "ஒரு நிறுவனத்தின் ஒரே சமூகப் பொறுப்பு அதன் பங்குதாரர்களுக்கு லாபம் ஈட்டுவதாகும்.",
     },
+    weight: 1, // Right
   },
   {
     id: 9,
-    axis: "economic",
-    value: -2, // Left
+    category: "economic",
     text: {
-      en: "Import protectionism is necessary to save local industries.",
-      si: "දේශීය කර්මාන්ත බේරා ගැනීම සඳහා ආනයන ආරක්ෂාවාදය අවශ්‍ය වේ.",
-      ta: "உள்ளூர் தொழில்களை காப்பாற்ற இறக்குமதி பாதுகாப்புவாதம் அவசியம்.",
+      en: "Those with the ability to pay should have access to higher standards of medical care.",
+      si: "ගෙවීමට හැකි අයට උසස් මට්ටමේ වෛද්‍ය ප්‍රතිකාර ලබා ගැනීමට අවස්ථාව තිබිය යුතුය.",
+      ta: "பணம் செலுத்த முடிந்தவர்களுக்கு உயர்தர மருத்துவ வசதிகள் கிடைக்க வேண்டும்.",
     },
+    weight: 1, // Right
   },
   {
     id: 10,
-    axis: "economic",
-    value: -2, // Left
+    category: "economic",
     text: {
-      en: "Healthcare should remain 100% free and state-funded.",
-      si: "සෞඛ්‍ය සේවා 100% නොමිලේ සහ රාජ්‍ය අරමුදල් සහිතව පැවතිය යුතුය.",
-      ta: "சுகாதாரம் 100% இலவசமாகவும் அரசு நிதியுதவியுடனும் இருக்க வேண்டும்.",
+      en: "Governments should penalise businesses that mislead the public.",
+      si: "මහජනතාව නොමඟ යවන ව්‍යාපාරවලට රජය දඬුවම් කළ යුතුය.",
+      ta: "மக்களை தவறாக வழிநடத்தும் வணிகங்களை அரசாங்கம் தண்டிக்க வேண்டும்.",
     },
+    weight: -1, // Intervention
   },
 
-  // SOCIAL AXIS QUESTIONS (11-20)
+  // SOCIAL AXIS (-10 Libertarian to 10 Authoritarian)
   {
     id: 11,
-    axis: "social",
-    value: -2, // Liberal
+    category: "social",
     text: {
-      en: "The Executive Presidency should be abolished.",
-      si: "විධායක ජනාධිපති ක්‍රමය අහෝසි කළ යුතුය.",
-      ta: "நிறைவேற்று அதிபர் முறை ஒழிக்கப்பட வேண்டும்.",
+      en: "Abortion, when the woman's life is not threatened, should always be illegal.",
+      si: "කාන්තාවගේ ජීවිතයට තර්ජනයක් නොමැති විට ගබ්සා කිරීම සැමවිටම නීති විරෝධී විය යුතුය.",
+      ta: "பெண்ணின் உயிருக்கு அச்சுறுத்தல் இல்லாத போது கருக்கலைப்பு சட்டவிரோதமாக்கப்பட வேண்டும்.",
     },
+    weight: 1, // Authoritarian
   },
   {
     id: 12,
-    axis: "social",
-    value: -2, // Liberal
+    category: "social",
     text: {
-      en: "Provincial Councils should have land and police powers (13A).",
-      si: "පළාත් සභාවලට ඉඩම් සහ පොලිස් බලතල තිබිය යුතුය (13A).",
-      ta: "மாகாண சபைகளுக்கு நில மற்றும் காவல்துறை அதிகாரங்கள் இருக்க வேண்டும் (13A).",
+      en: "All authority should be questioned.",
+      si: "සියලු අධිකාරීන් ප්‍රශ්න කළ යුතුය.",
+      ta: "அனைத்து அதிகாரங்களும் கேள்விக்குள்ளாக்கப்பட வேண்டும்.",
     },
+    weight: -1, // Libertarian
   },
   {
     id: 13,
-    axis: "social",
-    value: -2, // Liberal
+    category: "social",
     text: {
-      en: "Mass protests (Aragalaya) are a legitimate way to force change.",
-      si: "මහජන විරෝධතා (අරගලය) වෙනසක් බලකිරීමට නීත්‍යානුකූල මාර්ගයකි.",
-      ta: "வெகுஜன போராட்டங்கள் (அரகலய) மாற்றத்தை கட்டாயப்படுத்த சட்டபூர்வமான வழி.",
+      en: "An eye for an eye and a tooth for a tooth.",
+      si: "ඇසට ඇසක්, දතට දතක්.",
+      ta: "கண்ணுக்கு கண், பல்லுக்கு பல்.",
     },
+    weight: 1, // Authoritarian
   },
   {
     id: 14,
-    axis: "social",
-    value: 2, // Authoritarian
+    category: "social",
     text: {
-      en: "National security decisions must rest solely with the central government.",
-      si: "ජාතික ආරක්ෂක තීරණ මධ්‍යම රජය සතු විය යුතුය.",
-      ta: "தேசிய பாதுகாப்பு முடிவுகள் மத்திய அரசாங்கத்திடம் மட்டுமே இருக்க வேண்டும்.",
+      en: "Taxpayers should not be expected to prop up any theatres or museums that cannot survive on a commercial basis.",
+      si: "වාණිජමය වශයෙන් පැවතිය නොහැකි සිනමාහල් හෝ කෞතුකාගාර නඩත්තු කිරීමට බදු ගෙවන්නන්ගෙන් බලාපොරොත්තු නොවිය යුතුය.",
+      ta: "வணிக ரீதியாக இயங்க முடியாத திரையரங்குகள் அல்லது அருங்காட்சியகங்களை ஆதரிக்க வரி செலுத்துபவர்கள் எதிர்பார்க்கப்படக்கூடாது.",
     },
+    weight: -1, // Libertarian (Individualism) - Wait, usually Right/Lib
   },
   {
     id: 15,
-    axis: "social",
-    value: -2, // Liberal
+    category: "social",
     text: {
-      en: "The military budget should be reduced for education funding.",
-      si: "අධ්‍යාපන අරමුදල් සඳහා හමුදා අයවැය අඩු කළ යුතුය.",
-      ta: "கல்வி நிதிக்காக இராணுவ வரவு செலவு திட்டம் குறைக்கப்பட வேண்டும்.",
+      en: "Schools should not make classroom attendance compulsory.",
+      si: "පාසල් පැමිණීම අනිවාර්ය නොකළ යුතුය.",
+      ta: "பள்ளி வருகையை கட்டாயமாக்கக் கூடாது.",
     },
+    weight: -1, // Libertarian
   },
   {
     id: 16,
-    axis: "social",
-    value: 2, // Authoritarian
+    category: "social",
     text: {
-      en: "Access to social media should be restricted during crises.",
-      si: "අර්බුදකාරී කාලවලදී සමාජ මාධ්‍ය ප්‍රවේශය සීමා කළ යුතුය.",
-      ta: "நெருக்கடி காலங்களில் சமூக ஊடக அணுகல் கட்டுப்படுத்தப்பட வேண்டும்.",
+      en: "All people have their rights, but it is better for all of us that different sorts of people should keep to their own kind.",
+      si: "සෑම කෙනෙකුටම අයිතිවාසිකම් ඇත, නමුත් විවිධ වර්ගයේ අය වෙන්ව සිටීම වඩා හොඳය.",
+      ta: "அனைவருக்கும் உரிமைகள் உண்டு, ஆனால் வெவ்வேறு வகையான மக்கள் தனித்தனியாக இருப்பதே நல்லது.",
     },
+    weight: 1, // Authoritarian
   },
   {
     id: 17,
-    axis: "social",
-    value: 2, // Authoritarian
+    category: "social",
     text: {
-      en: "Judges should be subject to political oversight.",
-      si: "විනිසුරුවන් දේශපාලන අධීක්ෂණයට යටත් විය යුතුය.",
-      ta: "நீதிபதிகள் அரசியல் மேற்பார்வைக்கு உட்பட்டிருக்க வேண்டும்.",
+      en: "Good parents sometimes have to spank their children.",
+      si: "හොඳ දෙමාපියන් සමහර විට දරුවන්ට දඬුවම් කළ යුතුය.",
+      ta: "நல்ல பெற்றோர்கள் சில சமயங்களில் குழந்தைகளை அடிக்க வேண்டும்.",
     },
+    weight: 1, // Authoritarian
   },
   {
     id: 18,
-    axis: "social",
-    value: 2, // Authoritarian
+    category: "social",
     text: {
-      en: "LGBTIQ rights are a western concept and not for Sri Lanka.",
-      si: "LGBTIQ අයිතිවාසිකම් බටහිර සංකල්පයක් වන අතර ශ්‍රී ලංකාවට නොවේ.",
-      ta: "LGBTIQ உரிமைகள் மேற்கத்திய கருத்து மற்றும் இலங்கைக்கு அல்ல.",
+      en: "It is natural for children to keep some secrets from their parents.",
+      si: "දරුවන් දෙමාපියන්ගෙන් රහස් තබා ගැනීම ස්වභාවිකය.",
+      ta: "குழந்தைகள் பெற்றோரிடம் சில ரகசியங்களை வைத்திருப்பது இயல்பானது.",
     },
+    weight: -1, // Libertarian
   },
   {
     id: 19,
-    axis: "social",
-    value: 2, // Authoritarian
+    category: "social",
     text: {
-      en: "A strong dictator is better than a weak democracy.",
-      si: "දුර්වල ප්‍රජාතන්ත්‍රවාදයකට වඩා ශක්තිමත් ඒකාධිපතියෙක් හොඳය.",
-      ta: "பலவீனமான ஜனநாயகத்தை விட வலுவான சர்வாதிகாரி சிறந்தது.",
+      en: "Possessing marijuana for personal use should not be a criminal offence.",
+      si: "පුද්ගලික පරිහරණය සඳහා ගංජා ළඟ තබා ගැනීම අපරාධයක් නොවිය යුතුය.",
+      ta: "தனிப்பட்ட பயன்பாட்டிற்காக கஞ்சா வைத்திருப்பது குற்றமாக கருதப்படக்கூடாது.",
     },
+    weight: -1, // Libertarian
   },
   {
     id: 20,
-    axis: "social",
-    value: 2, // Authoritarian
+    category: "social",
     text: {
-      en: "Religious clergy should have a say in state law-making.",
-      si: "රාජ්‍ය නීති සම්පාදනයේදී ආගමික පූජකයන්ට අදහස් දැක්විය යුතුය.",
-      ta: "மாநில சட்ட உருவாக்கத்தில் மத குருமார்களுக்கு கருத்து இருக்க வேண்டும்.",
+      en: "The prime function of schooling should be to equip the future generation to find jobs.",
+      si: "පාසල් අධ්‍යාපනයේ මූලික අරමුණ අනාගත පරපුරට රැකියා සොයා දීම විය යුතුය.",
+      ta: "பள்ளி கல்வியின் முதன்மை நோக்கம் எதிர்கால சந்ததியினரை வேலை வாய்ப்புகளுக்கு தயார்படுத்துவதாகும்.",
     },
+    weight: 1, // Authoritarian (Conformity)
   },
 ];
