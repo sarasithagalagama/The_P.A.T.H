@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+:root {
+  /* Light Mode - Royal Parchment Theme */
+  --gold: 43 96% 56%; /* #FDB913 */
+  --gold-hover: 36 94% 55%;
+  --gold-text: 36 100% 35%; /* Darker gold for text readability on light bg */
+  
+  --background: 0 0% 98%; /* #FAFAFA */
+  --foreground: 240 10% 10%; /* Deep Charcoal */
+  
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 10%;
+  
+  --border: 240 5.9% 90%;
+}
+
+.dark {
+  /* Dark Mode - Midnight Gold Theme */
+  --gold-text: 43 96% 56%; /* Bright gold for dark bg */
+  
+  --background: 0 0% 4%; /* #0a0a0a */
+  --foreground: 0 0% 100%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 100%;
+  
+  --border: 0 0% 100%;
+}
+
+@theme inline {
+  --color-gold: hsl(var(--gold));
+  --color-gold-hover: hsl(var(--gold-hover));
+  --color-gold-text: hsl(var(--gold-text));
+  
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  
+  --color-border: hsl(var(--border));
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* --- LIGHT MODE THEME --- */
+body:not(.dark) {
+  /* Soft Gray/White Gradient */
+  background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+  color: #111827;
+}
+
+body:not(.dark)::before {
+  /* Very subtle warm glow for Light Mode */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+      radial-gradient(circle at 10% 20%, rgba(253, 185, 19, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 90% 90%, rgba(253, 185, 19, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Light Mode Glass Card */
+body:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+}
+
+/* --- DARK MODE THEME --- */
+.dark body {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #ffffff;
+}
+
+.dark body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+      radial-gradient(circle at 20% 50%, rgba(253, 185, 19, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(253, 185, 19, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}

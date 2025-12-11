@@ -1,0 +1,43 @@
+{
+  "app": {
+    "title": "The P.A.T.H.",
+    "subtitle": "Political Alignment Testing Hub - Sri Lanka",
+    "description": "Discover where you stand on the Sri Lankan political spectrum"
+  },
+  "home": {
+    "welcome": "Welcome to The P.A.T.H.",
+    "intro": "Take our comprehensive political compass quiz to discover your alignment on economic and social issues in the Sri Lankan context.",
+    "startQuiz": "Start Quiz",
+    "howItWorks": "How It Works",
+    "step1": "Answer 20 questions about economic and social issues",
+    "step2": "Get your position on the political compass",
+    "step3": "See which historical Sri Lankan politician you align with most"
+  },
+  "quiz": {
+    "progress": "Question {current} of {total}",
+    "stronglyDisagree": "Strongly Disagree",
+    "disagree": "Disagree",
+    "neutral": "Neutral",
+    "agree": "Agree",
+    "stronglyAgree": "Strongly Agree",
+    "next": "Next",
+    "previous": "Previous",
+    "finish": "Finish Quiz"
+  },
+  "results": {
+    "title": "Your Political Compass",
+    "yourPosition": "Your Position",
+    "economicAxis": "Economic Axis",
+    "socialAxis": "Social Axis",
+    "left": "Left",
+    "right": "Right",
+    "authoritarian": "Authoritarian",
+    "liberal": "Liberal",
+    "closestMatch": "Your ideology is closest to",
+    "distance": "Distance",
+    "shareResults": "Share Results",
+    "retakeQuiz": "Retake Quiz",
+    "economicScore": "Economic: {score}",
+    "socialScore": "Social: {score}"
+  }
+}
