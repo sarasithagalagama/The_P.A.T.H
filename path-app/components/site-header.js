@@ -53,9 +53,9 @@ export function SiteHeader() {
     {
       href: "/leaders",
       label: {
-        en: "Case Studies",
-        si: "සිද්ධි අධ්‍යයන",
-        ta: "வழக்கு ஆய்வுகள்",
+        en: "Leaders",
+        si: "නායකයින්",
+        ta: "தலைவர்கள்",
       },
     },
   ];

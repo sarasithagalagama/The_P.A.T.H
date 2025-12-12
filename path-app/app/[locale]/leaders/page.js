@@ -2,171 +2,10 @@
 
 import { useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
+import { leadersData } from "@/data/leaders";
 
 export default function LeadersPage() {
   const locale = useLocale();
-
-  const caseStudies = [
-    {
-      id: "statist-nationalist",
-      archetype: {
-        en: "Statist Nationalist",
-        si: "රාජ්‍යවාදී ජාතිකවාදීන්",
-        ta: "அரச தேசியவாதிகள்",
-      },
-      subtitle: {
-        en: "(Authoritarian Left)",
-        si: "(අධිකාරීවාදී වම්)",
-        ta: "(சர்வாதிகார இடது)",
-      },
-      figures: {
-        en: "Mahinda Rajapaksa & Sirimavo Bandaranaike",
-        si: "මහින්ද රාජපක්ෂ සහ සිරිමාවෝ බණ්ඩාරනායක",
-        ta: "மஹிந்த ராஜபக்ஷ மற்றும் சிறிமாவோ பண்டாரநாயக்க",
-      },
-      content: {
-        en: {
-          economic:
-            "Both championed a state-heavy economy. Sirimavo closed the economy (1970-77), and Mahinda focused on state-led infrastructure and debt-driven development, protecting local industries but restricting free trade.",
-          governance:
-            "Both centralized power heavily. Sirimavo used emergency laws to extend her rule; Mahinda removed term limits (18th Amendment) and militarized civil administration.",
-        },
-        si: {
-          economic:
-            "දෙදෙනාම රාජ්‍ය මූලික ආර්ථිකයක් වෙනුවෙන් පෙනී සිටියහ. සිරිමාවෝ ආර්ථිකය සංවෘත කළ අතර (1970-77), මහින්ද රාජ්‍ය මූලික යටිතල පහසුකම් සහ ණය මත පදනම් වූ සංවර්ධනය කෙරෙහි අවධානය යොමු කළේය.",
-          governance:
-            "දෙදෙනාම බලය දැඩි ලෙස මධ්‍යගත කළහ. සිරිමාවෝ හදිසි නීති භාවිතා කළ අතර, මහින්ද ධුර කාල සීමාවන් ඉවත් කර (18 වන සංශෝධනය) පරිපාලනය හමුදාකරණය කළේය.",
-        },
-        ta: {
-          economic:
-            "இருவரும் அரசு சார்ந்த பொருளாதாரத்தை ஆதரித்தனர். சிறிமாவோ பொருளாதாரத்தை மூடினார் (1970-77), மஹிந்த அரச உள்கட்டமைப்பு மற்றும் கடன் சார்ந்த வளர்ச்சியில் கவனம் செலுத்தினார்.",
-          governance:
-            "இருவரும் அதிகாரத்தை மையப்படுத்தினர். சிறிமாவோ அவசரகால சட்டங்களைப் பயன்படுத்தினார்; மஹிந்த பதவி வரம்புகளை நீக்கி (18வது திருத்தம்) நிர்வாகத்தை இராணுவமயமாக்கினார்.",
-        },
-      },
-      color: "#EF4444", // Red (Auth-Left)
-    },
-    {
-      id: "conservative-capitalist",
-      archetype: {
-        en: "Conservative Capitalist",
-        si: "සම්ප්‍රදායික ධනවාදීන්",
-        ta: "பழமைவாத முதலாளித்துவவாதிகள்",
-      },
-      subtitle: {
-        en: "(Authoritarian Right)",
-        si: "(අධිකාරීවාදී දකුණු)",
-        ta: "(சர்வாதிகார வலது)",
-      },
-      figures: {
-        en: "J.R. Jayewardene & Ranil Wickremesinghe",
-        si: "ජේ.ආර්. ජයවර්ධන සහ රනිල් වික්‍රමසිංහ",
-        ta: "ஜே.ஆர். ஜெயவர்த்தன மற்றும் ரணில் விக்கிரமசிங்க",
-      },
-      content: {
-        en: {
-          economic:
-            "The architects of the Open Economy. J.R. introduced it in 1977, and Ranil has consistently pushed for neoliberal reforms, privatization of SOEs, and austerity measures to stabilize the economy.",
-          governance:
-            "Both utilized the full force of the Executive Presidency. J.R. created it and held a referendum to avoid elections; Ranil used it to suppress the Aragalaya and postpone local elections.",
-        },
-        si: {
-          economic:
-            "විවෘත ආර්ථිකයේ නිර්මාතෘවරුන්ය. ජේ.ආර්. 1977 දී එය හඳුන්වා දුන් අතර, රනිල් දිගින් දිගටම නව ලිබරල් ප්‍රතිසංස්කරණ සහ රාජ්‍ය ආයතන පෞද්ගලීකරණය වෙනුවෙන් පෙනී සිටියේය.",
-          governance:
-            "දෙදෙනාම විධායක ජනාධිපති ධුරයේ බලය උපරිමයෙන් භාවිතා කළහ. ජේ.ආර්. ජනමත විචාරණයක් පැවැත්වූ අතර, රනිල් අරගලය මර්දනය කිරීමට එම බලය භාවිතා කළේය.",
-        },
-        ta: {
-          economic:
-            "திறந்த பொருளாதாரத்தின் சிற்பிகள். ஜே.ஆர். 1977 இல் அதை அறிமுகப்படுத்தினார், ரணில் தொடர்ந்து தனியார்மயமாக்கலை ஆதரித்தார்.",
-          governance:
-            "இருவரும் நிறைவேற்று அதிகாரத்தை முழுமையாகப் பயன்படுத்தினர். ஜே.ஆர். தேர்தலைத் தவிர்க்க பொதுவாக்கெடுப்பை நடத்தினார்; ரணில் போராட்டங்களை ஒடுக்கினார்.",
-        },
-      },
-      color: "#3B82F6", // Blue (Auth-Right)
-    },
-    {
-      id: "democratic-socialist",
-      archetype: {
-        en: "Democratic Socialist",
-        si: "ප්‍රජාතන්ත්‍රවාදී සමාජවාදීන්",
-        ta: "ஜனநாயக சோசலிஸ்டுகள்",
-      },
-      subtitle: {
-        en: "(Libertarian Left)",
-        si: "(නිදහස්වාදී වම්)",
-        ta: "(தாராளவாத இடது)",
-      },
-      figures: {
-        en: "Anura Kumara Dissanayake (Modern NPP)",
-        si: "අනුර කුමාර දිසානායක (නූතන NPP)",
-        ta: "அநுர குமார திஸாநாயக்க (நவீன NPP)",
-      },
-      content: {
-        en: {
-          economic:
-            "Advocates for a 'Production-Based Economy' and reducing the tax burden on the working class (VAT), while opposing the sale of national assets.",
-          governance:
-            "The core platform is 'System Change'—abolishing the Executive Presidency, ending corruption, and reducing the power of the political elite.",
-          note: "This distinguishes the modern NPP from the historical JVP (which was Authoritarian Left).",
-        },
-        si: {
-          economic:
-            "'නිෂ්පාදන ආර්ථිකයක්' සහ වැඩ කරන ජනතාවගේ බදු බර අඩු කිරීම (VAT) වෙනුවෙන් පෙනී සිටින අතර, ජාතික සම්පත් විකිණීමට විරුද්ධ වේ.",
-          governance:
-            "ප්‍රධාන අරමුණ 'ක්‍රමයේ වෙනසක්' (System Change) - විධායක ජනාධිපති ධුරය අහෝසි කිරීම සහ දූෂණය නතර කිරීමයි.",
-          note: "මෙය පැරණි JVP (අධිකාරීවාදී වම) සහ නූතන NPP අතර වෙනස පෙන්නුම් කරයි.",
-        },
-        ta: {
-          economic:
-            "'உற்பத்தி சார்ந்த பொருளாதாரம்' மற்றும் வரிச் சுமைகளை குறைத்தல்; அதேவேளை தேசிய சொத்துக்களை விற்பதை எதிர்த்தல்.",
-          governance:
-            "முக்கிய நோக்கம் 'முறைமை மாற்றம்' (System Change) - நிறைவேற்று அதிகாரத்தை நீக்குதல் மற்றும் ஊழலை ஒழித்தல்.",
-          note: "இது நவீன NPP ஐ வரலாற்று JVP யிலிருந்து (சர்வாதிகார இடது) வேறுபடுத்துகிறது.",
-        },
-      },
-      color: "#22C55E", // Green (Lib-Left)
-    },
-    {
-      id: "social-liberal",
-      archetype: {
-        en: "Social Liberal",
-        si: "සමාජ ලිබරල්වාදීන්",
-        ta: "சமூக தாராளவாதிகள்",
-      },
-      subtitle: {
-        en: "(Libertarian Right)",
-        si: "(නිදහස්වාදී දකුණු)",
-        ta: "(தாராளவாத வலது)",
-      },
-      figures: {
-        en: "Sajith Premadasa (SJB) & Mangala Samaraweera (Historical)",
-        si: "සජිත් ප්‍රේමදාස (SJB) සහ මංගල සමරවීර",
-        ta: "சஜித் பிரேமதாஸ (SJB) மற்றும் மங்கள சமரவீர",
-      },
-      content: {
-        en: {
-          economic:
-            "Supports open markets but emphasizes 'Social Capitalism'—using market profits to fund strong poverty alleviation programs (like Janasaviya).",
-          governance:
-            "Generally supports the 13th Amendment (devolution of power) and reducing the powers of the President (21st Amendment).",
-        },
-        si: {
-          economic:
-            "විවෘත වෙළඳපොලට සහාය දෙන අතරම 'සමාජ ධනවාදය' අවධාරණය කරයි - වෙළඳපොල ලාභ හරහා දරිද්‍රතාවය පිටුදැකීමේ වැඩසටහන් (ජනසවිය වැනි) ක්‍රියාත්මක කරයි.",
-          governance:
-            "13 වන සංශෝධනය (බලය බෙදා හැරීම) සහ ජනාධිපති බලතල අඩු කිරීමට (21 වන සංශෝධනය) සහාය දක්වයි.",
-        },
-        ta: {
-          economic:
-            "திறந்த சந்தையை ஆதரிக்கிறது ஆனால் 'சமூக முதலாளித்துவத்தை' வலியுறுத்துகிறது - வறுமை ஒழிப்பு திட்டங்களுக்கு நிதியளிக்கிறது.",
-          governance:
-            "13 வது திருத்தத்தை (அதிகாரப் பகிர்வு) மற்றும் ஜனாதிபதி அதிகாரங்களைக் குறைப்பதை (21 வது திருத்தம்) ஆதரிக்கிறது.",
-        },
-      },
-      color: "#EAB308", // Yellow (Lib-Right)
-    },
-  ];
 
   return (
     <div className="relative min-h-screen">
@@ -176,106 +15,218 @@ export default function LeadersPage() {
           <div className="mb-16 text-center">
             <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
               {locale === "si"
-                ? "දේශපාලන අධ්‍යයනයන්"
-                : "Political Case Studies"}
+                ? "ඉතිහාසය දෙසට"
+                : locale === "ta"
+                ? "வரலாற்றுப் பார்வை"
+                : "A Walk Through History"}
             </div>
             <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
               {locale === "si"
-                ? "ශ්‍රී ලංකාවේ ප්‍රධාන දේශපාලන ධාරාවන්"
+                ? "රාජ්‍ය නායකත්ව ලේඛනාගාරය"
                 : locale === "ta"
-                ? "இலங்கையின் முக்கிய அரசியல் ஆய்வுகள்"
-                : "Understanding the Archetypes"}
+                ? "தலைத்துவ ஆவணம்"
+                : "Leadership Archive"}
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
               {locale === "en" &&
-                "See where Sri Lanka's key figures land on the compass and understand the history behind their ideologies."}
+                "Explore the profiles of Sri Lanka's key political figures, their tenure, ideologies, and impact on the nation."}
               {locale === "si" &&
-                "ශ්‍රී ලංකාවේ ප්‍රධාන දේශපාලන චරිත මාලිමා සටහනේ ස්ථානගත වන ආකාරය සහ ඔවුන්ගේ දෘෂ්ටිවාදයන් පිටුපස ඇති ඉතිහාසය වටහා ගන්න."}
+                "ශ්‍රී ලංකාවේ ප්‍රධාන දේශපාලන චරිත, ඔවුන්ගේ ධුර කාලය, දෘෂ්ටිවාදයන් සහ රටට කළ බලපෑම ගවේෂණය කරන්න."}
               {locale === "ta" &&
-                "இலங்கையின் முக்கிய அரசியல் பிரமுகர்கள் திசைகாட்டி வரைபடத்தில் எங்கு இருக்கிறார்கள் என்பதையும், அவர்களின் சித்தாந்தங்களின் பின்னணியில் உள்ள வரலாற்றையும் புரிந்து கொள்ளுங்கள்."}
+                "இலங்கையின் முக்கிய அரசியல் பிரமுகர்கள், அவர்களின் பதவிக்காலம், கொள்கைகள் மற்றும் நாட்டின் மீதான தாக்கம் பற்றி ஆராயுங்கள்."}
             </p>
           </div>
 
-          {/* Grid */}
-          <div className="grid gap-8 lg:grid-cols-2">
-            {caseStudies.map((item) => (
-              <div
-                key={item.id}
-                className="theme-card group relative overflow-hidden rounded-[32px] p-0 transition-all hover:-translate-y-1 hover:shadow-2xl"
-              >
-                {/* Top Banner Color */}
+          {/* SECTION 1: Parliamentary Era */}
+          <div className="mb-16">
+            <div className="mb-8 flex items-center gap-4">
+              <div className="h-px flex-1 bg-foreground/10"></div>
+              <h2 className="text-2xl font-bold uppercase tracking-widest text-foreground opacity-80 text-center px-4">
+                {locale === "si"
+                  ? "පාර්ලිමේන්තු යුගය (1947–1978)"
+                  : locale === "ta"
+                  ? "பாராளுமன்ற சகாப்தம் (1947–1978)"
+                  : "The Parliamentary Era (1947–1978)"}
+              </h2>
+              <div className="h-px flex-1 bg-foreground/10"></div>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {leadersData.slice(0, 6).map((leader) => (
                 <div
-                  className="h-3 w-full opacity-80"
-                  style={{ backgroundColor: item.color }}
-                />
+                  key={leader.id}
+                  className="theme-card group relative flex flex-col overflow-hidden rounded-[24px] border border-white/10 p-0 transition-all hover:-translate-y-1 hover:shadow-2xl"
+                >
+                  {/* Header Decoration */}
+                  <div
+                    className="h-2 w-full opacity-80"
+                    style={{ backgroundColor: leader.color }}
+                  />
 
-                <div className="p-8 md:p-10">
-                  {/* Badge */}
-                  <div className="mb-6 flex items-start justify-between">
-                    <span
-                      className="inline-block rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-white shadow-sm"
-                      style={{ backgroundColor: item.color }}
-                    >
-                      {item.subtitle[locale] || item.subtitle["en"]}
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h2 className="mb-2 text-3xl font-extrabold text-foreground group-hover:text-gold-text transition-colors">
-                    {item.archetype[locale] || item.archetype["en"]}
-                  </h2>
-                  <div className="mb-8 text-lg font-medium text-foreground/60">
-                    {item.figures[locale] || item.figures["en"]}
-                  </div>
-
-                  {/* Content Grid */}
-                  <div className="space-y-6">
-                    <div className="rounded-[20px] bg-foreground/5 p-6 hover:bg-foreground/10 transition-colors">
-                      <div className="mb-3 flex items-center gap-3">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold/20 text-lg">
-                          💰
-                        </span>
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-gold-text">
-                          {locale === "en" ? "Economic" : "ආර්ථික"}
+                  <div className="flex flex-1 flex-col p-6">
+                    {/* Top Section: Avatar & Info */}
+                    <div className="mb-4 flex items-start gap-4">
+                      <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border-2 border-white/20 shadow-md">
+                        <img
+                          src={leader.image}
+                          alt={leader.name["en"]}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold leading-tight text-foreground group-hover:text-gold-text transition-colors">
+                          {leader.name[locale] || leader.name["en"]}
                         </h3>
-                      </div>
-                      <p className="text-sm leading-7 text-foreground/80">
-                        {item.content[locale]?.economic ||
-                          item.content["en"].economic}
-                      </p>
-                    </div>
-
-                    <div className="rounded-[20px] bg-foreground/5 p-6 hover:bg-foreground/10 transition-colors">
-                      <div className="mb-3 flex items-center gap-3">
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold/20 text-lg">
-                          🏛️
-                        </span>
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-gold-text">
-                          {locale === "en" ? "Governance" : "පාලනය"}
-                        </h3>
-                      </div>
-                      <p className="text-sm leading-7 text-foreground/80">
-                        {item.content[locale]?.governance ||
-                          item.content["en"].governance}
-                      </p>
-                    </div>
-
-                    {/* Note for Democratic Socialist */}
-                    {item.content[locale]?.note && (
-                      <div className="mt-4 rounded-xl border border-foreground/10 bg-transparent p-4 text-xs italic text-foreground/50">
-                        * {item.content[locale].note}
-                      </div>
-                    )}
-                    {item.content["en"]?.note &&
-                      !item.content[locale]?.note && (
-                        <div className="mt-4 rounded-xl border border-foreground/10 bg-transparent p-4 text-xs italic text-foreground/50">
-                          * {item.content["en"].note}
+                        <div
+                          className="mt-1 inline-flex rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white"
+                          style={{ backgroundColor: leader.color }}
+                        >
+                          {leader.party}
                         </div>
-                      )}
+                      </div>
+                    </div>
+
+                    {/* Role */}
+                    <div className="mb-4 text-xs font-bold uppercase tracking-wider text-foreground/50">
+                      {leader.role[locale] || leader.role["en"]}
+                    </div>
+
+                    {/* Description */}
+                    <p className="mb-6 flex-1 text-sm leading-relaxed text-foreground/80">
+                      {leader.desc[locale] || leader.desc["en"]}
+                    </p>
+
+                    {/* Compass Mini-Viz */}
+                    <div className="mt-auto border-t border-foreground/5 pt-4">
+                      <div className="flex items-center justify-between text-[10px] font-bold uppercase text-foreground/40">
+                        <span>
+                          Econ: {leader.compass.x > 0 ? "R" : "L"}
+                          {Math.abs(leader.compass.x)}
+                        </span>
+                        <span>
+                          Soc: {leader.compass.y > 0 ? "Auth" : "Lib"}
+                          {Math.abs(leader.compass.y)}
+                        </span>
+                      </div>
+                      {/* Visual Line */}
+                      <div className="relative mt-2 h-1.5 w-full rounded-full bg-foreground/10">
+                        {/* Center Marker */}
+                        <div className="absolute left-1/2 top-0 h-full w-[1px] bg-foreground/20" />
+
+                        {/* Position Dot */}
+                        <div
+                          className="absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white shadow-sm transition-all"
+                          style={{
+                            left: `${((leader.compass.x + 10) / 20) * 100}%`,
+                            backgroundColor: leader.color,
+                          }}
+                          title={`Economic: ${leader.compass.x}`}
+                        />
+                      </div>
+                      <div className="mt-1 text-center text-[9px] font-bold uppercase tracking-wider text-foreground/30">
+                        Economic Spectrum
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          {/* SECTION 2: Executive Presidency */}
+          <div>
+            <div className="mb-8 flex items-center gap-4">
+              <div className="h-px flex-1 bg-foreground/10"></div>
+              <h2 className="text-2xl font-bold uppercase tracking-widest text-foreground opacity-80 text-center px-4">
+                {locale === "si"
+                  ? "විධායක ජනාධිපති යුගය (1978–වර්තමානය)"
+                  : locale === "ta"
+                  ? "நிறைவேற்று ஜனாதிபதி முறைமை (1978–தற்போது)"
+                  : "The Executive Presidency (1978–Present)"}
+              </h2>
+              <div className="h-px flex-1 bg-foreground/10"></div>
+            </div>
+
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {leadersData.slice(6).map((leader) => (
+                <div
+                  key={leader.id}
+                  className="theme-card group relative flex flex-col overflow-hidden rounded-[24px] border border-white/10 p-0 transition-all hover:-translate-y-1 hover:shadow-2xl"
+                >
+                  {/* Header Decoration */}
+                  <div
+                    className="h-2 w-full opacity-80"
+                    style={{ backgroundColor: leader.color }}
+                  />
+
+                  <div className="flex flex-1 flex-col p-6">
+                    {/* Top Section: Avatar & Info */}
+                    <div className="mb-4 flex items-start gap-4">
+                      <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border-2 border-white/20 shadow-md">
+                        <img
+                          src={leader.image}
+                          alt={leader.name["en"]}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold leading-tight text-foreground group-hover:text-gold-text transition-colors">
+                          {leader.name[locale] || leader.name["en"]}
+                        </h3>
+                        <div
+                          className="mt-1 inline-flex rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white"
+                          style={{ backgroundColor: leader.color }}
+                        >
+                          {leader.party}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Role */}
+                    <div className="mb-4 text-xs font-bold uppercase tracking-wider text-foreground/50">
+                      {leader.role[locale] || leader.role["en"]}
+                    </div>
+
+                    {/* Description */}
+                    <p className="mb-6 flex-1 text-sm leading-relaxed text-foreground/80">
+                      {leader.desc[locale] || leader.desc["en"]}
+                    </p>
+
+                    {/* Compass Mini-Viz */}
+                    <div className="mt-auto border-t border-foreground/5 pt-4">
+                      <div className="flex items-center justify-between text-[10px] font-bold uppercase text-foreground/40">
+                        <span>
+                          Econ: {leader.compass.x > 0 ? "R" : "L"}
+                          {Math.abs(leader.compass.x)}
+                        </span>
+                        <span>
+                          Soc: {leader.compass.y > 0 ? "Auth" : "Lib"}
+                          {Math.abs(leader.compass.y)}
+                        </span>
+                      </div>
+                      {/* Visual Line */}
+                      <div className="relative mt-2 h-1.5 w-full rounded-full bg-foreground/10">
+                        {/* Center Marker */}
+                        <div className="absolute left-1/2 top-0 h-full w-[1px] bg-foreground/20" />
+
+                        {/* Position Dot */}
+                        <div
+                          className="absolute top-1/2 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white shadow-sm transition-all"
+                          style={{
+                            left: `${((leader.compass.x + 10) / 20) * 100}%`,
+                            backgroundColor: leader.color,
+                          }}
+                          title={`Economic: ${leader.compass.x}`}
+                        />
+                      </div>
+                      <div className="mt-1 text-center text-[9px] font-bold uppercase tracking-wider text-foreground/30">
+                        Economic Spectrum
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-16 text-center">
