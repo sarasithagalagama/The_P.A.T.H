@@ -2,21 +2,12 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { ThemeToggle } from "@/components/theme-toggle";
 import Image from "next/image";
 
 export default function HomePage() {
   const t = useTranslations("home");
   const tApp = useTranslations("app");
   const locale = useLocale();
-
-  const getLinkClass = (lang) => {
-    const base =
-      "rounded px-3 py-1.5 text-sm font-medium transition-all hover:bg-black/5 dark:hover:bg-white/10";
-    const active = "bg-[#FDB913] text-black font-bold shadow-sm";
-    const inactive = "text-foreground/60 hover:text-foreground";
-    return `${base} ${locale === lang ? active : inactive}`;
-  };
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -119,67 +110,6 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen">
       <div className="relative z-10 mx-auto max-w-[1200px] px-6">
-        {/* Header with Navigation */}
-        <header className="flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
-          <div className="flex flex-col md:flex-row md:items-center gap-8">
-            <div className="text-2xl font-bold tracking-[0.5px] text-gold-text">
-              The P.A.T.H.
-            </div>
-
-            {/* Nav Links */}
-            <nav className="flex items-center gap-6">
-              <Link
-                href="/glossary"
-                className="text-sm font-medium text-foreground/70 hover:text-gold-text transition-colors"
-              >
-                {locale === "en"
-                  ? "Glossary"
-                  : locale === "si"
-                  ? "ශබ්දකෝෂය"
-                  : "அகராதி"}
-              </Link>
-              <Link
-                href="/leaders"
-                className="text-sm font-medium text-foreground/70 hover:text-gold-text transition-colors"
-              >
-                {locale === "en"
-                  ? "Leaders"
-                  : locale === "si"
-                  ? "නායකයින්"
-                  : "தலைவர்கள்"}
-              </Link>
-              <button
-                onClick={() => scrollToSection("methodology")}
-                className="text-sm font-medium text-foreground/70 hover:text-gold-text transition-colors"
-              >
-                {locale === "en"
-                  ? "Methodology"
-                  : locale === "si"
-                  ? "ක්‍රමවේදය"
-                  : "முறைமை"}
-              </button>
-            </nav>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4 md:gap-6">
-            <div className="flex items-center rounded-lg border border-black/5 bg-black/[0.03] p-1 dark:border-white/10 dark:bg-white/5">
-              <Link href="/" locale="en" className={getLinkClass("en")}>
-                EN
-              </Link>
-              <Link href="/" locale="si" className={getLinkClass("si")}>
-                සිංහල
-              </Link>
-              <Link href="/" locale="ta" className={getLinkClass("ta")}>
-                தமிழ்
-              </Link>
-            </div>
-
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-black/5 bg-black/[0.03] transition-all hover:border-gold/30 dark:border-white/10 dark:bg-white/5">
-              <ThemeToggle className="text-foreground" />
-            </div>
-          </div>
-        </header>
-
         {/* Hero Section */}
         <section className="relative flex flex-col items-start justify-center overflow-hidden rounded-[32px] px-8 py-20 text-left md:min-h-[600px] md:px-16">
           <div className="absolute inset-0 z-0">

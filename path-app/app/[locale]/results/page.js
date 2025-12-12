@@ -6,6 +6,29 @@ import { useRouter } from "@/i18n/routing";
 import { politicians, findClosestPolitician } from "@/data/politicians";
 import { questions } from "@/data/questions";
 import html2canvas from "html2canvas";
+import { useTheme } from "next-themes";
+
+const PoliticianAvatar = ({ politician }) => {
+  const [error, setError] = useState(false);
+
+  if (politician.image && !error) {
+    return (
+      <img
+        src={politician.image}
+        alt={politician.name["en"]}
+        className="h-full w-full object-cover"
+        onError={() => setError(true)}
+        crossOrigin="anonymous"
+      />
+    );
+  }
+
+  return (
+    <div className="flex h-full w-full items-center justify-center bg-gray-200 text-[10px] font-bold text-gray-600">
+      {politician.name["en"].charAt(0)}
+    </div>
+  );
+};
 
 export default function ResultsPage() {
   const t = useTranslations("results");
@@ -84,39 +107,34 @@ export default function ResultsPage() {
     }
   };
 
-  const getPersonaTitle = (x, y) => {
+  const getArchetype = (x, y) => {
     const safeX = Number(x) || 0;
     const safeY = Number(y) || 0;
 
-    if (safeY > 2 && safeX > 2)
-      return locale === "si"
-        ? "දක්ෂිනාංශික පාලකයා"
-        : locale === "ta"
-        ? "கண்டிப்பான ஆளுமை"
-        : "The Disciplinarian (Auth-Right)";
-    if (safeY > 2 && safeX < -2)
-      return locale === "si"
-        ? "දේශප්‍රේමී සමාජවාදියා"
-        : locale === "ta"
-        ? "தேசபக்த சோசலிஸ்ட்"
-        : "The Patriot (Auth-Left)";
-    if (safeY < -2 && safeX > 2)
-      return locale === "si"
-        ? "නිදහස් වෙළඳපොල ප්‍රතිසංස්කාරක"
-        : locale === "ta"
-        ? "சந்தை சீர்திருத்தவாதி"
-        : "The Market Reformist (Lib-Right)";
-    if (safeY < -2 && safeX < -2)
-      return locale === "si"
-        ? "ප්‍රජාතන්ත්‍රවාදී විප්ලවවාදියා"
-        : locale === "ta"
-        ? "ஜனநாயகப் புரட்சியாளர்"
-        : "The Revolutionary (Lib-Left)";
-    return locale === "si"
-      ? "මධ්‍යස්ථ චින්තකයා"
-      : locale === "ta"
-      ? "நடுநிலையாளர்"
-      : "The Centrist";
+    if (safeX < -2 && safeY > 2)
+      return {
+        title: "Statist Nationalist (Authoritarian Left)",
+        desc: "You believe in a strong government that controls the economy and protects national sovereignty. You prefer state-owned industries over privatization.",
+      };
+    if (safeX > 2 && safeY > 2)
+      return {
+        title: "Conservative Capitalist (Authoritarian Right)",
+        desc: "You support a free market and open economy but believe in strong leadership and traditional values. You prioritize stability and growth.",
+      };
+    if (safeX < -2 && safeY < -2)
+      return {
+        title: "Democratic Socialist (Libertarian Left)",
+        desc: "You value social equality and civil rights. You support wealth redistribution but strongly oppose authoritarianism and corruption.",
+      };
+    if (safeX > 2 && safeY < -2)
+      return {
+        title: "Social Liberal (Libertarian Right)",
+        desc: "You believe in individual freedom in both the economy and personal life. You want less government interference in business and rights.",
+      };
+    return {
+      title: "Centrist Moderate (Center)",
+      desc: "You see value in both sides and prefer pragmatic, gradual reform over radical change.",
+    };
   };
 
   const getControversialOpinion = () => {
@@ -132,6 +150,47 @@ export default function ResultsPage() {
     return { text: q.text[locale] || q.text["en"], val: randomOp[1] };
   };
 
+  const { resolvedTheme } = useTheme();
+
+  // Unified Theme: Adaptive Premium Look (Light & Dark)
+  const getArchetypeTheme = (archetypeTitle) => {
+    let icon = "⚖️";
+    if (archetypeTitle.includes("Statist")) icon = "🛡️";
+    else if (archetypeTitle.includes("Socialist")) icon = "✊";
+    else if (archetypeTitle.includes("Liberal")) icon = "🕊️";
+
+    const isLight = resolvedTheme === "light";
+
+    return {
+      // Dynamic Background: Dark/Black vs Light/White
+      bg: isLight
+        ? "bg-white/95 backdrop-blur-2xl border border-gray-200 shadow-xl"
+        : "bg-[#0a0a0a]/90 backdrop-blur-2xl border border-white/10 shadow-2xl shadow-black/50",
+
+      // Dynamic Text Colors
+      text: isLight ? "text-gray-900" : "text-white",
+      subtext: isLight ? "text-gray-500" : "text-white/70",
+
+      // Accents: Darker gold for text in light mode for readability, Standard Gold in dark
+      accent: isLight ? "text-[#b47602]" : "text-[#FDB913]",
+      border: isLight ? "border-[#FDB913]/30" : "border-gold/20",
+
+      icon: icon,
+
+      // Dynamic Shadows
+      glow: isLight
+        ? "shadow-2xl shadow-gray-200"
+        : "shadow-2xl shadow-black/50",
+
+      // Progress Bar Tracks
+      barTrack: isLight ? "bg-gray-100" : "bg-white/10",
+      // Bar Color: Warmer/Brighter gradient in Light mode, Richer in Dark
+      barColor: isLight
+        ? "bg-gradient-to-r from-[#FDB913] to-[#F59E0B]" // Brighter Amber/Gold
+        : "bg-gradient-to-r from-[#FDB913] to-[#aa7d0e]", // Deep Gold
+    };
+  };
+
   if (!results || !closestMatch) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -144,7 +203,13 @@ export default function ResultsPage() {
 
   const leftPercent = ((results.economic + 10) / 20) * 100;
   const topPercent = ((10 - results.social) / 20) * 100;
-  const personaTitle = getPersonaTitle(results.economic, results.social);
+
+  // Closest match coordinates for line drawing
+  const matchLeft = ((closestMatch.politician.x + 10) / 20) * 100;
+  const matchTop = ((10 - closestMatch.politician.y) / 20) * 100;
+
+  const archetype = getArchetype(results.economic, results.social);
+  const theme = getArchetypeTheme(archetype.title);
   const controversial = getControversialOpinion();
   const getPoliticianName = (p) => p.name[locale] || p.name["en"];
   const getReasoning = (p, type) =>
@@ -156,119 +221,354 @@ export default function ResultsPage() {
     <div className="relative min-h-screen py-12 px-4 sm:px-6">
       <div
         ref={contentRef}
-        className="relative z-10 mx-auto max-w-6xl p-4 md:p-8 bg-transparent"
+        className="relative z-10 mx-auto max-w-7xl p-0 md:p-4 bg-transparent"
       >
         {/* Header */}
-        <div className="mb-8 text-center" data-html2canvas-ignore>
-          <span className="mb-2 block text-sm font-bold uppercase tracking-[2px] text-gold-text">
-            The Verdict
+        <div className="mb-12 text-center" data-html2canvas-ignore>
+          <span className="mb-2 block text-sm font-bold uppercase tracking-[3px] text-gold-text opacity-80">
+            Identity Revealed
           </span>
-          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-            {personaTitle}
+          <h1 className="text-4xl font-black tracking-tighter text-foreground sm:text-5xl md:text-6xl">
+            {archetype.title.split("(")[0]}
           </h1>
-          <p className="mt-4 text-xl text-foreground/70">{t("title")}</p>
+          <p className="mt-4 text-xl font-medium text-foreground/60 max-w-2xl mx-auto">
+            {archetype.title.split("(")[1]?.replace(")", "") ||
+              "Political Compass Result"}
+          </p>
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-12">
-          {/* Left Column */}
-          <div className="bg-transparent space-y-6 lg:col-span-5">
-            <div className="theme-card overflow-hidden rounded-[24px] p-8 shadow-lg">
-              <div className="text-center">
-                <h2 className="mb-2 text-sm font-bold uppercase tracking-widest text-gold-text">
-                  {t("closestMatch")}
+        <div className="grid gap-12 lg:grid-cols-12 items-start">
+          {/* CONCEPT 1: RPG CARD (Left Column) */}
+          <div className="lg:col-span-5 flex flex-col gap-6">
+            <div
+              ref={personaRef}
+              id="persona-card-capture"
+              className={`relative overflow-hidden rounded-[40px] border-[1px] ${theme.border} ${theme.bg} p-8 shadow-2xl ${theme.glow} transition-all`}
+            >
+              {/* Subtle Gold Gradient Mesh */}
+              <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-gold/5 blur-[80px] rounded-full pointer-events-none"></div>
+
+              <div className="relative z-10 flex flex-col items-center text-center">
+                {/* 3D Icon */}
+                <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-3xl bg-gold/10 text-[5rem] shadow-[inset_0_0_20px_rgba(253,185,19,0.1)] border border-gold/20 backdrop-blur-sm">
+                  {theme.icon}
+                </div>
+
+                <h2
+                  className={`text-3xl font-black ${theme.text} leading-tight mb-2`}
+                >
+                  {archetype.title.split("(")[0]}
                 </h2>
-                <div className="mb-2 text-4xl font-extrabold text-foreground">
-                  {getPoliticianName(closestMatch.politician)}
+                <div
+                  className={`text-sm font-bold uppercase tracking-[2px] ${theme.accent} mb-8`}
+                >
+                  {archetype.title.split("(")[1]?.replace(")", "")}
                 </div>
-                <div className="mb-6 font-medium text-foreground/60">
-                  {closestMatch.politician.party}
+
+                <p
+                  className={`${theme.subtext} font-medium leading-relaxed mb-8 text-base px-2`}
+                >
+                  "{archetype.desc}"
+                </p>
+
+                {/* RPG Stats Bars */}
+                <div
+                  className={`w-full space-y-6 rounded-2xl p-6 border ${
+                    theme.border
+                  } ${
+                    resolvedTheme === "light" ? "bg-black/5" : "bg-black/20"
+                  }`}
+                >
+                  {/* Economic Bar */}
+                  <div>
+                    <div
+                      className={`flex justify-between text-xs font-bold uppercase tracking-wider ${theme.subtext} opacity-70 mb-2`}
+                    >
+                      <span>Economic Stance</span>
+                      <span className={theme.accent}>
+                        {Math.abs(results.economic) > 5
+                          ? "Extreme"
+                          : "Moderate"}{" "}
+                        {results.economic > 0 ? "Right" : "Left"}
+                      </span>
+                    </div>
+                    <div
+                      className={`h-4 w-full rounded-full ${theme.barTrack} overflow-hidden relative border border-white/5`}
+                    >
+                      {/* Middle Marker */}
+                      <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/20 z-10"></div>
+                      <div
+                        className={`h-full rounded-full shadow-[0_0_10px_rgba(253,185,19,0.3)] ${theme.barColor}`}
+                        style={{
+                          width: `${Math.min(
+                            Math.abs(results.economic) * 10,
+                            100
+                          )}%`,
+                          marginLeft:
+                            results.economic > 0
+                              ? "50%"
+                              : `${
+                                  50 -
+                                  Math.min(Math.abs(results.economic) * 10, 100)
+                                }%`,
+                        }}
+                      />
+                    </div>
+                    <div
+                      className={`flex justify-between text-[10px] uppercase font-bold ${theme.subtext} opacity-50 mt-2`}
+                    >
+                      <span>Socialist</span>
+                      <span>Capitalist</span>
+                    </div>
+                  </div>
+
+                  {/* Social Bar */}
+                  <div>
+                    <div
+                      className={`flex justify-between text-xs font-bold uppercase tracking-wider ${theme.subtext} opacity-70 mb-2`}
+                    >
+                      <span>Social Stance</span>
+                      <span className={theme.accent}>
+                        {Math.abs(results.social) > 5 ? "Radical" : "Moderate"}{" "}
+                        {results.social > 0 ? "Auth" : "Lib"}
+                      </span>
+                    </div>
+                    <div
+                      className={`h-4 w-full rounded-full ${theme.barTrack} overflow-hidden relative border border-white/5`}
+                    >
+                      {/* Middle Marker */}
+                      <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/20 z-10"></div>
+                      <div
+                        className={`h-full rounded-full shadow-[0_0_10px_rgba(253,185,19,0.3)] ${theme.barColor}`}
+                        style={{
+                          width: `${Math.min(
+                            Math.abs(results.social) * 10,
+                            100
+                          )}%`,
+                          marginLeft:
+                            results.social > 0
+                              ? "50%"
+                              : `${
+                                  50 -
+                                  Math.min(Math.abs(results.social) * 10, 100)
+                                }%`,
+                        }}
+                      />
+                    </div>
+                    <div
+                      className={`flex justify-between text-[10px] uppercase font-bold ${theme.subtext} opacity-50 mt-2`}
+                    >
+                      <span>Libertarian</span>
+                      <span>Authoritarian</span>
+                    </div>
+                  </div>
+
+                  {/* Closest Match Stat */}
+                  <div className="pt-4 border-t border-white/10 mt-4 flex items-center justify-between">
+                    <span
+                      className={`text-xs font-bold uppercase ${theme.subtext} opacity-50`}
+                    >
+                      Closest Match
+                    </span>
+                    <div className="flex items-center gap-3">
+                      <div className="h-8 w-8 rounded-full border border-gold/30 overflow-hidden bg-black/50">
+                        <PoliticianAvatar
+                          politician={closestMatch.politician}
+                        />
+                      </div>
+                      <div className="flex flex-col items-end">
+                        <span
+                          className={`text-sm font-bold ${theme.text} leading-none`}
+                        >
+                          {getPoliticianName(closestMatch.politician)}
+                        </span>
+                        <span className="text-[10px] text-gold-text opacity-80 mt-1 font-medium">
+                          {(100 - closestMatch.distance * 5).toFixed(0)}% Match
+                        </span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="inline-flex items-center rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-sm font-medium text-gold-text">
-                  {t("distance")}: {closestMatch.distance.toFixed(2)}
-                </div>
+              </div>
+
+              {/* Card Footer Branding */}
+              <div className="absolute bottom-6 left-0 right-0 text-center opacity-30">
+                <span className="text-[10px] uppercase tracking-[4px] font-bold text-gold-text">
+                  The P.A.T.H. Sri Lanka
+                </span>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="theme-card rounded-[20px] p-6 text-center shadow-sm">
-                <div className="text-sm font-medium text-foreground/60">
-                  {t("economicAxis")}
-                </div>
-                <div className="mt-2 text-3xl font-bold text-foreground">
-                  {Number(results.economic).toFixed(1)}
-                </div>
-                <div className="mt-1 text-xs font-bold uppercase tracking-wide text-gold-text">
-                  {results.economic < 0 ? t("left") : t("right")}
-                </div>
-              </div>
-              <div className="theme-card rounded-[20px] p-6 text-center shadow-sm">
-                <div className="text-sm font-medium text-foreground/60">
-                  {t("socialAxis")}
-                </div>
-                <div className="mt-2 text-3xl font-bold text-foreground">
-                  {Number(results.social).toFixed(1)}
-                </div>
-                <div className="mt-1 text-xs font-bold uppercase tracking-wide text-gold-text">
-                  {results.social < 0 ? t("liberal") : t("authoritarian")}
-                </div>
-              </div>
-            </div>
-
-            <div data-html2canvas-ignore className="flex flex-col gap-3 py-4">
+            {/* Actions */}
+            <div className="grid grid-cols-2 gap-3" data-html2canvas-ignore>
               <button
-                onClick={() => setShowPersona(true)}
-                className="w-full relative overflow-hidden rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-4 text-base font-bold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-purple-500/30"
-              >
-                Let me share this! (Story Mode) 📱
-              </button>
-              <button
-                onClick={() => handleDownload(contentRef, "The-PATH-Results")}
+                onClick={() => handleDownload(personaRef, "My-Political-Card")}
                 disabled={isDownloading}
-                className="w-full rounded-xl border border-foreground/20 bg-transparent px-6 py-3 text-base font-semibold text-foreground transition-all hover:bg-foreground/5 hover:border-gold/50 disabled:opacity-70 disabled:cursor-not-allowed"
+                className="col-span-2 rounded-xl bg-[#FDB913] py-4 text-center font-bold text-black hover:bg-[#ffc845] active:scale-95 transition-all shadow-lg"
               >
-                {isDownloading ? "Generating..." : "Download Full Map"}
+                {isDownloading ? "Generating..." : "Download Card ⬇️"}
               </button>
               <button
                 onClick={() => router.push("/")}
-                className="w-full rounded-xl border border-foreground/20 bg-transparent px-6 py-3 text-base font-semibold text-foreground transition-all hover:bg-foreground/5 hover:border-gold/50"
+                className="col-span-2 rounded-xl border border-foreground/10 bg-foreground/5 py-4 text-center font-semibold text-foreground hover:bg-foreground/10 transition-all"
               >
-                {t("retakeQuiz")}
+                Retake Quiz
               </button>
             </div>
           </div>
 
-          {/* Right Column */}
-          <div className="theme-card relative overflow-hidden rounded-[32px] p-4 lg:col-span-7 shadow-2xl">
-            <div className="relative aspect-square w-full overflow-hidden rounded-[24px] border border-foreground/10 bg-black/5">
-              <img
-                src="/hero-bg-new.jpg"
-                alt="Compass"
-                className="h-full w-full object-cover"
+          {/* RIGHT COLUMN: CONCEPT 2 (The Grid) */}
+          <div
+            className={`relative rounded-[40px] border-[1px] ${theme.border} ${theme.bg} p-8 lg:col-span-7 shadow-2xl ${theme.glow} overflow-hidden flex flex-col`}
+          >
+            <div className="w-full text-left mb-2 z-20">
+              <div
+                className={`text-xs font-bold uppercase tracking-wider ${theme.subtext} opacity-70 mb-1`}
+              >
+                Compass View
+              </div>
+              <h3 className={`text-xl font-bold ${theme.text}`}>
+                Where you stand
+              </h3>
+            </div>
+
+            <div
+              className={`relative aspect-square w-full max-w-full lg:max-w-[450px] mx-auto overflow-visible my-auto ${theme.text}`}
+            >
+              {/* Quadrant Colors */}
+              <div className="absolute inset-0 z-0 opacity-40">
+                <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-red-500/40" />
+                <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-500/40" />
+                <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-green-500/40" />
+                <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-yellow-500/40" />
+              </div>
+
+              {/* Grid Background */}
+              <div
+                className="absolute inset-0 z-0 opacity-20"
+                style={{
+                  backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
+                                    linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+                  backgroundSize: "10% 10%",
+                  maskImage:
+                    "radial-gradient(circle, black 60%, transparent 100%)",
+                }}
               />
+
+              {/* Axes */}
+              <div className="absolute top-0 bottom-0 left-1/2 w-[2px] bg-current opacity-20 z-0" />
+              <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-current opacity-20 z-0" />
+
+              {/* Quadrant Labels */}
+              <div
+                className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-6 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+              >
+                Authoritarian
+              </div>
+              <div
+                className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+              >
+                Libertarian
+              </div>
+              <div
+                className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 -rotate-90 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+              >
+                Left
+              </div>
+              <div
+                className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 rotate-90 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+              >
+                Right
+              </div>
+
+              {/* Nearest Neighbor Line (SVG) */}
+              <svg className="absolute inset-0 pointer-events-none z-10 w-full h-full overflow-visible">
+                <line
+                  x1={`${leftPercent}%`}
+                  y1={`${topPercent}%`}
+                  x2={`${matchLeft}%`}
+                  y2={`${matchTop}%`}
+                  stroke={
+                    theme.accent.replace("text-", "#") === "text-yellow-400"
+                      ? "#FACC15"
+                      : "currentColor"
+                  } // Fallback color logic simplified, easier to just use class if possible or inline style
+                  className={`${theme.accent} opacity-50`}
+                  strokeWidth="2"
+                  strokeDasharray="5,5"
+                />
+                <circle
+                  cx={`${matchLeft}%`}
+                  cy={`${matchTop}%`}
+                  r="4"
+                  fill="currentColor"
+                  className={`${theme.accent} animate-ping opacity-20`}
+                />
+              </svg>
+
+              {/* Politicians */}
               {politicians.map((p) => {
                 const l = ((p.x + 10) / 20) * 100;
                 const t = ((10 - p.y) / 20) * 100;
+                const isClosest = p.id === closestMatch.politician.id;
+
                 return (
                   <button
                     key={p.id}
                     onClick={() => setSelectedPolitician(p)}
-                    className="absolute h-[12%] w-[12%] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-transparent bg-transparent hover:border-gold/80 hover:bg-gold/10 hover:shadow-[0_0_15px_rgba(253,185,19,0.5)] transition-all focus:outline-none"
+                    className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 z-20 group ${
+                      isClosest
+                        ? "scale-125 z-30"
+                        : "scale-100 hover:scale-110 opacity-70 hover:opacity-100"
+                    }`}
                     style={{ left: `${l}%`, top: `${t}%` }}
-                  />
+                  >
+                    <div
+                      className={`relative h-10 w-10 rounded-full border-2 overflow-hidden shadow-md bg-white ${
+                        isClosest
+                          ? "border-gold shadow-[0_0_15px_rgba(253,185,19,0.6)]"
+                          : "border-white/50"
+                      }`}
+                    >
+                      <PoliticianAvatar politician={p} />
+                    </div>
+                    {isClosest && (
+                      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 px-2 py-1 rounded text-[10px] font-bold text-gold-text pointer-events-none">
+                        Closest Match
+                      </div>
+                    )}
+                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white px-2 py-1 rounded shadow-lg text-[10px] font-bold text-black opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      {p.name[locale] || p.name["en"]}
+                    </div>
+                  </button>
                 );
               })}
+
+              {/* YOU Marker */}
               <div
-                className="absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-red-600 shadow-[0_0_15px_rgba(220,38,38,0.8)] z-10 animate-pulse pointer-events-none"
+                className="absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 z-40 transform hover:scale-125 transition-transform cursor-pointer"
                 style={{ left: `${leftPercent}%`, top: `${topPercent}%` }}
               >
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs font-bold text-white shadow-sm">
+                <div className="absolute inset-0 rounded-full bg-red-600 border-2 border-white shadow-[0_0_20px_rgba(220,38,38,0.6)] animate-pulse"></div>
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-red-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
                   YOU
                 </div>
               </div>
             </div>
 
-            <div className="mt-6 text-center text-sm font-medium text-foreground/50 italic">
-              Tap on any politician's face...
+            <div className="mt-12 text-center">
+              <p className="text-sm text-foreground/60">
+                You are{" "}
+                <span className="font-bold text-foreground">
+                  {(100 - closestMatch.distance * 5).toFixed(0)}% similar
+                </span>{" "}
+                to{" "}
+                <span className="font-bold text-gold-text">
+                  {getPoliticianName(closestMatch.politician)}
+                </span>
+                .
+              </p>
             </div>
 
             {selectedPolitician && (
@@ -282,7 +582,7 @@ export default function ResultsPage() {
                 >
                   <button
                     onClick={() => setSelectedPolitician(null)}
-                    className="absolute top-4 right-4 h-8 w-8 rounded-full bg-foreground/10 text-foreground/60 flex items-center justify-center"
+                    className="absolute top-4 right-4 h-8 w-8 rounded-full bg-foreground/10 text-foreground/60 flex items-center justify-center hover:bg-foreground/20"
                   >
                     ✕
                   </button>
@@ -313,243 +613,6 @@ export default function ResultsPage() {
             )}
           </div>
         </div>
-
-        {/* --- PERSONA MODAL --- */}
-        {showPersona && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-md">
-            <div className="flex flex-col items-center gap-6 animate-in zoom-in-95 duration-300">
-              {/* ZERO TAILWIND Utility Classes in Capture Area to Fix 'oklab' Error */}
-              <div
-                ref={personaRef}
-                id="persona-card-capture"
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  width: "320px",
-                  height: "568px",
-                  borderRadius: "32px",
-                  backgroundColor: "#000000",
-                  border: "4px solid #1a1a1a",
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)", // Manual box-shadow
-                  fontFamily: "sans-serif",
-                }}
-              >
-                {/* Background Art */}
-                <div
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    opacity: 0.8,
-                    background:
-                      "linear-gradient(135deg, #2a0e0e 0%, #000000 50%, #0e2a14 100%)",
-                  }}
-                />
-                <div
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    right: 0,
-                    width: "256px",
-                    height: "256px",
-                    borderRadius: "9999px",
-                    background: "rgba(253, 185, 19, 0.2)",
-                    filter: "blur(80px)",
-                  }}
-                />
-
-                <div
-                  style={{
-                    position: "relative",
-                    zIndex: 10,
-                    display: "flex",
-                    flexDirection: "column",
-                    height: "100%",
-                    padding: "32px",
-                    textAlign: "center",
-                    color: "#ffffff",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div>
-                    <div
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        letterSpacing: "4px",
-                        textTransform: "uppercase",
-                        marginBottom: "24px",
-                        color: "rgba(253, 185, 19, 0.8)",
-                      }}
-                    >
-                      The P.A.T.H. Personality
-                    </div>
-
-                    {/* Title */}
-                    <h2
-                      style={{
-                        fontSize: "36px",
-                        fontWeight: "800",
-                        lineHeight: 1,
-                        letterSpacing: "-0.025em",
-                        marginBottom: "8px",
-                        color: "#FDB913",
-                      }}
-                    >
-                      {personaTitle}
-                    </h2>
-                    <div
-                      style={{
-                        height: "4px",
-                        width: "64px",
-                        margin: "0 auto 32px auto",
-                        borderRadius: "9999px",
-                        background: "rgba(253, 185, 19, 0.5)",
-                      }}
-                    />
-
-                    <div style={{ marginBottom: "32px" }}>
-                      <div
-                        style={{
-                          fontSize: "14px",
-                          color: "#9ca3af",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.05em",
-                          marginBottom: "8px",
-                        }}
-                      >
-                        I align with
-                      </div>
-                      <div style={{ fontSize: "24px", fontWeight: "bold" }}>
-                        {getPoliticianName(closestMatch.politician)}
-                      </div>
-                      <div
-                        style={{
-                          fontSize: "14px",
-                          fontWeight: "500",
-                          color: "#FDB913",
-                        }}
-                      >
-                        {closestMatch.politician.party}
-                      </div>
-                    </div>
-
-                    {controversial && (
-                      <div
-                        style={{
-                          borderRadius: "16px",
-                          padding: "16px",
-                          background: "rgba(255, 255, 255, 0.1)",
-                          border: "1px solid rgba(255, 255, 255, 0.05)",
-                        }}
-                      >
-                        <div
-                          style={{
-                            fontSize: "10px",
-                            color: "#9ca3af",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.05em",
-                            marginBottom: "8px",
-                          }}
-                        >
-                          My Hot Take 🔥
-                        </div>
-                        <div
-                          style={{
-                            fontSize: "14px",
-                            fontStyle: "italic",
-                            fontWeight: "500",
-                            lineHeight: 1.5,
-                          }}
-                        >
-                          "{controversial.text}"
-                        </div>
-                        <div
-                          style={{
-                            fontSize: "12px",
-                            fontWeight: "bold",
-                            marginTop: "8px",
-                            textTransform: "uppercase",
-                            color: "#FDB913",
-                          }}
-                        >
-                          {controversial.val > 0
-                            ? "Strongly Agree"
-                            : "Strongly Disagree"}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  <div style={{ marginTop: "auto" }}>
-                    <div
-                      style={{
-                        position: "relative",
-                        width: "96px",
-                        height: "96px",
-                        margin: "0 auto 16px auto",
-                        border: "1px solid rgba(255, 255, 255, 0.2)",
-                        borderRadius: "12px",
-                        overflow: "hidden",
-                        background: "rgba(0, 0, 0, 0.4)",
-                      }}
-                    >
-                      <img
-                        src="/hero-bg-new.jpg"
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                          opacity: 0.5,
-                        }}
-                      />
-                      <div
-                        style={{
-                          position: "absolute",
-                          width: "12px",
-                          height: "12px",
-                          borderRadius: "9999px",
-                          background: "#EF4444",
-                          border: "1px solid #FFFFFF",
-                          left: `${leftPercent}%`,
-                          top: `${topPercent}%`,
-                          transform: "translate(-50%, -50%)",
-                        }}
-                      />
-                    </div>
-                    <div
-                      style={{
-                        fontSize: "10px",
-                        fontWeight: "500",
-                        opacity: 0.5,
-                        letterSpacing: "0.1em",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      path.lk
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-3 w-full max-w-[320px] no-capture">
-                <button
-                  onClick={() =>
-                    handleDownload(personaRef, "My-Political-Persona")
-                  }
-                  className="w-full rounded-2xl bg-[#FDB913] py-4 text-center font-extrabold text-black hover:bg-[#ffc845] active:scale-95 transition-all shadow-[0_0_20px_rgba(253,185,19,0.3)]"
-                >
-                  Download Image ⬇️
-                </button>
-                <button
-                  onClick={() => setShowPersona(false)}
-                  className="w-full rounded-xl py-3 text-sm font-semibold text-white/50 hover:text-white transition-colors"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

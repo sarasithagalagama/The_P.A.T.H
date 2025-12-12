@@ -39,15 +39,36 @@ export default function QuizPage() {
   };
 
   const calculateResults = () => {
-    let economicScore = 0;
-    let socialScore = 0;
+    let economicRaw = 0;
+    let socialRaw = 0;
+
+    // Max possible scores (assuming max value is 2 and division by 2 in formula makes max contribution 1)
+    // Actually, formula was (val * weight) / 2.
+    // val range: -2 to 2.
+    // If weight 1. Max val 2 -> (2*1)/2 = 1.
+    // So max contribution is 1 per question.
+
+    // Count questions per category to normalize
+    const economicCount = questions.filter(
+      (q) => q.category === "economic"
+    ).length;
+    const socialCount = questions.filter((q) => q.category === "social").length;
 
     questions.forEach((q) => {
       const val = answers[q.id] || 0;
-      const score = (val * q.value) / 2;
-      if (q.axis === "economic") economicScore += score;
-      else socialScore += score;
+      // Use q.weight instead of q.value
+      // Note: Data now has weight: 1 or -1.
+      const score = (val * q.weight) / 2;
+
+      if (q.category === "economic")
+        economicRaw += score; // Use category instead of axis
+      else socialRaw += score;
     });
+
+    // Normalize to -10 to +10
+    const economicScore =
+      economicCount > 0 ? (economicRaw / economicCount) * 10 : 0;
+    const socialScore = socialCount > 0 ? (socialRaw / socialCount) * 10 : 0;
 
     sessionStorage.setItem(
       "quizResults",
@@ -95,7 +116,7 @@ export default function QuizPage() {
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-gold/50 to-transparent opacity-50" />
 
           <h2 className="mb-12 text-center text-2xl font-bold leading-tight text-foreground md:text-3xl">
-            {question.text[locale]}
+            {question.text[locale] || question.text["en"]}
           </h2>
 
           <div className="mb-12">

@@ -2,52 +2,15 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { glossaryTerms } from "@/data/glossary";
 
 export default function GlossaryPage() {
   const t = useTranslations("app");
   const locale = useLocale();
 
-  const getLinkClass = (lang) => {
-    const base =
-      "rounded px-3 py-1.5 text-sm font-medium transition-all hover:bg-black/5 dark:hover:bg-white/10";
-    const active = "bg-[#FDB913] text-black font-bold shadow-sm";
-    const inactive = "text-foreground/60 hover:text-foreground";
-    return `${base} ${locale === lang ? active : inactive}`;
-  };
-
   return (
     <div className="relative min-h-screen">
       <div className="relative z-10 mx-auto max-w-[1200px] px-6">
-        {/* Header (Shared) */}
-        <header className="flex flex-col gap-4 py-8 md:flex-row md:items-center md:justify-between">
-          <Link
-            href="/"
-            className="text-2xl font-bold tracking-[0.5px] text-gold-text hover:opacity-80 transition-opacity"
-          >
-            The P.A.T.H.
-          </Link>
-
-          <div className="flex flex-wrap items-center gap-4 md:gap-6">
-            <div className="flex items-center rounded-lg border border-black/5 bg-black/[0.03] p-1 dark:border-white/10 dark:bg-white/5">
-              <Link href="/glossary" locale="en" className={getLinkClass("en")}>
-                EN
-              </Link>
-              <Link href="/glossary" locale="si" className={getLinkClass("si")}>
-                සිංහල
-              </Link>
-              <Link href="/glossary" locale="ta" className={getLinkClass("ta")}>
-                தமிழ்
-              </Link>
-            </div>
-
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-black/5 bg-black/[0.03] transition-all hover:border-gold/30 dark:border-white/10 dark:bg-white/5">
-              <ThemeToggle className="text-foreground" />
-            </div>
-          </div>
-        </header>
-
         {/* Content */}
         <div className="py-12">
           <div className="mb-12 text-center">

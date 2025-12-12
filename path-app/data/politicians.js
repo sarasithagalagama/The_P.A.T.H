@@ -10,6 +10,7 @@ export const politicians = [
     y: 6.0,
     party: "UNP/Independent",
     color: "#00A550",
+    image: "/images/politicians/Ranil Wickremesinghe.png",
     reasoning: {
       en: {
         economic:
@@ -40,6 +41,7 @@ export const politicians = [
     y: 7.5,
     party: "SLPP",
     color: "#800000",
+    image: "/images/politicians/Mahinda Rajapaksa.png",
     reasoning: {
       en: {
         economic:
@@ -65,14 +67,13 @@ export const politicians = [
     name: {
       en: "Anura Kumara Dissanayake",
       si: "අනුර කුමාර දිසානායක",
-      ta: "අநுර කුමාර දිසානායක", // Using Sinhala phonetic for uniformity if Tamil unavailable, or user provided Tamil:
+      ta: "අநுර කුමාර දිසානායක",
     },
-    // User provided Tamil: அநுர குமார திஸாநாயக்க
-    // I will correct the name object during write.
     x: -5.0,
     y: -4.0,
     party: "NPP/JVP",
     color: "#FF0000",
+    image: "/images/politicians/Anura Kumara Dissanayake.png",
     reasoning: {
       en: {
         economic:
@@ -103,6 +104,7 @@ export const politicians = [
     y: -2.0,
     party: "SJB",
     color: "#008000",
+    image: "/images/politicians/Sajith Premadasa.png",
     reasoning: {
       en: {
         economic:
@@ -134,6 +136,7 @@ export const politicians = [
     y: 8.0,
     party: "UNP",
     color: "#00A550",
+    image: "/images/politicians/J.R. Jayewardene.png",
     reasoning: {
       en: {
         economic:
@@ -162,6 +165,7 @@ export const politicians = [
     y: 9.0,
     party: "UNP",
     color: "#00A550",
+    image: "/images/politicians/Ranasinghe Premadasa.png",
     reasoning: {
       en: {
         economic:
@@ -190,6 +194,7 @@ export const politicians = [
     y: 2.0,
     party: "SLFP",
     color: "#0000FF",
+    image: "/images/politicians/Sirimavo Bandaranaike.png",
     reasoning: {
       en: {
         economic:
@@ -218,6 +223,7 @@ export const politicians = [
     y: 1.0,
     party: "SLFP",
     color: "#0000FF",
+    image: "/images/politicians/S.W.R.D. Bandaranaike.png",
     reasoning: {
       en: {
         economic:
@@ -246,6 +252,7 @@ export const politicians = [
     y: 8.5,
     party: "JVP",
     color: "#FF0000",
+    image: "/images/politicians/Rohana Wijeweera.png",
     reasoning: {
       en: {
         economic:
@@ -263,14 +270,49 @@ export const politicians = [
       },
     },
   },
+  {
+    id: "cbk",
+    name: {
+      en: "Chandrika Bandaranaike Kumaratunga",
+      si: "චන්ද්‍රිකා බණ්ඩාරනායක කුමාරතුංග",
+      ta: "சந்திரிகா பண்டாரநாயக்க குமாரதுங்க",
+    },
+    x: -2.5,
+    y: 2.5,
+    party: "SLFP",
+    color: "#0000FF",
+    image: "/images/politicians/Chandrika Bandaranaike Kumaratunga.png",
+    reasoning: {
+      en: {
+        economic:
+          "Promoted 'Open Economy with a Human Face', balancing privatization of state entities with social welfare preservation.",
+        social:
+          "Advocated for the 'Union of Regions' devolution package but governed with strong executive powers during the 'War for Peace'.",
+      },
+      si: {
+        economic:
+          "'මානුෂීය මුහුණුවරක් සහිත විවෘත ආර්ථිකය' සහ රාජ්‍ය ආයතන ප්‍රතිසංස්කරණය.",
+        social:
+          "බලය බෙදීමේ 'පැකේජය' යෝජනා කළ අතරම 'සාමය සඳහා යුද්ධය' මෙහෙයවීය.",
+      },
+      ta: {
+        economic:
+          "'மனிதாபிமான முகத்துடன் கூடிய திறந்த பொருளாதாரம்' மற்றும் அரச நிறுவன சீர்திருத்தங்கள்.",
+        social:
+          "அதிகாரப் பகிர்வுக்கான தீர்வினை முன்வைத்த அதேவேளை 'சமாதானத்துக்கான போரை' முன்னெடுத்தார்.",
+      },
+    },
+  },
 ];
 
-export function findClosestPolitician(x, y) {
+export const findClosestPolitician = (userX, userY) => {
   let closest = null;
   let minDistance = Infinity;
 
   politicians.forEach((p) => {
-    const distance = Math.sqrt(Math.pow(p.x - x, 2) + Math.pow(p.y - y, 2));
+    const distance = Math.sqrt(
+      Math.pow(p.x - userX, 2) + Math.pow(p.y - userY, 2)
+    );
     if (distance < minDistance) {
       minDistance = distance;
       closest = { politician: p, distance };
@@ -278,4 +320,4 @@ export function findClosestPolitician(x, y) {
   });
 
   return closest;
-}
+};

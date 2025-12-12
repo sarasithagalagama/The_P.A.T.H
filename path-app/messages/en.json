@@ -10,11 +10,11 @@
     "startQuiz": "Start Quiz",
     "howItWorks": "How It Works",
     "step1Title": "Answer Questions",
-    "step1Text": "Take our concise quiz covering key economic and social issues in Sri Lanka.",
+    "step1Text": "Take our concise quiz covering key economic and social issues.",
     "step2Title": "Get Your Analysis",
     "step2Text": "See exactly where your political ideology lands on the compass grid.",
-    "step3Title": "Find Your Match",
-    "step3Text": "Discover which historical or current Sri Lankan leader aligns with your views."
+    "step3Title": "Discover Your Label",
+    "step3Text": "Are you a 'Statist Nationalist' or a 'Social Liberal'? Find out your true political identity."
   },
   "quiz": {
     "progress": "Question {current} / {total}",
