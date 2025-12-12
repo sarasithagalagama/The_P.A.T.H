@@ -1,7 +1,6 @@
 # The P.A.T.H. - Political Alignment Testing Hub (Sri Lanka)
 
-![The P.A.T.H. Desktop Preview](<img width="2864" height="4183" alt="image" src="https://github.com/user-attachments/assets/d33ce671-bce9-46c1-bdef-6ccb97e5010d" />
-)
+<img width="489" height="546" alt="image" src="https://github.com/user-attachments/assets/1c678d21-ad2c-44cc-9ca6-73dd39bffd31" />
 
 A production-ready, trilingual (English, Sinhala, Tamil) political compass web application for Sri Lanka. Built with Next.js 14, this app measures users on two axes (Economic: Left/Right, Social: Authoritarian/Liberal) and matches them to historical Sri Lankan politicians.
 
