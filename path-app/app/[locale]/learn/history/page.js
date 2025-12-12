@@ -2,7 +2,13 @@
 
 import { useLocale } from "next-intl";
 import { useRef, useState } from "react";
+import { Link } from "@/i18n/routing";
 
+/**
+ * History Page (Timeline)
+ * Displays a horizontal scrollable timeline of Sri Lanka's political history.
+ * Uses a ref-based scroll controller for the timeline container.
+ */
 export default function HistoryPage() {
   const locale = useLocale();
 
@@ -125,16 +131,29 @@ export default function HistoryPage() {
     },
   ];
 
-  const getTypeStyle = (type) => {
+  const getCardBorder = (type) => {
     switch (type) {
       case "conflict":
-        return "from-red-500/20 to-orange-500/20 border-red-500/30 text-red-500";
+        return "hover:border-red-500/50";
       case "economical":
-        return "from-green-500/20 to-emerald-500/20 border-green-500/30 text-green-500";
+        return "hover:border-green-500/50";
       case "uprising":
-        return "from-yellow-500/20 to-orange-500/20 border-yellow-500/30 text-yellow-500";
+        return "hover:border-yellow-500/50";
       default:
-        return "from-blue-500/20 to-cyan-500/20 border-blue-500/30 text-blue-500";
+        return "hover:border-blue-500/50";
+    }
+  };
+
+  const getBadgeColor = (type) => {
+    switch (type) {
+      case "conflict":
+        return "bg-red-500/10 text-red-500 border-red-500/20";
+      case "economical":
+        return "bg-green-500/10 text-green-500 border-green-500/20";
+      case "uprising":
+        return "bg-yellow-500/10 text-yellow-500 border-yellow-500/20";
+      default:
+        return "bg-blue-500/10 text-blue-500 border-blue-500/20";
     }
   };
 
@@ -165,83 +184,123 @@ export default function HistoryPage() {
     scrollRef.current.scrollLeft = scrollLeft - walk;
   };
 
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 350; // Width of card + gap
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
-    <div className="min-h-screen py-16 text-foreground">
-      <div className="container mx-auto px-6">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-extrabold text-foreground md:text-5xl mb-4">
-            Timeline of <span className="text-[#FDB913]">Turning Points</span>
-          </h1>
-          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
-            From Independence to the Aragalaya: The events that defined us.
-          </p>
-        </div>
+    <div className="relative min-h-screen">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
+        <div className="py-12">
+          {/* Header Section */}
+          <div className="mb-16 text-center">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+              Sri Lankan History
+            </div>
+            <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              Timeline of <span className="text-gold-text">Turning Points</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
+              From Independence to the Aragalaya: The events that defined us and
+              shaped our political landscape.
+            </p>
+          </div>
 
-        {/* Timeline Container */}
-        <div
-          ref={scrollRef}
-          className="relative w-full overflow-x-auto pb-16 hide-scrollbar cursor-grab active:cursor-grabbing select-none"
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeave}
-          onMouseUp={handleMouseUp}
-          onMouseMove={handleMouseMove}
-        >
-          {/* Main Timeline Line */}
-          <div className="absolute top-[88px] left-0 h-[2px] w-[2200px] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0" />
-
-          <div className="flex gap-8 min-w-max px-8 pt-10">
-            {events.map((event, index) => (
-              <div
-                key={index}
-                className="relative z-10 w-[320px] group pointer-events-none"
+          {/* Navigation Content */}
+          <div className="relative">
+            {/* Nav Buttons */}
+            <div className="absolute top-1/2 -left-4 -translate-y-1/2 z-30 hidden lg:block">
+              <button
+                onClick={() => scroll("left")}
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 bg-background/80 text-2xl backdrop-blur-md transition-all hover:bg-foreground hover:text-background shadow-lg"
+                aria-label="Scroll Left"
               >
-                {/* Year Bubble */}
-                <div className="flex flex-col items-center mb-8 relative pointer-events-auto">
-                  <div
-                    className={`h-16 w-16 rounded-full bg-background border-4 flex items-center justify-center text-2xl shadow-lg z-10 transition-transform duration-300 group-hover:scale-110 ${
-                      event.type === "conflict"
-                        ? "border-red-500/50"
-                        : event.type === "economical"
-                        ? "border-green-500/50"
-                        : "border-[#FDB913]/50"
-                    }`}
-                  >
-                    {event.icon}
-                  </div>
-                  {/* Vertical Connector */}
-                  <div className="absolute top-16 bottom-[-20px] w-[2px] bg-white/10 group-hover:bg-[#FDB913]/50 transition-colors" />
-                </div>
+                ‹
+              </button>
+            </div>
+            <div className="absolute top-1/2 -right-4 -translate-y-1/2 z-30 hidden lg:block">
+              <button
+                onClick={() => scroll("right")}
+                className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 bg-background/80 text-2xl backdrop-blur-md transition-all hover:bg-foreground hover:text-background shadow-lg"
+                aria-label="Scroll Right"
+              >
+                ›
+              </button>
+            </div>
 
-                {/* Content Card */}
-                <div className="relative mt-4 pointer-events-auto">
-                  <div className="absolute -top-10 left-1/2 -translate-x-1/2 text-5xl font-black text-white/[0.03] pointer-events-none select-none">
-                    {event.year}
-                  </div>
+            {/* Timeline Scroll Area */}
+            <div
+              ref={scrollRef}
+              className="relative w-full overflow-x-auto py-12 hide-scrollbar cursor-grab active:cursor-grabbing select-none"
+              onMouseDown={handleMouseDown}
+              onMouseLeave={handleMouseLeave}
+              onMouseUp={handleMouseUp}
+              onMouseMove={handleMouseMove}
+            >
+              {/* Horizontal Line through the Center */}
+              <div className="absolute top-[104px] left-0 h-[3px] w-[3000px] bg-foreground/5 z-0" />
 
+              <div className="flex gap-12 min-w-max px-12">
+                {events.map((event, index) => (
                   <div
-                    className={`h-full rounded-[24px] border bg-gradient-to-br backdrop-blur-md p-6 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${getTypeStyle(
-                      event.type
-                    )}`}
+                    key={index}
+                    className="relative z-10 w-[360px] group pointer-events-none flex flex-col items-center"
                   >
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-xs font-bold uppercase tracking-wider opacity-70 border border-current px-2 py-0.5 rounded-full">
-                        {event.year}
-                      </span>
-                      <span className="text-xs font-bold uppercase tracking-wider opacity-60">
-                        {event.type}
-                      </span>
+                    {/* Timeline Node (On the Line) */}
+                    <div className="relative z-10 mb-8 pointer-events-auto transition-transform duration-300 group-hover:scale-110">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-background border-4 border-foreground/5 shadow-xl text-3xl">
+                        {event.icon}
+                      </div>
                     </div>
 
-                    <h3 className="mb-3 text-2xl font-bold text-foreground group-hover:text-[#FDB913] transition-colors">
-                      {event.title[locale] || event.title.en}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-foreground/80">
-                      {event.desc[locale] || event.desc.en}
-                    </p>
+                    {/* Card (Below the Line) */}
+                    <div className="pointer-events-auto w-full">
+                      <div
+                        className={`theme-card relative h-full rounded-[24px] p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-transparent ${getCardBorder(
+                          event.type
+                        )}`}
+                      >
+                        {/* Year Badge at Top of Card */}
+                        <div className="flex justify-between items-center mb-6">
+                          <span className="text-3xl font-black text-foreground tracking-tight">
+                            {event.year}
+                          </span>
+                          <span
+                            className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${getBadgeColor(
+                              event.type
+                            )}`}
+                          >
+                            {event.type}
+                          </span>
+                        </div>
+
+                        <h3 className="mb-4 text-xl font-bold text-foreground leading-tight group-hover:text-gold-text transition-colors">
+                          {event.title[locale] || event.title.en}
+                        </h3>
+
+                        <p className="text-base text-foreground/70 leading-relaxed font-medium">
+                          {event.desc[locale] || event.desc.en}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
+            </div>
+          </div>
+          <div className="mt-16 text-center">
+            <Link
+              href="/learn"
+              className="inline-flex items-center gap-2 rounded-xl border border-foreground/20 px-8 py-4 text-sm font-bold transition-all hover:bg-foreground hover:text-background"
+            >
+              ← {locale === "si" ? "නැවත පාඩම් මාලාවට" : "Back to Classroom"}
+            </Link>
           </div>
         </div>
       </div>

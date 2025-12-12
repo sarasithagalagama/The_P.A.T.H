@@ -1,3 +1,14 @@
+/**
+ * Politicians Data
+ * Represents historical Sri Lankan leaders mapped to the Political Compass.
+ *
+ * Coordinates system:
+ * - X Axis (Economic): -10 (Left/State) to +10 (Right/Market)
+ * - Y Axis (Social): -10 (Libertarian) to +10 (Authoritarian)
+ *
+ * Data includes localized names, party affiliations, and detailed reasoning
+ * for their placement on both axes.
+ */
 export const politicians = [
   {
     id: "ranil",
@@ -79,17 +90,18 @@ export const politicians = [
         economic:
           "Supports a 'Production-Based Economy,' reducing tax burdens on the poor (VAT), and renegotiating trade deals.",
         social:
-          "Advocates for 'System Change,' abolishing the Executive Presidency, and ending corruption/elite privileges.",
+          "Champions a 'System Change' to dismantle elite privileges and establish the rule of law, while promising to abolish the Executive Presidency.",
       },
       si: {
         economic: "'නිෂ්පාදන ආර්ථිකයක්' ගොඩනැගීම සහ බදු බර අඩු කිරීම.",
         social:
-          "'ක්‍රමයේ වෙනසක්' (System Change) සහ විධායක ජනාධිපති ධුරය අහෝසි කිරීම.",
+          "'ක්‍රමයේ වෙනසක්' (System Change) හරහා ප්‍රභූ පැලැන්තියේ වරප්‍රසාද අහෝසි කිරීම සහ නීතියේ ආධිපත්‍යය ස්ථාපිත කිරීම.",
       },
       ta: {
         economic:
           "உற்பத்தி சார்ந்த பொருளாதாரம் மற்றும் வரிச் சுமைகளை குறைத்தல்.",
-        social: "ஊழலை ஒழித்தல் மற்றும் நிறைவேற்று அதிகார முறைமையை நீக்குதல்.",
+        social:
+          "'கட்டமைப்பு மாற்றம்' மூலம் உயர்குல சிறப்புரிமைகளை ஒழித்தல் மற்றும் சட்டத்தின் ஆட்சியை நிலைநிறுத்துதல்.",
       },
     },
   },
@@ -305,6 +317,14 @@ export const politicians = [
   },
 ];
 
+/**
+ * Finds the politician closest to the user's result on the 2D grid.
+ * Uses Euclidean distance formula: √((x2-x1)² + (y2-y1)²)
+ *
+ * @param {number} userX - User's Economic Score (-10 to 10)
+ * @param {number} userY - User's Social Score (-10 to 10)
+ * @returns {Object|null} - The closest politician object and the distance value.
+ */
 export const findClosestPolitician = (userX, userY) => {
   let closest = null;
   let minDistance = Infinity;

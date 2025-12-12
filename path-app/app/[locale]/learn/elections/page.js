@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export default function ElectionsPage() {
   const locale = useLocale();
@@ -136,112 +137,140 @@ export default function ElectionsPage() {
   ];
 
   return (
-    <div className="min-h-screen py-16 text-foreground">
-      <div className="container mx-auto px-6 max-w-[1000px]">
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-extrabold text-foreground md:text-5xl mb-4">
-            How Your <span className="text-[#FDB913]">Vote Counts</span>
-          </h1>
-          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
-            Master the system. Understand the 50% rule, the Manaapa system, and
-            the National List.
-          </p>
-        </div>
+    <div className="relative min-h-screen">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
+        <div className="py-12">
+          {/* Header */}
+          <div className="mb-16 text-center">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+              Electoral Systems
+            </div>
+            <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              How Your <span className="text-gold-text">Vote Counts</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
+              Master the system. Understand the 50% rule, the Manaapa system,
+              and the National List before you vote.
+            </p>
+          </div>
 
-        <div className="space-y-12">
-          {sections.map((section) => (
-            <div
-              key={section.id}
-              className={`rounded-[32px] border ${section.borderColor} bg-gradient-to-br ${section.color} p-8 md:p-10`}
-            >
-              <div className="flex flex-col md:flex-row gap-6 mb-8 items-start">
-                <div className="flex-shrink-0 h-16 w-16 rounded-2xl bg-black/10 backdrop-blur border border-white/10 flex items-center justify-center text-3xl">
-                  {section.icon}
-                </div>
-                <div>
-                  <h2 className="text-3xl font-bold mb-2">
-                    {section.title[locale] || section.title.en}
-                  </h2>
-                  <p className="text-lg font-medium text-foreground/80 italic">
-                    "{section.concept[locale] || section.concept.en}"
-                  </p>
-                </div>
-              </div>
+          <div className="space-y-12">
+            {sections.map((section) => (
+              <div
+                key={section.id}
+                className={`theme-card relative overflow-hidden rounded-[32px] p-8 md:p-12 transition-all hover:shadow-2xl border border-transparent ${section.borderColor}`}
+              >
+                {/* Accent Background */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${section.color} opacity-0 pointer-events-none md:opacity-50`}
+                />
 
-              <div className="space-y-6 text-lg leading-relaxed text-foreground/90">
-                <p>{section.body[locale] || section.body.en}</p>
-
-                {/* Presidential Tip */}
-                {section.tip && (
-                  <div className="bg-[#FDB913]/10 border border-[#FDB913]/30 rounded-xl p-6">
-                    <strong className="block text-[#FDB913] mb-2 uppercase tracking-wide text-sm font-bold">
-                      💡 {section.tip.label[locale] || section.tip.label.en}
-                    </strong>
-                    {section.tip.text[locale] || section.tip.text.en}
+                <div className="relative z-10">
+                  <div className="flex flex-col md:flex-row gap-8 mb-10 items-start">
+                    <div className="flex-shrink-0 h-20 w-20 rounded-[24px] bg-foreground/5 backdrop-blur-md flex items-center justify-center text-4xl shadow-sm">
+                      {section.icon}
+                    </div>
+                    <div>
+                      <h2 className="text-3xl font-extrabold mb-3 text-foreground">
+                        {section.title[locale] || section.title.en}
+                      </h2>
+                      <p className="text-xl font-medium text-foreground/70 italic leading-relaxed">
+                        "{section.concept[locale] || section.concept.en}"
+                      </p>
+                    </div>
                   </div>
-                )}
 
-                {/* Parliamentary Points */}
-                {section.points && (
-                  <div className="grid md:grid-cols-2 gap-4">
-                    {section.points.map((point, idx) => (
-                      <div
-                        key={idx}
-                        className="bg-black/20 rounded-xl p-5 border border-white/5"
-                      >
-                        <h3 className="font-bold text-foreground mb-2 text-base">
-                          {point.label[locale] || point.label.en}
-                        </h3>
-                        <p className="text-sm text-foreground/70">
-                          {point.text[locale] || point.text.en}
+                  <div className="space-y-8 text-lg leading-relaxed text-foreground/80">
+                    <p>{section.body[locale] || section.body.en}</p>
+
+                    {/* Presidential Tip */}
+                    {section.tip && (
+                      <div className="bg-[#FDB913]/5 border border-[#FDB913]/20 rounded-[20px] p-8">
+                        <strong className="block text-[#FDB913] mb-3 uppercase tracking-wider text-xs font-bold flex items-center gap-2">
+                          <span className="text-lg">💡</span>{" "}
+                          {section.tip.label[locale] || section.tip.label.en}
+                        </strong>
+                        <p className="text-foreground font-medium">
+                          {section.tip.text[locale] || section.tip.text.en}
                         </p>
                       </div>
-                    ))}
-                  </div>
-                )}
+                    )}
 
-                {/* Reality Check */}
-                {section.reality && (
-                  <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-6">
-                    <strong className="block text-red-400 mb-2 uppercase tracking-wide text-sm font-bold">
-                      ⚠️{" "}
-                      {section.reality.label[locale] ||
-                        section.reality.label.en}
-                    </strong>
-                    {section.reality.text[locale] || section.reality.text.en}
-                  </div>
-                )}
+                    {/* Parliamentary Points */}
+                    {section.points && (
+                      <div className="grid md:grid-cols-2 gap-6">
+                        {section.points.map((point, idx) => (
+                          <div
+                            key={idx}
+                            className="bg-foreground/5 rounded-[20px] p-6 border border-foreground/5 transition-colors hover:bg-foreground/10"
+                          >
+                            <h3 className="font-bold text-foreground mb-2 text-base uppercase tracking-wide opacity-80">
+                              {point.label[locale] || point.label.en}
+                            </h3>
+                            <p className="text-sm font-medium leading-relaxed">
+                              {point.text[locale] || point.text.en}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
-                {/* National List Comparison */}
-                {section.comparison && (
-                  <div className="grid md:grid-cols-2 gap-6 mt-6">
-                    <div className="bg-green-500/10 border border-green-500/20 rounded-xl p-6">
-                      <h3 className="font-bold text-green-400 mb-2 uppercase tracking-wide text-sm">
-                        😇{" "}
-                        {section.comparison.theory.label[locale] ||
-                          section.comparison.theory.label.en}
-                      </h3>
-                      <p className="text-sm">
-                        {section.comparison.theory.text[locale] ||
-                          section.comparison.theory.text.en}
-                      </p>
-                    </div>
-                    <div className="bg-orange-500/10 border border-orange-500/20 rounded-xl p-6">
-                      <h3 className="font-bold text-orange-400 mb-2 uppercase tracking-wide text-sm">
-                        😈{" "}
-                        {section.comparison.practice.label[locale] ||
-                          section.comparison.practice.label.en}
-                      </h3>
-                      <p className="text-sm">
-                        {section.comparison.practice.text[locale] ||
-                          section.comparison.practice.text.en}
-                      </p>
-                    </div>
+                    {/* Reality Check */}
+                    {section.reality && (
+                      <div className="bg-red-500/5 border border-red-500/20 rounded-[20px] p-8">
+                        <strong className="block text-red-500 mb-3 uppercase tracking-wider text-xs font-bold flex items-center gap-2">
+                          <span className="text-lg">⚠️</span>{" "}
+                          {section.reality.label[locale] ||
+                            section.reality.label.en}
+                        </strong>
+                        <p className="text-foreground font-medium">
+                          {section.reality.text[locale] ||
+                            section.reality.text.en}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* National List Comparison */}
+                    {section.comparison && (
+                      <div className="grid md:grid-cols-2 gap-6 mt-6">
+                        <div className="bg-green-500/5 border border-green-500/20 rounded-[20px] p-8">
+                          <h3 className="font-bold text-green-500 mb-3 uppercase tracking-wider text-xs flex items-center gap-2">
+                            <span className="text-lg">😇</span>{" "}
+                            {section.comparison.theory.label[locale] ||
+                              section.comparison.theory.label.en}
+                          </h3>
+                          <p className="text-base font-medium">
+                            {section.comparison.theory.text[locale] ||
+                              section.comparison.theory.text.en}
+                          </p>
+                        </div>
+                        <div className="bg-orange-500/5 border border-orange-500/20 rounded-[20px] p-8">
+                          <h3 className="font-bold text-orange-500 mb-3 uppercase tracking-wider text-xs flex items-center gap-2">
+                            <span className="text-lg">😈</span>{" "}
+                            {section.comparison.practice.label[locale] ||
+                              section.comparison.practice.label.en}
+                          </h3>
+                          <p className="text-base font-medium">
+                            {section.comparison.practice.text[locale] ||
+                              section.comparison.practice.text.en}
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/learn"
+              className="inline-flex items-center gap-2 rounded-xl border border-foreground/20 px-8 py-4 text-sm font-bold transition-all hover:bg-foreground hover:text-background"
+            >
+              ← {locale === "si" ? "නැවත පාඩම් මාලාවට" : "Back to Classroom"}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

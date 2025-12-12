@@ -44,7 +44,7 @@ export default function LeadersPage() {
             "இருவரும் அதிகாரத்தை மையப்படுத்தினர். சிறிமாவோ அவசரகால சட்டங்களைப் பயன்படுத்தினார்; மஹிந்த பதவி வரம்புகளை நீக்கி (18வது திருத்தம்) நிர்வாகத்தை இராணுவமயமாக்கினார்.",
         },
       },
-      color: "#800000", // Dark Red
+      color: "#EF4444", // Red (Auth-Left)
     },
     {
       id: "conservative-capitalist",
@@ -83,7 +83,7 @@ export default function LeadersPage() {
             "இருவரும் நிறைவேற்று அதிகாரத்தை முழுமையாகப் பயன்படுத்தினர். ஜே.ஆர். தேர்தலைத் தவிர்க்க பொதுவாக்கெடுப்பை நடத்தினார்; ரணில் போராட்டங்களை ஒடுக்கினார்.",
         },
       },
-      color: "#00A550", // Green
+      color: "#3B82F6", // Blue (Auth-Right)
     },
     {
       id: "democratic-socialist",
@@ -125,7 +125,7 @@ export default function LeadersPage() {
           note: "இது நவீன NPP ஐ வரலாற்று JVP யிலிருந்து (சர்வாதிகார இடது) வேறுபடுத்துகிறது.",
         },
       },
-      color: "#FF0000", // Red
+      color: "#22C55E", // Green (Lib-Left)
     },
     {
       id: "social-liberal",
@@ -164,7 +164,7 @@ export default function LeadersPage() {
             "13 வது திருத்தத்தை (அதிகாரப் பகிர்வு) மற்றும் ஜனாதிபதி அதிகாரங்களைக் குறைப்பதை (21 வது திருத்தம்) ஆதரிக்கிறது.",
         },
       },
-      color: "#008000", // Greenish
+      color: "#EAB308", // Yellow (Lib-Right)
     },
   ];
 

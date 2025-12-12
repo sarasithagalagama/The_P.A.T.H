@@ -1,145 +1,443 @@
-export const questions = [
-  // Economic Axis (X)
+/**
+ * Quiz Questions Data
+ *
+ * Scoring Logic:
+ * Each question has an 'effect' value:
+ * - Economic Axis:
+ *    - Positive (+1.0) = Right (Market/Capitalist)
+ *    - Negative (-1.0) = Left (State/Socialist)
+ *
+ * - Social Axis:
+ *    - Positive (+1.0) = Up (Authoritarian/Conservative)
+ *    - Negative (-1.0) = Down (Libertarian/Progressive)
+ *
+ * Questions are localized (EN/SI/TA) and categorized.
+ */
+
+// 🟢 ECONOMIC AXIS (20 Questions)
+// (Right = Capitalist/Market, Left = Socialist/Welfare)
+export const economicQuestions = [
+  // --- FISCAL POLICY & DEBT ---
   {
-    id: 1,
-    category: "economic",
+    id: "e1",
     text: {
-      en: "Loss-making state enterprises like SriLankan Airlines should be privatized.",
-      si: "Loss-making state enterprises like SriLankan Airlines should be privatized.",
-      ta: "Loss-making state enterprises like SriLankan Airlines should be privatized.",
+      en: "Loss-making state enterprises (like SriLankan Airlines) should be privatized immediately to stop wasting public money.",
+      si: "ශ්‍රී ලන්කන් ගුවන් සේවය වැනි පාඩු ලබන රාජ්‍ය ආයතන වහාම පෞද්ගලීකරණය කළ යුතුය.",
+      ta: "நஷ்டத்தில் இயங்கும் அரச நிறுவனங்கள் உடனடியாக தனியார்மயப்படுத்தப்பட வேண்டும்.",
     },
-    weight: 1, // Agree = Right (+), Disagree = Left (-)
+    type: "economic",
+    effect: 1.0, // Agree = Right
   },
   {
-    id: 2,
-    category: "economic",
+    id: "e2",
     text: {
-      en: "It is the government's duty to provide jobs for unemployed graduates.",
-      si: "It is the government's duty to provide jobs for unemployed graduates.",
-      ta: "It is the government's duty to provide jobs for unemployed graduates.",
+      en: "The government should strictly follow IMF targets (cutting spending, raising taxes) even if it causes hardship.",
+      si: "ජනතාවට අසීරු වුවද ආර්ථිකය බේරා ගැනීම සඳහා රජය IMF ඉලක්ක දැඩිව අනුගමනය කළ යුතුය.",
+      ta: "பொருளாதாரத்தை மீட்க IMF இலக்குகளை அரசாங்கம் கடுமையாக பின்பற்ற வேண்டும்.",
     },
-    weight: -1, // Agree = Left (-), Disagree = Right (+)
+    type: "economic",
+    effect: 1.0, // Agree = Right
   },
   {
-    id: 3,
-    category: "economic",
+    id: "e3",
     text: {
-      en: "The government should ban imports (e.g., tiles, vehicles) to protect local industries.",
-      si: "The government should ban imports (e.g., tiles, vehicles) to protect local industries.",
-      ta: "The government should ban imports (e.g., tiles, vehicles) to protect local industries.",
+      en: "Wealthy individuals and corporations should be taxed at a much higher rate to fund subsidies for the poor.",
+      si: "දුප්පතුන්ගේ සුබසාධනය සඳහා ධනවතුන්ගෙන් සහ විශාල සමාගම්වලින් වැඩි බදු අය කළ යුතුය.",
+      ta: "ஏழைகளின் நலனுக்காக செல்வந்தர்கள் மீது அதிக வரி விதிக்கப்பட வேண்டும்.",
     },
-    weight: -1, // Agree = Left (-)
+    type: "economic",
+    effect: -1.0, // Agree = Left
   },
   {
-    id: 4,
-    category: "economic",
+    id: "e4",
     text: {
-      en: "Private medical colleges (like SAITM) should be encouraged.",
-      si: "Private medical colleges (like SAITM) should be encouraged.",
-      ta: "Private medical colleges (like SAITM) should be encouraged.",
+      en: "Sri Lanka should reduce its reliance on foreign loans and print money if necessary to develop local industries.",
+      si: "විදේශ ණය මත යැපීම අඩු කර දේශීය කර්මාන්ත දියුණු කිරීමට අවශ්‍ය නම් මුදල් අච්චු ගැසිය යුතුය.",
+      ta: "உள்ளூர் கைத்தொழில்களை வளர்ப்பதற்காக தேவைப்பட்டால் பணம் அச்சடிக்கப்பட வேண்டும்.",
     },
-    weight: 1, // Agree = Right (+)
-  },
-  {
-    id: 5,
-    category: "economic",
-    text: {
-      en: "The wealthy should be taxed heavily to fund welfare schemes (Aswesuma).",
-      si: "The wealthy should be taxed heavily to fund welfare schemes (Aswesuma).",
-      ta: "The wealthy should be taxed heavily to fund welfare schemes (Aswesuma).",
-    },
-    weight: -1, // Agree = Left (-)
+    type: "economic",
+    effect: -1.0, // Agree = Left (MMT/Nationalist Economics)
   },
 
-  // Social Axis (Y)
+  // --- MARKET & TRADE ---
   {
-    id: 6,
-    category: "social",
+    id: "e5",
     text: {
-      en: "The Executive Presidency should be abolished.",
-      si: "The Executive Presidency should be abolished.",
-      ta: "The Executive Presidency should be abolished.",
+      en: "We should ban the import of any good that can be produced in Sri Lanka (Protectionism).",
+      si: "ලංකාවේ නිපදවිය හැකි ඕනෑම භාණ්ඩයක් පිටරටින් ගෙන්වීම තහනම් කළ යුතුය.",
+      ta: "இலங்கையில் உற்பத்தி செய்யக்கூடிய பொருட்களின் இறக்குமதியை தடை செய்ய வேண்டும்.",
     },
-    weight: -1, // Agree = Libertarian (-)
+    type: "economic",
+    effect: -1.0, // Agree = Left
   },
   {
-    id: 7,
-    category: "social",
+    id: "e6",
     text: {
-      en: "Police and Land powers should be devolved to Provincial Councils.",
-      si: "Police and Land powers should be devolved to Provincial Councils.",
-      ta: "Police and Land powers should be devolved to Provincial Councils.",
+      en: "Sri Lanka should sign more Free Trade Agreements (FTAs) with India, China, and the West to boost exports.",
+      si: "අපනයන වැඩි දියුණු කිරීම සඳහා ඉන්දියාව සහ චීනය සමඟ නිදහස් වෙළඳ ගිවිසුම් (FTA) අත්සන් කළ යුතුය.",
+      ta: "ஏற்றுமதியை அதிகரிக்க வெளிநாடுகளுடன் சுதந்திர வர்த்தக ஒப்பந்தங்களை செய்ய வேண்டும்.",
     },
-    weight: -1, // Agree = Libertarian (-)
+    type: "economic",
+    effect: 1.0, // Agree = Right
   },
   {
-    id: 8,
-    category: "social",
+    id: "e7",
     text: {
-      en: "Government decisions should not be influenced by the clergy/religion.",
-      si: "Government decisions should not be influenced by the clergy/religion.",
-      ta: "Government decisions should not be influenced by the clergy/religion.",
+      en: "Foreign companies should be allowed to buy land outright if they bring large dollar investments.",
+      si: "විශාල ඩොලර් ආයෝජන ගෙන එන්නේ නම් විදේශීය සමාගම්වලට ඉඩම්වල පූර්ණ අයිතිය ලබා දිය යුතුය.",
+      ta: "முதலீடுகளை ஈர்ப்பதற்காக வெளிநாட்டு நிறுவனங்களுக்கு நிலம் கொள்வனவு செய்ய அனுமதிக்கப்பட வேண்டும்.",
     },
-    weight: -1, // Agree = Libertarian (-)
+    type: "economic",
+    effect: 1.0, // Agree = Right
   },
   {
-    id: 9,
-    category: "social",
+    id: "e8",
     text: {
-      en: "The military should be used to stop protests that disrupt public transport.",
-      si: "The military should be used to stop protests that disrupt public transport.",
-      ta: "The military should be used to stop protests that disrupt public transport.",
+      en: "The price of essential goods (Rice, Gas, Fuel) should be controlled by the government, not the market.",
+      si: "සහල්, ගෑස් සහ ඉන්ධන වැනි අත්‍යවශ්‍ය භාණ්ඩවල මිල තීරණය කළ යුත්තේ රජය විසිනි.",
+      ta: "அத்தியாவசியப் பொருட்களின் விலைகளை அரசாங்கம் கட்டுப்பாட்டில் வைத்திருக்க வேண்டும்.",
     },
-    weight: 1, // Agree = Authoritarian (+)
+    type: "economic",
+    effect: -1.0, // Agree = Left
+  },
+
+  // --- WELFARE & LABOR ---
+  {
+    id: "e9",
+    text: {
+      en: "The government should guarantee a job for every university graduate.",
+      si: "සෑම විශ්වවිද්‍යාල උපාධිධාරියෙකුටම රැකියාවක් ලබා දීම රජයේ වගකීමකි.",
+      ta: "ஒவ்வொரு பட்டதாரிக்கும் வேலை வழங்குவது அரசின் கடமையாகும்.",
+    },
+    type: "economic",
+    effect: -1.0, // Agree = Left
   },
   {
-    id: 10,
-    category: "social",
+    id: "e10",
     text: {
-      en: "Homosexuality should be decriminalized.",
-      si: "Homosexuality should be decriminalized.",
-      ta: "Homosexuality should be decriminalized.",
+      en: "Welfare programs like 'Aswesuma' should be cut down; people should be encouraged to work instead of relying on handouts.",
+      si: "සුබසාධන දීමනා කපා හැරිය යුතු අතර, මිනිසුන්ව රැකියා කිරීමට දිරිමත් කළ යුතුය.",
+      ta: "நலன்புரித் திட்டங்கள் குறைக்கப்பட்டு மக்கள் உழைக்க ஊக்குவிக்கப்பட வேண்டும்.",
     },
-    weight: -1, // Agree = Libertarian (-)
+    type: "economic",
+    effect: 1.0, // Agree = Right
   },
   {
-    id: 11,
-    category: "social",
+    id: "e11",
     text: {
-      en: "All 225 MPs are corrupt and the system needs a total overhaul.",
-      si: "All 225 MPs are corrupt and the system needs a total overhaul.",
-      ta: "All 225 MPs are corrupt and the system needs a total overhaul.",
+      en: "Sri Lanka's labor laws are too strict; it should be easier for companies to hire and fire employees.",
+      si: "ලංකාවේ කම්කරු නීති දැඩි වැඩිය; සමාගම්වලට සේවකයින් බඳවා ගැනීම සහ ඉවත් කිරීම පහසු කළ යුතුය.",
+      ta: "இலங்கையின் தொழிற்சட்டங்கள் தளர்வாக்கப்பட்டு வேலை வழங்குவதும் நீக்குவதும் இலகுவாக்கப்பட வேண்டும்.",
     },
-    weight: -1, // Agree = Libertarian Bonus (-)
+    type: "economic",
+    effect: 1.0, // Agree = Right
   },
   {
-    id: 12,
-    category: "social",
+    id: "e12",
     text: {
-      en: "Sri Lanka needs a strict dictator-like leader to discipline the country.",
-      si: "Sri Lanka needs a strict dictator-like leader to discipline the country.",
-      ta: "Sri Lanka needs a strict dictator-like leader to discipline the country.",
+      en: "Trade Unions are essential to protect workers and should have the right to strike in any sector.",
+      si: "සේවක අයිතීන් රැකගැනීමට වෘත්තීය සමිති අත්‍යවශ්‍ය වන අතර ඔවුන්ට වැඩ වර්ජනය කිරීමට අයිතිය තිබිය යුතුය.",
+      ta: "தொழிலாளர் உரிமைகளைப் பாதுகாக்க தொழிற்சங்கங்கள் அவசியமானவை.",
     },
-    weight: 1, // Agree = Authoritarian Bonus (+)
+    type: "economic",
+    effect: -1.0, // Agree = Left
+  },
+
+  // --- EDUCATION & HEALTH ---
+  {
+    id: "e13",
+    text: {
+      en: "Private medical colleges (like SAITM) should be established to save money flowing out to foreign universities.",
+      si: "පිටරටට ඇදී යන මුදල් ඉතිරි කර ගැනීමට පුද්ගලික වෛද්‍ය විද්‍යාල (SAITM වැනි) ආරම්භ කළ යුතුය.",
+      ta: "தனியார் மருத்துவக் கல்லூரிகள் உருவாக்கப்பட வேண்டும்.",
+    },
+    type: "economic",
+    effect: 1.0, // Agree = Right
   },
   {
-    id: 13,
-    category: "social",
+    id: "e14",
     text: {
-      en: "The death penalty should be enforced for drug dealers.",
-      si: "The death penalty should be enforced for drug dealers.",
-      ta: "The death penalty should be enforced for drug dealers.",
+      en: "Free education and healthcare are fundamental rights and should never be cut, regardless of the economic crisis.",
+      si: "ආර්ථික අර්බුදය තිබුණද නිදහස් අධ්‍යාපනය සහ සෞඛ්‍ය සේවය කිසිසේත් කප්පාදු නොකළ යුතුය.",
+      ta: "இலவசக் கல்வியும் சுகாதாரமும் எந்தச் சூழ்நிலையிலும் குறைக்கப்படக்கூடாது.",
     },
-    weight: 1, // Agree = Authoritarian (+)
+    type: "economic",
+    effect: -1.0, // Agree = Left
   },
   {
-    id: 14,
-    category: "economic",
+    id: "e15",
     text: {
-      en: "We should sign more Free Trade Agreements (FTAs) with India and China.",
-      si: "We should sign more Free Trade Agreements (FTAs) with India and China.",
-      ta: "We should sign more Free Trade Agreements (FTAs) with India and China.",
+      en: "Farmers should receive fertilizer subsidies from the government indefinitely.",
+      si: "ගොවීන්ට රජයෙන් දිගටම පොහොර සහනාධාර ලබා දිය යුතුය.",
+      ta: "விவசாயிகளுக்கு தொடர்ந்து அரசாங்க உர மானியம் வழங்கப்பட வேண்டும்.",
     },
-    weight: 1, // Agree = Right (+)
+    type: "economic",
+    effect: -1.0, // Agree = Left
+  },
+
+  // --- DEVELOPMENT MODEL ---
+  {
+    id: "e16",
+    text: {
+      en: "Large infrastructure projects (Highways, Towers) are a waste; money should be spent on small industries instead.",
+      si: "විශාල යටිතල පහසුකම් ව්‍යාපෘති නාස්තියකි; එම මුදල් කුඩා කර්මාන්ත සඳහා යෙදවිය යුතුය.",
+      ta: "பெரிய உட்கட்டமைப்பு திட்டங்கள் வீண் விரயம்; சிறு கைத்தொழில்களில் முதலீடு செய்ய வேண்டும்.",
+    },
+    type: "economic",
+    effect: -1.0, // Agree = Left
+  },
+  {
+    id: "e17",
+    text: {
+      en: "The Port City Colombo is a crucial economic asset and should be given special legal status to attract investors.",
+      si: "කොළඹ වරාය නගරය ආර්ථිකයට වැදගත් වන අතර එයට විශේෂ නීතිමය තත්ත්වයක් ලබා දිය යුතුය.",
+      ta: "கொழும்பு துறைமுக நகரத்திற்கு விசேட சட்ட அந்தஸ்து வழங்கப்பட வேண்டும்.",
+    },
+    type: "economic",
+    effect: 1.0, // Agree = Right
+  },
+  {
+    id: "e18",
+    text: {
+      en: "The EPF/ETF pension funds should be managed by the government to support national development.",
+      si: "EPF/ETF අරමුදල් ජාතික සංවර්ධනයට සහය වීම සඳහා රජය විසින් කළමනාකරණය කළ යුතුය.",
+      ta: "EPF/ETF நிதியங்களை அரசாங்கமே முகாமைத்துவம் செய்ய வேண்டும்.",
+    },
+    type: "economic",
+    effect: -1.0, // Agree = Left (Statist)
+  },
+  {
+    id: "e19",
+    text: {
+      en: "Tax evasion by professionals (Doctors, Lawyers) should be punished strictly.",
+      si: "වෘත්තිකයන් (වෛද්‍යවරුන්, නීතිඥයන්) බදු පැහැර හැරීම දැඩිව දඬුවම් ලැබිය යුතු වරදකි.",
+      ta: "தொழில்வல்லுநர்கள் வரி ஏய்ப்பு செய்வதை கடுமையாக தண்டிக்க வேண்டும்.",
+    },
+    type: "economic",
+    effect: -1.0, // Agree = Left (Pro-Tax enforcement usually left-leaning in SL context)
+  },
+  {
+    id: "e20",
+    text: {
+      en: "A flat tax rate for everyone is fairer than charging the rich a higher percentage.",
+      si: "ධනවතුන්ගෙන් වැඩි ප්‍රතිශතයක් අය කිරීමට වඩා සැමට සමාන බදු අනුපාතයක් (Flat Tax) සාධාරණ ය.",
+      ta: "அனைவருக்கும் ஒரே மாதிரியான வரி விகிதமே நியாயமானது.",
+    },
+    type: "economic",
+    effect: 1.0, // Agree = Right
   },
 ];
+
+// 🟣 SOCIAL AXIS (20 Questions)
+// (Up = Authoritarian/Conservative, Down = Libertarian/Progressive)
+export const socialQuestions = [
+  // --- GOVERNANCE & POWER ---
+  {
+    id: "s1",
+    text: {
+      en: "The Executive Presidency creates a dictator and must be abolished immediately.",
+      si: "විධායක ජනාධිපති ක්‍රමය ඒකාධිපතියෙකු බිහි කරන බැවින් එය වහාම අහෝසි කළ යුතුය.",
+      ta: "நிறைவேற்று அதிகார ஜனாதிபதி முறைமை சர்வாதிகாரத்தை உருவாக்குவதால் அது ஒழிக்கப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian
+  },
+  {
+    id: "s2",
+    text: {
+      en: "Sri Lanka needs a strong leader who can bypass parliament to get things done quickly.",
+      si: "පාර්ලිමේන්තුව ගැන නොසිතා ඉක්මනින් තීරණ ගත හැකි ශක්තිමත් නායකයෙකු රටට අවශ්‍යයි.",
+      ta: "பாராளுமன்றத்தை மீறியும் செயற்படக்கூடிய பலமான தலைவர் நாட்டுக்கு தேவை.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian
+  },
+  {
+    id: "s3",
+    text: {
+      en: "Military spending should be significantly reduced now that the war is over.",
+      si: "යුද්ධය අවසන් බැවින් හමුදා වියදම් සැලකිය යුතු ලෙස අඩු කළ යුතුය.",
+      ta: "போர் முடிந்துவிட்டதால் இராணுவ செலவுகள் குறைக்கப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian
+  },
+  {
+    id: "s4",
+    text: {
+      en: "The military should be involved in civilian activities (agriculture, construction) to maintain discipline.",
+      si: "විනය පවත්වා ගැනීම සඳහා හමුදාව සිවිල් කටයුතු (ගොවිතැන්, ඉදිකිරීම්) සඳහා යොදා ගත යුතුය.",
+      ta: "இராணுவம் சிவில் நடவடிக்கைகளில் ஈடுபடுத்தப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian
+  },
+
+  // --- ETHNICITY & RELIGION ---
+  {
+    id: "s5",
+    text: {
+      en: "The 13th Amendment should be fully implemented, giving Police and Land powers to Provincial Councils.",
+      si: "පළාත් සභා වලට පොලිස් සහ ඉඩම් බලතල ලබා දෙමින් 13 වන සංශෝධනය සම්පූර්ණයෙන්ම ක්‍රියාත්මක කළ යුතුය.",
+      ta: "13வது திருத்தம் முழுமையாக அமுல்படுத்தப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian/Federalist
+  },
+  {
+    id: "s6",
+    text: {
+      en: "Sri Lanka must remain a Unitary State; devolving too much power will divide the country.",
+      si: "ශ්‍රී ලංකාව ඒකීය රාජ්‍යයක් ලෙස පැවතිය යුතුය; බලය බෙදීම රට බෙදීමට හේතු වේ.",
+      ta: "இலங்கை ஒற்றையாட்சி நாடாகவே தொடர வேண்டும்.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian/Centralist
+  },
+  {
+    id: "s7",
+    text: {
+      en: "Article 9 of the constitution (giving Buddhism the foremost place) should be removed to make the state secular.",
+      si: "ආණ්ඩුක්‍රම ව්‍යවස්ථාවේ 9 වන වගන්තිය (බුද්ධාගමට ප්‍රමුඛස්ථානය) ඉවත් කර රජය නිරාගමික විය යුතුය.",
+      ta: "அரசியலமைப்பிலிருந்து பௌத்த மதத்திற்கான முன்னுரிமை நீக்கப்பட்டு நாடு மதச்சார்பற்றதாக்கப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian/Secular
+  },
+  {
+    id: "s8",
+    text: {
+      en: "It is the government's duty to protect and foster the Sinhala Buddhist culture above others.",
+      si: "සිංහල බෞද්ධ සංස්කෘතිය ආරක්ෂා කිරීම සහ පෝෂණය කිරීම රජයේ ප්‍රධාන වගකීමකි.",
+      ta: "சிங்கள பௌத்த கலாச்சாரத்தைப் பாதுகாப்பது அரசாங்கத்தின் கடமையாகும்.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian/Nationalist
+  },
+  {
+    id: "s9",
+    text: {
+      en: "The National Anthem should be sung in both Sinhala and Tamil at national events.",
+      si: "ජාතික උත්සවවලදී ජාතික ගීය සිංහල සහ දෙමළ භාෂා දෙකෙන්ම ගායනා කළ යුතුය.",
+      ta: "தேசிய கீதம் தமிழ் மொழியிலும் பாடப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian
+  },
+
+  // --- RIGHTS & FREEDOMS ---
+  {
+    id: "s10",
+    text: {
+      en: "Consensual same-sex relationships (LGBTQ) should be decriminalized immediately.",
+      si: "සමලිංගික සබඳතා අපරාධයක් නොවන බවට පත් කළ යුතුය.",
+      ta: "தன்பாலின உறவுகள் குற்றமற்றதாக்கப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian
+  },
+  {
+    id: "s11",
+    text: {
+      en: "Western culture and NGOs are a threat to our traditional values.",
+      si: "බටහිර සංස්කෘතිය සහ NGO අපගේ දේශීය වටිනාකම් වලට තර්ජනයකි.",
+      ta: "மேற்கத்திய கலாச்சாரம் மற்றும் NGOக்கள் எமது கலாச்சாரம் அச்சுறுத்தலாக உள்ளன.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian
+  },
+  {
+    id: "s12",
+    text: {
+      en: "The death penalty should be implemented for drug dealers and murderers.",
+      si: "කුඩු ජාවාරම්කරුවන් සහ මිනීමරුවන් සඳහා මරණ දඬුවම ක්‍රියාත්මක කළ යුතුය.",
+      ta: "கடுமையான குற்றங்களுக்கு மரண தண்டனை அமுல்படுத்தப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian
+  },
+  {
+    id: "s13",
+    text: {
+      en: "Protests (like Aragalaya) are a democratic right, even if they occupy public spaces indefinitely.",
+      si: "පොදු ස්ථානවල දින ගණන් රැඳී සිටියද, විරෝධතා පැවැත්වීම ජනතාවගේ ප්‍රජාතන්ත්‍රවාදී අයිතියකි.",
+      ta: "போராட்டம் நடத்துவது மக்களின் ஜனநாயக உரிமையாகும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian
+  },
+  {
+    id: "s14",
+    text: {
+      en: "Social media needs to be regulated by the government to stop fake news and insults.",
+      si: "ව්‍යාජ ප්‍රවෘත්ති සහ අපහාස කිරීම් නැවැත්වීමට රජය සමාජ මාධ්‍ය නියාමනය කළ යුතුය.",
+      ta: "சமூக ஊடகங்களை ஒழுங்குபடுத்த அரசாங்கத்திற்கு அதிகாரம் இருக்க வேண்டும்.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian
+  },
+
+  // --- JUSTICE & LAW ---
+  {
+    id: "s15",
+    text: {
+      en: "Police should use 'maximum force' to crush the drug mafia, even if it violates some human rights.",
+      si: "මානව හිමිකම් උල්ලංඝනය වුවද, පාතාලය සහ කුඩු මැඩලීමට පොලිසිය උපරිම බලය පාවිච්චි කළ යුතුය.",
+      ta: "மனித உரிமைகளைப் பாராமல் போதைப்பொருள் ஒழிப்பிற்கு பொலிசார் அதிகபட்ச பலத்தைப் பயன்படுத்த வேண்டும்.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian
+  },
+  {
+    id: "s16",
+    text: {
+      en: "Politicians accused of corruption should be tried in special courts to expedite justice.",
+      si: "දූෂණ චෝදනා එල්ල වූ දේශපාලඥයින්ට එරෙහිව විශේෂ අධිකරණ හරහා ඉක්මනින් නඩු අසා දඬුවම් දිය යුතුය.",
+      ta: "ஊழல்வாதி அரசியல்வாதிகளுக்கு எதிராக விசேட நீதிமன்றங்களில் வழக்குத் தாக்கல் செய்ய வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian (Rule of Law focus)
+  },
+  {
+    id: "s17",
+    text: {
+      en: "Abortion should be legalized for cases of rape and serious health risks.",
+      si: "ස්ත්‍රී දූෂණ සහ සෞඛ්‍ය ගැටළු ඇති අවස්ථාවලදී ගබ්සාව නීතිගත කළ යුතුය.",
+      ta: "பாலியல் வன்புணர்வு போன்ற சந்தர்ப்பங்களில் கருக்கலைப்பு சட்டபூர்வமாக்கப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian
+  },
+  {
+    id: "s18",
+    text: {
+      en: "Ragging in universities is a part of student culture and helps build unity.",
+      si: "නවක වදය විශ්වවිද්‍යාල සංස්කෘතියේ කොටසක් වන අතර එය සිසුන් අතර එකමුතුව ඇති කරයි.",
+      ta: "பல்கலைக்கழக பகிடிவதை மாணவர் கலாச்சாரத்தின் ஒரு பகுதியாகும்.",
+    },
+    type: "social",
+    effect: 1.0, // Agree = Authoritarian (Collectivism/Tradition)
+  },
+  {
+    id: "s19",
+    text: {
+      en: "Religious leaders (Monks/Priests) should not be involved in active politics.",
+      si: "පූජකවරුන් (භික්ෂූන් වහන්සේලා ඇතුළු) සක්‍රීය දේශපාලනයේ නිරත නොවිය යුතුය.",
+      ta: "மதத் தலைவர்கள் அரசியலில் ஈடுபடக்கூடாது.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian (Secularism)
+  },
+  {
+    id: "s20",
+    text: {
+      en: "We need a new constitution that starts from scratch rather than amending the old one.",
+      si: "පවතින ව්‍යවස්ථාව සංශෝධනය කරනවාට වඩා අලුතෙන්ම නව ව්‍යවස්ථාවක් සකස් කළ යුතුය.",
+      ta: "பழைய அரசியலமைப்பை திருத்துவதை விட புதிய அரசியலமைப்பு உருவாக்கப்பட வேண்டும்.",
+    },
+    type: "social",
+    effect: -1.0, // Agree = Libertarian (Reformist)
+  },
+];
+
+export const questions = [...economicQuestions, ...socialQuestions];

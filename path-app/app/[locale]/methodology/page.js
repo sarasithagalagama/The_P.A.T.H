@@ -108,7 +108,7 @@ export default function MethodologyPage() {
           <div className="mt-12 text-center">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-foreground/60 hover:text-gold-text transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-foreground/20 px-8 py-4 text-sm font-bold transition-all hover:bg-foreground hover:text-background"
             >
               ← Back to Home
             </Link>

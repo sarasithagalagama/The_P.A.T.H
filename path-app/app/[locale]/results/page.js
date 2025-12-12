@@ -5,9 +5,13 @@ import { useTranslations, useLocale } from "next-intl";
 import { useRouter } from "@/i18n/routing";
 import { politicians, findClosestPolitician } from "@/data/politicians";
 import { questions } from "@/data/questions";
-import html2canvas from "html2canvas";
+import { toPng } from "html-to-image";
 import { useTheme } from "next-themes";
 
+/**
+ * Avatar Helper
+ * Renders politician image or a fallback initial.
+ */
 const PoliticianAvatar = ({ politician }) => {
   const [error, setError] = useState(false);
 
@@ -30,11 +34,20 @@ const PoliticianAvatar = ({ politician }) => {
   );
 };
 
+/**
+ * ResultsPage Component
+ * Displays the user's political alignment, archetype, and closest historical match.
+ * Features:
+ * - "Persona Card" generation (downloadable image)
+ * - 2D Coordinate Grid visualization
+ * - Closest match algorithm presentation
+ */
 export default function ResultsPage() {
   const t = useTranslations("results");
   const locale = useLocale();
   const router = useRouter();
 
+  // Refs for capturing the DOM for image download
   const contentRef = useRef(null);
   const personaRef = useRef(null);
 
@@ -45,7 +58,9 @@ export default function ResultsPage() {
 
   const [selectedPolitician, setSelectedPolitician] = useState(null);
   const [showPersona, setShowPersona] = useState(false);
+  const [showClosestMatch, setShowClosestMatch] = useState(false);
 
+  // Load results from Session Storage on mount
   useEffect(() => {
     try {
       const storedResults = sessionStorage.getItem("quizResults");
@@ -62,6 +77,7 @@ export default function ResultsPage() {
         setResults(parsedResults);
         setAnswers(parsedResults.answers || {});
 
+        // Calculate closest match using Euclidean distance
         const match = findClosestPolitician(
           parsedResults.economic || 0,
           parsedResults.social || 0
@@ -73,28 +89,20 @@ export default function ResultsPage() {
     }
   }, [locale, router]);
 
+  /**
+   * Generates a PNG image of the Persona Card.
+   * Uses html-to-image library.
+   */
   const handleDownload = async (ref, filename) => {
     if (!ref.current) return;
     try {
       setIsDownloading(true);
-      const canvas = await html2canvas(ref.current, {
-        useCORS: true,
-        allowTaint: true,
-        logging: true,
+      const dataUrl = await toPng(ref.current, {
+        cacheBust: true,
         backgroundColor: null,
-        scale: 2,
-        // Crucial: reset global styles in the clone to avoid oklab
-        onclone: (clonedDoc) => {
-          const el = clonedDoc.getElementById("persona-card-capture");
-          if (el) {
-            // Force override any tailwind defaults that might leak in
-            el.style.fontFamily = "sans-serif";
-          }
-        },
       });
-      const image = canvas.toDataURL("image/png");
       const link = document.createElement("a");
-      link.href = image;
+      link.href = dataUrl;
       link.download = `${filename}-${new Date()
         .toISOString()
         .slice(0, 10)}.png`;
@@ -107,6 +115,9 @@ export default function ResultsPage() {
     }
   };
 
+  /**
+   * Determines the political Label/Archetype based on the quadrant.
+   */
   const getArchetype = (x, y) => {
     const safeX = Number(x) || 0;
     const safeY = Number(y) || 0;
@@ -137,6 +148,7 @@ export default function ResultsPage() {
     };
   };
 
+  // Helper to find a strong opinion to display (Optional Feature)
   const getControversialOpinion = () => {
     if (!answers || Object.keys(answers).length === 0) return null;
     const strongOpinions = Object.entries(answers).filter(
@@ -152,7 +164,10 @@ export default function ResultsPage() {
 
   const { resolvedTheme } = useTheme();
 
-  // Unified Theme: Adaptive Premium Look (Light & Dark)
+  /**
+   * Adaptive Theme Engine for the Persona Card.
+   * Changes styles based on result Type (Auth/Lib) and current App Theme (Dark/Light).
+   */
   const getArchetypeTheme = (archetypeTitle) => {
     let icon = "⚖️";
     if (archetypeTitle.includes("Statist")) icon = "🛡️";
@@ -201,6 +216,7 @@ export default function ResultsPage() {
     );
   }
 
+  // Calculate coordinates for CSS positioning (0-100%)
   const leftPercent = ((results.economic + 10) / 20) * 100;
   const topPercent = ((10 - results.social) / 20) * 100;
 
@@ -218,20 +234,20 @@ export default function ResultsPage() {
     "Info unavailable";
 
   return (
-    <div className="relative min-h-screen py-12 px-4 sm:px-6">
+    <div className="relative min-h-screen">
       <div
         ref={contentRef}
-        className="relative z-10 mx-auto max-w-7xl p-0 md:p-4 bg-transparent"
+        className="relative z-10 mx-auto max-w-[1200px] px-6 py-12"
       >
         {/* Header */}
-        <div className="mb-12 text-center" data-html2canvas-ignore>
-          <span className="mb-2 block text-sm font-bold uppercase tracking-[3px] text-gold-text opacity-80">
+        <div className="mb-16 text-center" data-html2canvas-ignore>
+          <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
             Identity Revealed
-          </span>
-          <h1 className="text-4xl font-black tracking-tighter text-foreground sm:text-5xl md:text-6xl">
+          </div>
+          <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
             {archetype.title.split("(")[0]}
           </h1>
-          <p className="mt-4 text-xl font-medium text-foreground/60 max-w-2xl mx-auto">
+          <p className="mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
             {archetype.title.split("(")[1]?.replace(")", "") ||
               "Political Compass Result"}
           </p>
@@ -365,30 +381,33 @@ export default function ResultsPage() {
                   </div>
 
                   {/* Closest Match Stat */}
-                  <div className="pt-4 border-t border-white/10 mt-4 flex items-center justify-between">
-                    <span
-                      className={`text-xs font-bold uppercase ${theme.subtext} opacity-50`}
-                    >
-                      Closest Match
-                    </span>
-                    <div className="flex items-center gap-3">
-                      <div className="h-8 w-8 rounded-full border border-gold/30 overflow-hidden bg-black/50">
-                        <PoliticianAvatar
-                          politician={closestMatch.politician}
-                        />
-                      </div>
-                      <div className="flex flex-col items-end">
-                        <span
-                          className={`text-sm font-bold ${theme.text} leading-none`}
-                        >
-                          {getPoliticianName(closestMatch.politician)}
-                        </span>
-                        <span className="text-[10px] text-gold-text opacity-80 mt-1 font-medium">
-                          {(100 - closestMatch.distance * 5).toFixed(0)}% Match
-                        </span>
+                  {showClosestMatch && (
+                    <div className="pt-4 border-t border-white/10 mt-4 flex items-center justify-between">
+                      <span
+                        className={`text-xs font-bold uppercase ${theme.subtext} opacity-50`}
+                      >
+                        Closest Match
+                      </span>
+                      <div className="flex items-center gap-3">
+                        <div className="h-8 w-8 rounded-full border border-gold/30 overflow-hidden bg-black/50">
+                          <PoliticianAvatar
+                            politician={closestMatch.politician}
+                          />
+                        </div>
+                        <div className="flex flex-col items-end">
+                          <span
+                            className={`text-sm font-bold ${theme.text} leading-none`}
+                          >
+                            {getPoliticianName(closestMatch.politician)}
+                          </span>
+                          <span className="text-[10px] text-gold-text opacity-80 mt-1 font-medium">
+                            {(100 - closestMatch.distance * 5).toFixed(0)}%
+                            Match
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
 
@@ -403,15 +422,27 @@ export default function ResultsPage() {
             {/* Actions */}
             <div className="grid grid-cols-2 gap-3" data-html2canvas-ignore>
               <button
+                onClick={() => setShowClosestMatch(!showClosestMatch)}
+                className={`col-span-2 rounded-xl border py-4 text-center font-bold transition-all shadow-md ${
+                  showClosestMatch
+                    ? "border-foreground/10 bg-foreground/5 text-foreground hover:bg-foreground/10" // Muted when shown
+                    : "bg-white text-black border-white hover:bg-gray-200" // Prominent when hidden (White button)
+                }`}
+              >
+                {showClosestMatch ? "Hide Match" : "Reveal Closest Match"}
+              </button>
+
+              <button
                 onClick={() => handleDownload(personaRef, "My-Political-Card")}
                 disabled={isDownloading}
                 className="col-span-2 rounded-xl bg-[#FDB913] py-4 text-center font-bold text-black hover:bg-[#ffc845] active:scale-95 transition-all shadow-lg"
               >
-                {isDownloading ? "Generating..." : "Download Card ⬇️"}
+                {isDownloading ? "Generating..." : "Download Card"}
               </button>
+
               <button
                 onClick={() => router.push("/")}
-                className="col-span-2 rounded-xl border border-foreground/10 bg-foreground/5 py-4 text-center font-semibold text-foreground hover:bg-foreground/10 transition-all"
+                className="col-span-2 rounded-xl border border-foreground/10 bg-foreground/5 py-4 text-center font-semibold text-foreground hover:bg-foreground/10 transition-all text-sm"
               >
                 Retake Quiz
               </button>
@@ -483,35 +514,38 @@ export default function ResultsPage() {
               </div>
 
               {/* Nearest Neighbor Line (SVG) */}
-              <svg className="absolute inset-0 pointer-events-none z-10 w-full h-full overflow-visible">
-                <line
-                  x1={`${leftPercent}%`}
-                  y1={`${topPercent}%`}
-                  x2={`${matchLeft}%`}
-                  y2={`${matchTop}%`}
-                  stroke={
-                    theme.accent.replace("text-", "#") === "text-yellow-400"
-                      ? "#FACC15"
-                      : "currentColor"
-                  } // Fallback color logic simplified, easier to just use class if possible or inline style
-                  className={`${theme.accent} opacity-50`}
-                  strokeWidth="2"
-                  strokeDasharray="5,5"
-                />
-                <circle
-                  cx={`${matchLeft}%`}
-                  cy={`${matchTop}%`}
-                  r="4"
-                  fill="currentColor"
-                  className={`${theme.accent} animate-ping opacity-20`}
-                />
-              </svg>
+              {showClosestMatch && (
+                <svg className="absolute inset-0 pointer-events-none z-10 w-full h-full overflow-visible">
+                  <line
+                    x1={`${leftPercent}%`}
+                    y1={`${topPercent}%`}
+                    x2={`${matchLeft}%`}
+                    y2={`${matchTop}%`}
+                    stroke={
+                      theme.accent.replace("text-", "#") === "text-yellow-400"
+                        ? "#FACC15"
+                        : "currentColor"
+                    } // Fallback color logic simplified, easier to just use class if possible or inline style
+                    className={`${theme.accent} opacity-50`}
+                    strokeWidth="2"
+                    strokeDasharray="5,5"
+                  />
+                  <circle
+                    cx={`${matchLeft}%`}
+                    cy={`${matchTop}%`}
+                    r="4"
+                    fill="currentColor"
+                    className={`${theme.accent} animate-ping opacity-20`}
+                  />
+                </svg>
+              )}
 
               {/* Politicians */}
               {politicians.map((p) => {
                 const l = ((p.x + 10) / 20) * 100;
                 const t = ((10 - p.y) / 20) * 100;
-                const isClosest = p.id === closestMatch.politician.id;
+                const isClosest =
+                  showClosestMatch && p.id === closestMatch.politician.id;
 
                 return (
                   <button

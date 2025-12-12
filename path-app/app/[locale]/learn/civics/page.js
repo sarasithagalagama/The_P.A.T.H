@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export default function CivicsPage() {
   const locale = useLocale();
@@ -232,112 +233,136 @@ export default function CivicsPage() {
   ];
 
   return (
-    <div className="min-h-screen py-16 text-foreground">
-      <div className="container mx-auto px-6 max-w-[1200px]">
-        <div className="mb-16 text-center">
-          <h1 className="text-4xl font-extrabold text-foreground md:text-5xl mb-4">
-            Who Does <span className="text-[#FDB913]">What?</span>
-          </h1>
-          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
-            Civics 101: Stop blaming the wrong person. Know who is responsible
-            for what.
-          </p>
-        </div>
+    <div className="relative min-h-screen">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
+        <div className="py-12">
+          {/* Header */}
+          <div className="mb-16 text-center">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+              Civics 101
+            </div>
+            <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              Who Does <span className="text-gold-text">What?</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
+              Stop blaming the wrong person. Know who is responsible for
+              what—from your drain to national defense.
+            </p>
+          </div>
 
-        <div className="grid gap-12">
-          {levels.map((level) => (
-            <div
-              key={level.id}
-              className={`relative overflow-hidden rounded-[32px] border ${level.borderColor} bg-gradient-to-br ${level.color} p-8 md:p-12 transition-all hover:shadow-[0_0_40px_-10px_rgba(0,0,0,0.3)]`}
-            >
-              <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-                {/* Icon Column */}
-                <div className="flex-shrink-0 flex items-start justify-center md:block">
-                  <div className="h-24 w-24 rounded-full bg-black/10 backdrop-blur-sm flex items-center justify-center text-5xl border border-white/10 shadow-inner">
-                    {level.icon}
-                  </div>
-                </div>
+          <div className="grid gap-12">
+            {levels.map((level) => (
+              <div
+                key={level.id}
+                className={`theme-card relative overflow-hidden rounded-[32px] p-8 md:p-12 transition-all hover:shadow-2xl border ${level.borderColor}`}
+              >
+                {/* Accent Gradient Background */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${level.color} opacity-10 pointer-events-none`}
+                />
 
-                {/* Content Column */}
-                <div className="flex-1 space-y-8">
-                  <div>
-                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-2">
-                      <h2 className={`text-3xl font-bold ${level.textColor}`}>
-                        {level.title[locale] || level.title.en}
-                      </h2>
-                      <span className="inline-block px-3 py-1 rounded-full bg-black/20 text-sm font-medium text-foreground/80 w-fit">
-                        {level.subtitle[locale] || level.subtitle.en}
-                      </span>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-4 mt-4 text-sm text-foreground/80">
-                      <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                        <span className="block text-xs uppercase tracking-wider opacity-60 mb-1">
-                          Institutions
-                        </span>
-                        <span className="font-semibold">
-                          {level.institutions[locale] || level.institutions.en}
-                        </span>
-                      </div>
-                      <div className="bg-white/5 rounded-xl p-4 border border-white/5">
-                        <span className="block text-xs uppercase tracking-wider opacity-60 mb-1">
-                          Representative
-                        </span>
-                        <span className="font-semibold">
-                          {level.representative[locale] ||
-                            level.representative.en}
-                        </span>
-                      </div>
+                <div className="relative z-10 flex flex-col md:flex-row gap-8 md:gap-12">
+                  {/* Icon Column */}
+                  <div className="flex-shrink-0 flex items-start justify-center md:block">
+                    <div className="h-24 w-24 rounded-[24px] bg-background/50 backdrop-blur-md flex items-center justify-center text-5xl border border-white/10 shadow-inner">
+                      {level.icon}
                     </div>
                   </div>
 
-                  {/* Role */}
-                  <div className="bg-black/20 rounded-2xl p-6 border border-white/5">
-                    <h3 className="text-lg font-bold mb-2 flex items-center gap-2">
-                      🎯 {level.role.label[locale] || level.role.label.en}
-                    </h3>
-                    <p className="text-lg leading-relaxed">
-                      {level.role.text[locale] || level.role.text.en}
-                    </p>
-                  </div>
+                  {/* Content Column */}
+                  <div className="flex-1 space-y-8">
+                    <div>
+                      <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 mb-4">
+                        <h2
+                          className={`text-3xl font-extrabold ${level.textColor}`}
+                        >
+                          {level.title[locale] || level.title.en}
+                        </h2>
+                        <span className="inline-block px-3 py-1 rounded-full bg-foreground/5 border border-foreground/10 text-xs font-bold uppercase tracking-wider text-foreground/70 w-fit">
+                          {level.subtitle[locale] || level.subtitle.en}
+                        </span>
+                      </div>
 
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {/* Do's */}
-                    <div className="bg-green-500/10 rounded-2xl p-6 border border-green-500/20">
-                      <h3 className="text-green-400 font-bold mb-4 flex items-center gap-2 uppercase tracking-wide text-sm">
-                        ✅ {level.dos.label[locale] || level.dos.label.en}
+                      <div className="grid md:grid-cols-2 gap-4 mt-6 text-sm text-foreground/80">
+                        <div className="bg-background/40 rounded-xl p-5 border border-white/5 backdrop-blur-sm">
+                          <span className="block text-xs uppercase tracking-wider opacity-60 mb-2 font-bold">
+                            Institutions
+                          </span>
+                          <span className="font-semibold text-base">
+                            {level.institutions[locale] ||
+                              level.institutions.en}
+                          </span>
+                        </div>
+                        <div className="bg-background/40 rounded-xl p-5 border border-white/5 backdrop-blur-sm">
+                          <span className="block text-xs uppercase tracking-wider opacity-60 mb-2 font-bold">
+                            Representative
+                          </span>
+                          <span className="font-semibold text-base">
+                            {level.representative[locale] ||
+                              level.representative.en}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Role */}
+                    <div className="bg-background/30 rounded-2xl p-8 border border-white/5 backdrop-blur-sm">
+                      <h3 className="text-sm font-bold mb-3 flex items-center gap-2 uppercase tracking-wider opacity-80">
+                        🎯 {level.role.label[locale] || level.role.label.en}
                       </h3>
-                      <ul className="space-y-3">
-                        {level.dos.items.map((item, idx) => (
-                          <li
-                            key={idx}
-                            className="flex items-start gap-3 text-foreground/90"
-                          >
-                            <span className="text-green-400 text-lg leading-none">
-                              •
-                            </span>
-                            <span>{item[locale] || item.en}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <p className="text-lg leading-relaxed font-medium">
+                        {level.role.text[locale] || level.role.text.en}
+                      </p>
                     </div>
 
-                    {/* Don'ts (If applicable) */}
-                    {level.donts && (
-                      <div className="bg-red-500/10 rounded-2xl p-6 border border-red-500/20">
-                        <h3 className="text-red-400 font-bold mb-4 flex items-center gap-2 uppercase tracking-wide text-sm">
-                          ❌ {level.donts.label[locale] || level.donts.label.en}
+                    <div className="grid md:grid-cols-2 gap-6">
+                      {/* Do's */}
+                      <div className="bg-green-500/5 rounded-2xl p-6 border border-green-500/20 hover:bg-green-500/10 transition-colors">
+                        <h3 className="text-green-500 font-bold mb-4 flex items-center gap-2 uppercase tracking-wide text-xs">
+                          ✅ {level.dos.label[locale] || level.dos.label.en}
                         </h3>
-                        <p className="text-foreground/90 leading-relaxed">
-                          {level.donts.text[locale] || level.donts.text.en}
-                        </p>
+                        <ul className="space-y-3">
+                          {level.dos.items.map((item, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-3 text-foreground/90 text-sm font-medium"
+                            >
+                              <span className="text-green-500 text-lg leading-none mt-0.5">
+                                •
+                              </span>
+                              <span>{item[locale] || item.en}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    )}
+
+                      {/* Don'ts (If applicable) */}
+                      {level.donts && (
+                        <div className="bg-red-500/5 rounded-2xl p-6 border border-red-500/20 hover:bg-red-500/10 transition-colors">
+                          <h3 className="text-red-500 font-bold mb-4 flex items-center gap-2 uppercase tracking-wide text-xs">
+                            ❌{" "}
+                            {level.donts.label[locale] || level.donts.label.en}
+                          </h3>
+                          <p className="text-foreground/90 leading-relaxed text-sm font-medium">
+                            {level.donts.text[locale] || level.donts.text.en}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/learn"
+              className="inline-flex items-center gap-2 rounded-xl border border-foreground/20 px-8 py-4 text-sm font-bold transition-all hover:bg-foreground hover:text-background"
+            >
+              ← {locale === "si" ? "නැවත පාඩම් මාලාවට" : "Back to Classroom"}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

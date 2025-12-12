@@ -4,11 +4,20 @@ import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 
+/**
+ * HomePage Component
+ * The main landing page of the application.
+ * Features:
+ * - Hero section with primary Call-to-Action (CTA)
+ * - "How It Works" steps
+ * - Detailed Methodology & Assumptions section
+ */
 export default function HomePage() {
   const t = useTranslations("home");
   const tApp = useTranslations("app");
   const locale = useLocale();
 
+  // Helper to smooth scroll to specific sections (e.g., Methodology)
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -16,7 +25,12 @@ export default function HomePage() {
     }
   };
 
-  // Methodology & Criteria Content
+  /**
+   * Methodology Content
+   * Structured data for the Methodology section to support complex layouts
+   * that might be difficult to manage purely with simple i18n JSON strings.
+   * This ensures the "How We Calculate" and "How We Classify" sections are rich and detailed.
+   */
   const methodologyContent = {
     en: {
       headline: "Methodology & Assumptions",
@@ -110,8 +124,12 @@ export default function HomePage() {
   return (
     <div className="relative min-h-screen">
       <div className="relative z-10 mx-auto max-w-[1200px] px-6">
-        {/* Hero Section */}
+        {/*
+          Hero Section:
+          Centerpiece of the home page with glassmorphism background and primary CTA.
+        */}
         <section className="relative flex flex-col items-start justify-center overflow-hidden rounded-[32px] px-8 py-20 text-left md:min-h-[600px] md:px-16">
+          {/* Background Layers */}
           <div className="absolute inset-0 z-0">
             <Image
               src="/hero-bg-new.jpg"
@@ -139,6 +157,7 @@ export default function HomePage() {
               {t("intro")}
             </p>
 
+            {/* Action Buttons */}
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
               <Link
                 href="/quiz"
@@ -156,12 +175,15 @@ export default function HomePage() {
             </div>
 
             <div className="mt-4 text-sm text-foreground/60 font-medium">
-              ⏱️ Takes approximately 5 minutes
+              Takes approximately 5 minutes
             </div>
           </div>
         </section>
 
-        {/* Steps Section */}
+        {/*
+          How It Works Section:
+          Simple 3-step guide using cards with hover effects.
+        */}
         <section id="how-it-works" className="py-24">
           <div className="grid gap-8 md:grid-cols-3">
             {[
@@ -208,7 +230,11 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Methodology & Classification Criteria Section */}
+        {/*
+          Methodology Section:
+          Displays the calculation logic and assumptions to ensure transparency.
+          Uses the 'methodologyContent' object defined above.
+        */}
         <section
           id="methodology"
           className="pb-24 pt-12 border-t border-foreground/10"

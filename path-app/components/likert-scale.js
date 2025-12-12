@@ -1,6 +1,15 @@
 "use client";
 
+/**
+ * LikertScale Component
+ * A responsive 5-point scale for user inputs.
+ *
+ * @param {number|null} value - Current selected value (-2 to 2)
+ * @param {Function} onChange - Callback when a value is selected
+ * @param {Object} labels - Localized labels for the scale options
+ */
 export function LikertScale({ value, onChange, labels }) {
+  // Map internal values (-2 to +2) to display labels
   const options = [
     { value: -2, label: labels.stronglyDisagree },
     { value: -1, label: labels.disagree },
@@ -11,7 +20,7 @@ export function LikertScale({ value, onChange, labels }) {
 
   return (
     <div className="w-full">
-      {/* Desktop: Horizontal */}
+      {/* Desktop Layout: Horizontal buttons */}
       <div className="hidden md:flex gap-2">
         {options.map((option) => (
           <button
@@ -33,7 +42,7 @@ export function LikertScale({ value, onChange, labels }) {
         ))}
       </div>
 
-      {/* Mobile: Vertical */}
+      {/* Mobile Layout: Vertical Stack for better touch targets */}
       <div className="flex flex-col gap-2 md:hidden">
         {options.map((option) => (
           <button

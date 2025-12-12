@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
+import { Link } from "@/i18n/routing";
 
 export default function IssuesPage() {
   const locale = useLocale();
@@ -65,66 +66,128 @@ export default function IssuesPage() {
   ];
 
   return (
-    <div className="min-h-screen py-12 px-6">
-      <div className="mx-auto max-w-[1000px]">
-        <div className="mb-12 text-center">
-          <h1 className="mb-4 text-4xl font-extrabold text-foreground md:text-5xl">
-            Issue <span className="text-[#FDB913]">Decoder</span>
-          </h1>
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Complex political debates, simplified. Understand the arguments
-            without the noise.
-          </p>
-        </div>
-
-        <div className="space-y-12">
-          {issues.map((issue) => (
-            <div
-              key={issue.id}
-              className="relative rounded-[24px] border border-white/10 bg-white/5 p-8 transition-all hover:bg-white/[0.07]"
-            >
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold text-foreground mb-2">
-                  {issue.title[locale] || issue.title.en}
-                </h2>
-                <p className="text-lg text-foreground/60">
-                  {issue.description[locale] || issue.description.en}
-                </p>
-              </div>
-
-              <div className="grid gap-6 md:grid-cols-2 mb-8">
-                {/* Arguments FOR */}
-                <div className="rounded-xl bg-green-500/10 p-6 border border-green-500/20">
-                  <h3 className="mb-3 text-lg font-bold text-green-400 flex items-center gap-2">
-                    <span className="text-xl">👍</span> The Argument FOR
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed">
-                    {issue.for[locale] || issue.for.en}
-                  </p>
-                </div>
-
-                {/* Arguments AGAINST */}
-                <div className="rounded-xl bg-red-500/10 p-6 border border-red-500/20">
-                  <h3 className="mb-3 text-lg font-bold text-red-400 flex items-center gap-2">
-                    <span className="text-xl">👎</span> The Argument AGAINST
-                  </h3>
-                  <p className="text-foreground/80 leading-relaxed">
-                    {issue.against[locale] || issue.against.en}
-                  </p>
-                </div>
-              </div>
-
-              {/* The Reality */}
-              <div className="rounded-xl bg-[#FDB913]/10 p-6 border border-[#FDB913]/30">
-                <h3 className="mb-3 text-lg font-bold text-[#FDB913] flex items-center gap-2">
-                  <span className="text-xl">⚖️</span> The Reality
-                </h3>
-                <p className="text-foreground/90 font-medium leading-relaxed">
-                  {issue.reality[locale] || issue.reality.en}
-                </p>
-              </div>
+    <div className="relative min-h-screen">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
+        <div className="py-12">
+          {/* Header */}
+          <div className="mb-16 text-center">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+              Political Issue Decoder
             </div>
-          ))}
+            <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              Complex Debates,{" "}
+              <span className="text-gold-text">Simplified</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
+              Understand the arguments without the noise. We break down the
+              biggest debates in Sri Lanka.
+            </p>
+          </div>
+
+          <div className="space-y-12">
+            {issues.map((issue) => (
+              <div
+                key={issue.id}
+                className="theme-card relative overflow-hidden rounded-[32px] p-8 md:p-10 transition-all hover:shadow-2xl hover:border-gold/20"
+              >
+                {/* ID/Tag */}
+                <div className="mb-6 flex items-center justify-between">
+                  <span className="inline-block rounded-full bg-foreground/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-foreground/70">
+                    Topic: {issue.id.toUpperCase()}
+                  </span>
+                </div>
+
+                <div className="mb-8">
+                  <h2 className="mb-4 text-3xl font-extrabold text-foreground">
+                    {issue.title[locale] || issue.title.en}
+                  </h2>
+                  <p className="text-xl text-foreground/80 leading-relaxed">
+                    {issue.description[locale] || issue.description.en}
+                  </p>
+                </div>
+
+                <div className="grid gap-8 md:grid-cols-2 mb-10">
+                  {/* Arguments FOR */}
+                  <div className="relative rounded-[24px] bg-green-500/5 p-8 border border-green-500/20 hover:bg-green-500/10 transition-colors">
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500/20 text-green-500">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-bold text-green-500 uppercase tracking-wide">
+                        The Argument FOR
+                      </h3>
+                    </div>
+                    <p className="text-foreground/90 leading-relaxed font-medium">
+                      {issue.for[locale] || issue.for.en}
+                    </p>
+                  </div>
+
+                  {/* Arguments AGAINST */}
+                  <div className="relative rounded-[24px] bg-red-500/5 p-8 border border-red-500/20 hover:bg-red-500/10 transition-colors">
+                    <div className="mb-4 flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-500/20 text-red-500">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M18 6 6 18" />
+                          <path d="m6 6 12 12" />
+                        </svg>
+                      </div>
+                      <h3 className="text-lg font-bold text-red-500 uppercase tracking-wide">
+                        The Argument AGAINST
+                      </h3>
+                    </div>
+                    <p className="text-foreground/90 leading-relaxed font-medium">
+                      {issue.against[locale] || issue.against.en}
+                    </p>
+                  </div>
+                </div>
+
+                {/* The Reality */}
+                <div className="relative overflow-hidden rounded-[24px] bg-gold/5 p-8 border border-gold/30">
+                  <div className="absolute top-0 left-0 w-[6px] h-full bg-[#FDB913]" />
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="text-2xl">💡</span>
+                    <h3 className="text-lg font-bold text-[#FDB913] uppercase tracking-wide">
+                      The Reality
+                    </h3>
+                  </div>
+                  <p className="text-lg text-foreground font-medium leading-relaxed pl-2">
+                    {issue.reality[locale] || issue.reality.en}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-2 rounded-xl border border-foreground/20 px-8 py-4 text-sm font-bold transition-all hover:bg-foreground hover:text-background"
+            >
+              ← {locale === "si" ? "මුල් පිටුවට" : "Back to Home"}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

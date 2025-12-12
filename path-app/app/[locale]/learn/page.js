@@ -95,49 +95,93 @@ export default function LearnPage() {
   ];
 
   return (
-    <div className="min-h-screen py-16 px-6">
-      <div className="mx-auto max-w-[1200px]">
-        <div className="mb-16 text-center">
-          <h1 className="mb-6 text-4xl font-extrabold text-foreground md:text-6xl">
-            The <span className="text-[#FDB913]">Classroom</span>
-          </h1>
-          <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
-            Democracy requires an educated citizenry. Learn the basics of how
-            your country works.
-          </p>
-        </div>
+    <div className="relative min-h-screen">
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
+        <div className="py-12">
+          {/* Header */}
+          <div className="mb-16 text-center">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+              The Classroom
+            </div>
+            <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+              Educated Citizenry,{" "}
+              <span className="text-gold-text">Stronger Democracy</span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
+              Democracy requires an educated citizenry. Learn the basics of how
+              your country works through our curated modules.
+            </p>
+          </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {sections.map((section) => (
+          <div className="grid gap-6 md:grid-cols-2">
+            {sections.map((section) => (
+              <Link
+                key={section.id}
+                href={section.href}
+                className="theme-card group relative overflow-hidden rounded-[24px] p-8 transition-all hover:-translate-y-1 hover:shadow-xl"
+              >
+                {/* Accent Line */}
+                <div
+                  className={`absolute top-0 left-0 w-full h-[4px] bg-gradient-to-r ${section.color}`}
+                />
+
+                {/* Background Icon (Watermark) */}
+                <div className="absolute -bottom-4 -right-4 text-9xl opacity-[0.03] group-hover:opacity-[0.07] transition-opacity duration-500 select-none">
+                  {section.icon}
+                </div>
+
+                <div className="relative z-10 flex flex-col h-full justify-between">
+                  <div>
+                    <div className="mb-6 flex items-center justify-between">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-foreground/5 text-2xl group-hover:scale-110 transition-transform duration-300">
+                        {section.icon}
+                      </div>
+                      <span
+                        className={`rounded-full border ${section.borderColor} bg-transparent px-3 py-1 text-xs font-bold uppercase tracking-wider text-foreground/60`}
+                      >
+                        Module
+                      </span>
+                    </div>
+
+                    <h2 className="mb-4 text-2xl font-bold text-foreground group-hover:text-gold-text transition-colors">
+                      {section.title[locale] || section.title.en}
+                    </h2>
+                    <p className="text-base leading-relaxed text-foreground/70">
+                      {section.desc[locale] || section.desc.en}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 flex items-center text-sm font-bold tracking-widest uppercase text-gold-text opacity-80 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                    Start Learning
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="ml-2"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="m12 5 7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
             <Link
-              key={section.id}
-              href={section.href}
-              className={`group relative overflow-hidden rounded-[32px] border ${section.borderColor} bg-gradient-to-br ${section.color} p-8 hover:scale-[1.02] transition-all duration-300`}
+              href="/"
+              className="inline-flex items-center gap-2 rounded-xl border border-foreground/20 px-8 py-4 text-sm font-bold transition-all hover:bg-foreground hover:text-background"
             >
-              <div className="absolute top-0 right-0 p-8 opacity-10 text-9xl group-hover:scale-110 group-hover:opacity-20 transition-all duration-500">
-                {section.icon}
-              </div>
-
-              <div className="relative z-10 flex flex-col h-full justify-between">
-                <div>
-                  <div className="mb-4 text-4xl">{section.icon}</div>
-                  <h2 className="mb-3 text-2xl font-bold text-foreground group-hover:text-[#FDB913] transition-colors">
-                    {section.title[locale] || section.title.en}
-                  </h2>
-                  <p className="text-lg leading-relaxed text-foreground/80 font-medium">
-                    {section.desc[locale] || section.desc.en}
-                  </p>
-                </div>
-
-                <div className="mt-8 flex items-center font-bold text-sm tracking-widest uppercase opacity-70 group-hover:opacity-100 group-hover:tracking-[0.2em] transition-all">
-                  Start Learning
-                  <span className="ml-2 transform group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
-                </div>
-              </div>
+              ← {locale === "si" ? "මුල් පිටුවට" : "Back to Home"}
             </Link>
-          ))}
+          </div>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer";
 import { SiteHeader } from "@/components/site-header";
 import "../globals.css";
 
+// Font configurations for trilingual support
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -20,12 +21,16 @@ const notoSansSinhala = Noto_Sans_Sinhala({
 
 const notoSansTamil = Noto_Sans_Tamil({
   subsets: ["tamil"],
-  weight: ["400", "700"], // Explicit weights often help with non-latin fonts if variable font isn't standard
+  weight: ["400", "700"],
   display: "swap",
 });
 
 const locales = ["en", "si", "ta"];
 
+/**
+ * Generate static params for all supported locales.
+ * This ensures these paths are statically optimized at build time.
+ */
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
@@ -38,16 +43,23 @@ export const metadata = {
   },
 };
 
+/**
+ * Root Locale Layout
+ * Wraps the entire application with necessary providers and global structure.
+ *
+ * @param {Object} props - Component props
+ * @param {React.ReactNode} props.children - Child pages
+ * @param {Object} props.params - Route parameters (including locale)
+ */
 export default async function LocaleLayout({ children, params }) {
   const { locale } = await params;
 
-  // Ensure that the incoming `locale` is valid
+  // Validate locale
   if (!locales.includes(locale)) {
     notFound();
   }
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
+  // Load i18n messages for the client side
   const messages = await getMessages();
 
   return (
@@ -55,15 +67,30 @@ export default async function LocaleLayout({ children, params }) {
       <body
         className={`${inter.className} ${notoSansSinhala.className} ${notoSansTamil.className} min-h-screen flex flex-col bg-background text-foreground`}
       >
+        {/*
+          ThemeProvider: Manages Dark/Light mode preferences.
+          - defaultTheme="dark": Sets the default look to the premium dark theme.
+          - enableSystem: Allows respecting system preferences.
+        */}
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
+          {/*
+           NextIntlClientProvider:
+           Passes translation messages to client components for hooks like useTranslations().
+          */}
           <NextIntlClientProvider messages={messages}>
+            {/*
+             Global Layout Structure:
+             - Header: Fixed navigation bar (SiteHeader)
+             - Main Content: Flexible central area (children)
+             - Footer: Bottom navigation (Footer)
+            */}
             <SiteHeader />
-            <div className="flex-1 flex flex-col">{children}</div>
+            <div className="flex-1 flex flex-col pt-28">{children}</div>
             <Footer />
           </NextIntlClientProvider>
         </ThemeProvider>
