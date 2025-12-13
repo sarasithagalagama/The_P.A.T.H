@@ -1,15 +1,14 @@
 # The P.A.T.H. - Political Alignment Testing Hub (Sri Lanka)
 
-<img width="2864" height="4183" alt="image" src="https://github.com/user-attachments/assets/776ecaa3-137e-4d1f-8377-c3419c43e80b" />
-
 A production-ready, trilingual (English, Sinhala, Tamil) political compass web application for Sri Lanka. Built with Next.js 14, this app measures users on two axes (Economic: Left/Right, Social: Authoritarian/Liberal) and matches them to historical Sri Lankan politicians.
 
 ## 🌟 Features
 
 - **Trilingual Support**: Full support for English, Sinhala, and Tamil
-- **20 Curated Questions**: 10 economic and 10 social questions specific to Sri Lankan politics
+- **40 Curated Questions**: 20 economic and 20 social questions specific to Sri Lankan politics
 - **Interactive Quiz**: Smooth slider-based interface for answering questions
 - **Political Compass Visualization**: Beautiful scatter plot showing user position and historical politicians
+- **Leadership Archive**: Detailed profiles of historical and current leaders with localized biographies, quotes, controversies, and key allies
 - **Politician Matching**: Algorithm to find the closest historical Sri Lankan politician to your ideology
 - **Social Sharing**: Generate shareable OG images with your results
 - **Dark/Gold Theme**: Premium classy design with black backgrounds and gold accents
@@ -37,20 +36,50 @@ A production-ready, trilingual (English, Sinhala, Tamil) political compass web a
 - **Liberal (-10)**: Decentralization, civil liberties, democratic reforms
 - **Authoritarian (+10)**: Centralization, security focus, traditional values
 
-## 🏛️ Historical Politicians Included
+## 🏛️ Leadership Archive
 
-1. **J.R. Jayewardene** (UNP) - Right-wing, Authoritarian
-2. **Sirimavo Bandaranaike** (SLFP) - Left-wing, Authoritarian
-3. **Mahinda Rajapaksa** (SLPP) - Center-left, Authoritarian
-4. **Ranil Wickremesinghe** (UNP) - Right-wing, Moderate
-5. **Chandrika Kumaratunga** (SLFP) - Center-left, Liberal
-6. **Anura Kumara Dissanayake** (NPP/JVP) - Left-wing, Moderate Liberal
-7. **Sajith Premadasa** (SJB) - Center-right, Liberal
-8. **S.J.V. Chelvanayakam** (ITAK) - Centrist, Very Liberal
-9. **D.S. Senanayake** (UNP) - Right-wing, Moderate
-10. **Ranasinghe Premadasa** (UNP) - Center-right, Authoritarian
+Including detailed profiles for:
 
-## 🚀 Getting Started
+**Executive Presidents:**
+
+1. **J.R. Jayewardene** (UNP)
+2. **Ranasinghe Premadasa** (UNP)
+3. **D.B. Wijetunga** (UNP)
+4. **Chandrika Bandaranaike** (SLFP)
+5. **Mahinda Rajapaksa** (SLPP)
+6. **Maithripala Sirisena** (SLFP)
+7. **Gotabaya Rajapaksa** (SLPP)
+8. **Ranil Wickremesinghe** (UNP)
+9. **Anura Kumara Dissanayake** (NPP)
+
+**Prime Ministers (Parliamentary Era):**
+
+1. **D.S. Senanayake** (UNP)
+2. **Dudley Senanayake** (UNP)
+3. **Sir John Kotelawala** (UNP)
+4. **S.W.R.D. Bandaranaike** (SLFP)
+5. **W. Dahanayake** (Ind)
+6. **Sirimavo Bandaranaike** (SLFP)
+
+## � Screenshots
+
+### Home Page & Language Selection
+
+![Home Page](path-app/public/screenshots/home.png)
+
+### Interactive Quiz
+
+![Quiz Interface](path-app/public/screenshots/quiz.png)
+
+### Detailed Result Analysis
+
+![Results](path-app/public/screenshots/results.png)
+
+### Leadership Archive
+
+![leaders](path-app/public/screenshots/leaders.png)
+
+## �🚀 Getting Started
 
 ### Prerequisites
 

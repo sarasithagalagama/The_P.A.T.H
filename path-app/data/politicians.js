@@ -5,11 +5,42 @@
  * Coordinates system:
  * - X Axis (Economic): -10 (Left/State) to +10 (Right/Market)
  * - Y Axis (Social): -10 (Libertarian) to +10 (Authoritarian)
- *
- * Data includes localized names, party affiliations, and detailed reasoning
- * for their placement on both axes.
  */
 export const politicians = [
+  // --- CURRENT & RECENT PRESIDENTS ---
+  {
+    id: "anura",
+    name: {
+      en: "Anura Kumara Dissanayake",
+      si: "අනුර කුමාර දිසානායක",
+      ta: "අநுර කුමාර දිසානායක",
+    },
+    x: -5.0,
+    y: -4.0,
+    party: "NPP",
+    color: "#FF0000",
+    image: "/images/politicians/Anura Kumara Dissanayake.png",
+    reasoning: {
+      en: {
+        economic:
+          "Advocates for a 'Production-Based Economy', reducing VAT/tax burdens on the poor, and stopping the sell-off of strategic national assets.",
+        social:
+          "Champions 'System Change' to dismantle elite privileges, establish rule of law, and abolish the Executive Presidency.",
+      },
+      si: {
+        economic:
+          "'නිෂ්පාදන ආර්ථිකයක්' ගොඩනැගීම, බදු බර අඩු කිරීම සහ ජාතික සම්පත් විකිණීම නැවැත්වීම.",
+        social:
+          "'ක්‍රමයේ වෙනසක්' (System Change) හරහා ප්‍රභූ පැලැන්තියේ වරප්‍රසාද අහෝසි කිරීම සහ විධායක ක්‍රමය අහෝසි කිරීම.",
+      },
+      ta: {
+        economic:
+          "உற்பத்தி சார்ந்த பொருளாதாரம் மற்றும் வறியவர்கள் மீதான வரிச் சுமைகளை குறைத்தல்.",
+        social:
+          "'கட்டமைப்பு மாற்றம்' மூலம் உயர்குல சிறப்புரிமைகளை ஒழித்தல் மற்றும் நிறைவேற்று அதிகாரத்தை நீக்குதல்.",
+      },
+    },
+  },
   {
     id: "ranil",
     name: {
@@ -19,89 +50,59 @@ export const politicians = [
     },
     x: 7.5,
     y: 6.0,
-    party: "UNP/Independent",
+    party: "UNP",
     color: "#00A550",
     image: "/images/politicians/Ranil Wickremesinghe.png",
     reasoning: {
       en: {
         economic:
-          "Strong advocate for the free market, privatization of state enterprises (SOEs), and strict adherence to IMF austerity measures.",
+          "Strong advocate for free markets, privatization of SOEs, and strict adherence to IMF austerity measures to stabilize the economy.",
         social:
-          "Used the Executive Presidency's full power to suppress the Aragalaya protests and postponed local government elections citing economic reasons.",
+          "Utilized the Executive Presidency's full power to suppress the Aragalaya protests and postponed local elections.",
       },
       si: {
         economic:
-          "නිදහස් වෙළඳපොල සහ රාජ්‍ය ආයතන පෞද්ගලීකරණය දැඩිව විශ්වාස කරයි.",
+          "නිදහස් වෙළඳපොල සහ රාජ්‍ය ආයතන පෞද්ගලීකරණය දැඩිව විශ්වාස කරයි; IMF කොන්දේසි ක්‍රියාත්මක කළේය.",
         social:
           "විධායක බලතල භාවිතා කරමින් අරගලය මර්දනය කිරීම සහ මැතිවරණ කල් දැමීම.",
       },
       ta: {
-        economic: "திறந்த சந்தை மற்றும் தனியார்மயமாக்கலை ஆதரிப்பவர்.",
+        economic:
+          "திறந்த சந்தை மற்றும் தனியார்மயமாக்கலை ஆதரிப்பவர்; IMF நிபந்தனைகளை நடைமுறைப்படுத்தினார்.",
         social: "நிறைவேற்று அதிகாரத்தைப் பயன்படுத்தி போராட்டங்களை ஒடுக்கியமை.",
       },
     },
   },
   {
-    id: "mahinda",
+    id: "gota",
     name: {
-      en: "Mahinda Rajapaksa",
-      si: "මහින්ද රාජපක්ෂ",
-      ta: "மஹிந்த ராஜபக்ஷ",
+      en: "Gotabaya Rajapaksa",
+      si: "ගෝඨාභය රාජපක්ෂ",
+      ta: "கோட்டாபய ராஜபக்ஷ",
     },
-    x: -3.0,
-    y: 7.5,
+    x: -6.0,
+    y: 8.5,
     party: "SLPP",
     color: "#800000",
-    image: "/images/politicians/Mahinda Rajapaksa.png",
+    image: "/images/politicians/Gotabaya Rajapaksa.png",
     reasoning: {
       en: {
         economic:
-          "Favored large state-led infrastructure projects (funded by debt), protectionist import bans, and bloated the public sector workforce.",
+          "Implemented import bans (Closed Economy style) and a disastrous chemical fertilizer ban that crashed agriculture.",
         social:
-          "Centralized power around the family, removed term limits (18th Amendment), and militarized civilian administration after the war.",
+          "Highly authoritarian 'Technocratic' rule; militarized civilian administration and cracked down on dissent.",
       },
       si: {
         economic:
-          "දේශීය කර්මාන්ත ආරක්ෂා කිරීම සහ රාජ්‍ය අංශය පුළුල් කිරීම (ණය මත පදනම් වූ සංවර්ධනය).",
+          "දේශීය කෘෂිකර්මය වෙනුවෙන් පොහොර තහනම සහ ආනයන සීමා පැනවීය (සංවෘත ආර්ථික ලක්ෂණ).",
         social:
-          "පවුල වටා බලය කේන්ද්‍රගත කිරීම සහ 18 වන සංශෝධනය හරහා ධුර කාල සීමාවන් ඉවත් කිරීම.",
-      },
-      ta: {
-        economic: "அரச துறை விரிவாக்கம் மற்றும் இறக்குமதி கட்டுப்பாடுகள்.",
-        social:
-          "அதிகாரத்தை ஒரு மையத்தில் குவித்தல் மற்றும் சிவில் நிர்வாகத்தில் இராணுவத் தலையீடு.",
-      },
-    },
-  },
-  {
-    id: "akd",
-    name: {
-      en: "Anura Kumara Dissanayake",
-      si: "අනුර කුමාර දිසානායක",
-      ta: "අநுර කුමාර දිසානායක",
-    },
-    x: -5.0,
-    y: -4.0,
-    party: "NPP/JVP",
-    color: "#FF0000",
-    image: "/images/politicians/Anura Kumara Dissanayake.png",
-    reasoning: {
-      en: {
-        economic:
-          "Supports a 'Production-Based Economy,' reducing tax burdens on the poor (VAT), and renegotiating trade deals.",
-        social:
-          "Champions a 'System Change' to dismantle elite privileges and establish the rule of law, while promising to abolish the Executive Presidency.",
-      },
-      si: {
-        economic: "'නිෂ්පාදන ආර්ථිකයක්' ගොඩනැගීම සහ බදු බර අඩු කිරීම.",
-        social:
-          "'ක්‍රමයේ වෙනසක්' (System Change) හරහා ප්‍රභූ පැලැන්තියේ වරප්‍රසාද අහෝසි කිරීම සහ නීතියේ ආධිපත්‍යය ස්ථාපිත කිරීම.",
+          "හමුදා නිලධාරීන් සිවිල් පාලනයට යෙදවූ අධිකාරීවාදී පාලනයක් ගෙන ගියේය.",
       },
       ta: {
         economic:
-          "உற்பத்தி சார்ந்த பொருளாதாரம் மற்றும் வரிச் சுமைகளை குறைத்தல்.",
+          "இறக்குமதித் தடை மற்றும் இரசாயன உரத் தடை பொருளாதாரத்தை வீழ்த்தியது.",
         social:
-          "'கட்டமைப்பு மாற்றம்' மூலம் உயர்குல சிறப்புரிமைகளை ஒழித்தல் மற்றும் சட்டத்தின் ஆட்சியை நிலைநிறுத்துதல்.",
+          "இராணுவமயமாக்கப்பட்ட சிவில் நிர்வாகம் மற்றும் கடுமையான அடக்குமுறை.",
       },
     },
   },
@@ -120,9 +121,9 @@ export const politicians = [
     reasoning: {
       en: {
         economic:
-          "Supports open markets but emphasizes 'Social Capitalism'—free trade combined with strong poverty alleviation programs.",
+          "Supports open markets ('Social Market Economy') but insists on strong state welfare programs for the poor.",
         social:
-          "Supported the 21st Amendment to reduce presidential powers and has historically advocated for devolution (13A).",
+          "Voted for the 21st Amendment to reduce presidential powers and generally supports power devolution (13A).",
       },
       si: {
         economic:
@@ -138,31 +139,124 @@ export const politicians = [
     },
   },
   {
-    id: "jr",
+    id: "maithri",
     name: {
-      en: "J.R. Jayewardene",
-      si: "ජේ.ආර්. ජයවර්ධන",
-      ta: "ஜே.ஆர். ஜெயவர்த்தன",
+      en: "Maithripala Sirisena",
+      si: "මෛත්‍රීපාල සිරිසේන",
+      ta: "மைத்திரிபால சிறிசேன",
     },
-    x: 8.5,
-    y: 8.0,
-    party: "UNP",
-    color: "#00A550",
-    image: "/images/politicians/J.R. Jayewardene.png",
+    x: -1.0,
+    y: 1.0,
+    party: "SLFP",
+    color: "#0000FF",
+    image: "/images/politicians/Maithripala Sirisena.png",
     reasoning: {
       en: {
         economic:
-          "Introduced the 1977 Open Economy reforms, shifting Sri Lanka to free-market capitalism.",
+          "Followed a mixed economic policy, neither fully open nor fully closed, often leading to policy confusion.",
         social:
-          "Held the 1982 Referendum to extend parliament term instead of elections; consolidated executive power.",
+          "Voluntarily reduced his own powers via the 19th Amendment, restoring independent commissions.",
       },
       si: {
-        economic: "1977 විවෘත ආර්ථික ප්‍රතිසංස්කරණ හඳුන්වා දුන්නේය.",
-        social: "1982 ජනමත විචාරණය පැවැත්වීය.",
+        economic: "මැද මාවතේ ආර්ථික ප්‍රතිපත්තියක් අනුගමනය කළේය.",
+        social: "19 වන සංශෝධනය හරහා ස්වෙච්ඡාවෙන්ම ජනාධිපති බලතල අඩු කරගත්තේය.",
       },
       ta: {
-        economic: "1977 திறந்த பொருளாதார சீர்திருத்தங்களை அறிமுகப்படுத்தினார்.",
-        social: "1982 பொதுவாக்கெடுப்பை நடத்தினார்.",
+        economic: "கலப்பு பொருளாதாரக் கொள்கையை பின்பற்றினார்.",
+        social:
+          "19வது திருத்தத்தின் மூலம் தனது அதிகாரங்களை குறைத்துக்கொண்டார்.",
+      },
+    },
+  },
+  {
+    id: "mahinda",
+    name: {
+      en: "Mahinda Rajapaksa",
+      si: "මහින්ද රාජපක්ෂ",
+      ta: "மஹிந்த ராஜபக்ஷ",
+    },
+    x: -3.0,
+    y: 7.5,
+    party: "SLPP",
+    color: "#800000",
+    image: "/images/politicians/Mahinda Rajapaksa.png",
+    reasoning: {
+      en: {
+        economic:
+          "Statist approach: Heavy borrowing for state-owned infrastructure and bloated public sector jobs.",
+        social:
+          "Removed term limits (18th Amendment) and centralized power around the ruling family.",
+      },
+      si: {
+        economic:
+          "රාජ්‍ය අංශය පුළුල් කිරීම සහ ණය මත පදනම් වූ දැවැන්ත යටිතල පහසුකම් ව්‍යාපෘති.",
+        social: "පවුල වටා බලය කේන්ද්‍රගත කිරීම සහ 18 වන සංශෝධනය.",
+      },
+      ta: {
+        economic: "அரச துறை விரிவாக்கம் மற்றும் கடன் நிதியிலான உட்கட்டமைப்பு.",
+        social:
+          "அதிகாரத்தை ஒரு மையத்தில் குவித்தல் மற்றும் பதவி கால வரம்பை நீக்கியமை.",
+      },
+    },
+  },
+
+  // --- HISTORICAL LEADERS ---
+  {
+    id: "chandrika",
+    name: {
+      en: "Chandrika Bandaranaike",
+      si: "චන්ද්‍රිකා බණ්ඩාරනායක",
+      ta: "சந்திரிகா பண்டாரநாயக்க",
+    },
+    x: -2.5,
+    y: 2.5,
+    party: "SLFP",
+    color: "#0000FF",
+    image: "/images/politicians/Chandrika Bandaranaike Kumaratunga.png",
+    reasoning: {
+      en: {
+        economic:
+          "'Open Economy with a Human Face' – retained markets but halted harsh privatization.",
+        social:
+          "Proposed the 'Union of Regions' (Federalism) but governed with executive power during the war.",
+      },
+      si: {
+        economic: "'මානුෂීය මුහුණුවරක් සහිත විවෘත ආර්ථිකය'.",
+        social: "බලය බෙදීමේ 'පැකේජය' යෝජනා කළ අතරම විධායක බලතල දැරුවාය.",
+      },
+      ta: {
+        economic: "'மனிதாபிமான முகத்துடன் கூடிய திறந்த பொருளாதாரம்'.",
+        social: "அதிகாரப் பகிர்வுக்கான தீர்வினை முன்வைத்தார்.",
+      },
+    },
+  },
+  {
+    id: "dbw",
+    name: {
+      en: "D.B. Wijetunga",
+      si: "ඩී.බී. විජේතුංග",
+      ta: "டி.பி. விஜேதுங்க",
+    },
+    x: 6.0,
+    y: 4.0,
+    party: "UNP",
+    color: "#00A550",
+    image: "/images/politicians/D.B. Wijetunga.png",
+    reasoning: {
+      en: {
+        economic:
+          "Continued Premadasa's open economy but with more fiscal discipline and less populism.",
+        social:
+          "A quieter, bureaucratic president who did not abuse power but held controversial majoritarian views.",
+      },
+      si: {
+        economic: "විවෘත ආර්ථිකය ඉදිරියට ගෙන ගියේය.",
+        social:
+          "බලය අනිසි ලෙස භාවිතා නොකළ නමුත් මතභේදාත්මක ජාතිකවාදී අදහස් දැරීය.",
+      },
+      ta: {
+        economic: "திறந்த பொருளாதாரக் கொள்கைகளைத் தொடர்ந்தார்.",
+        social: "அதிகாரத்தை துஷ்பிரயோகம் செய்யாத அமைதியான ஆட்சியாளர்.",
       },
     },
   },
@@ -181,17 +275,46 @@ export const politicians = [
     reasoning: {
       en: {
         economic:
-          "Mixed approach: 200 Garment Factories program (Right) combined with massive Gam Udawa welfare (Left).",
+          "Unique mix: 200 Garment Factories (Capitalist) combined with massive free housing (Socialist).",
         social:
-          "Extremely centralized control during the JVP insurrection era.",
+          "Extremely authoritarian; ruled with an iron fist during the JVP insurrection.",
       },
       si: {
-        economic: "ඇඟලුම් කර්මාන්තශාලා 200 වැඩසටහන සහ ගම් උදාව.",
-        social: "දැඩි මධ්‍යගත පාලනයක් ගෙන ගියේය.",
+        economic: "ඇඟලුම් කම්හල් (ධනවාදී) සහ ගම් උදාව (සමාජවාදී) මිශ්‍රණයක්.",
+        social: "භීෂණ සමයේ අතිශය දැඩි මර්දනකාරී පාලනයක් ගෙන ගියේය.",
       },
       ta: {
-        economic: "200 ஆடைத் தொழிற்சாலை திட்டத்தை அறிமுகப்படுத்தினார்.",
-        social: "கடுமையான மத்திய கட்டுப்பாட்டை பேணினார்.",
+        economic: "முதலாளித்துவ மற்றும் சோசலிசக் கொள்கைகளின் கலவை.",
+        social: "கடுமையான சர்வாதிகாரப் போக்கைக் கொண்டிருந்தார்.",
+      },
+    },
+  },
+  {
+    id: "jr",
+    name: {
+      en: "J.R. Jayewardene",
+      si: "ජේ.ආර්. ජයවර්ධන",
+      ta: "ஜே.ஆர். ஜெயவர்த்தன",
+    },
+    x: 8.5,
+    y: 8.0,
+    party: "UNP",
+    color: "#00A550",
+    image: "/images/politicians/J.R. Jayewardene.png",
+    reasoning: {
+      en: {
+        economic:
+          "The Father of the Open Economy (1977); slashed subsidies and welcomed foreign trade.",
+        social:
+          "Created the Executive Presidency and held a Referendum to cancel elections.",
+      },
+      si: {
+        economic: "1977 විවෘත ආර්ථිකයේ නිර්මාතෘ.",
+        social: "විධායක ජනාධිපති ක්‍රමය නිර්මාණය කිරීම සහ ඡන්දය අහෝසි කිරීම.",
+      },
+      ta: {
+        economic: "1977 திறந்த பொருளாதாரத்தின் தந்தை.",
+        social: "நிறைவேற்று அதிகாரத்தை உருவாக்கி தேர்தலை ரத்து செய்தார்.",
       },
     },
   },
@@ -210,17 +333,41 @@ export const politicians = [
     reasoning: {
       en: {
         economic:
-          "Implemented closed economy (1970-77), import substitution, and nationalization of key industries.",
+          "Strictly Closed Economy; banned imports, nationalized lands, and promoted local industry.",
         social:
-          "Enacted Republican constitution, severing ties with British dominion.",
+          "Severed ties with the British monarchy (Republic) but governed under emergency law for years.",
       },
       si: {
-        economic: "සංවෘත ආර්ථිකයක් ක්‍රියාත්මක කළාය (1970-77).",
-        social: "ජනරජ ආණ්ඩුක්‍රම ව්‍යවස්ථාව පැනවූවාය.",
+        economic: "දැඩි සංවෘත ආර්ථිකය; ආනයන තහනම සහ ඉඩම් ප්‍රතිසංස්කරණය.",
+        social: "හදිසි නීතිය යටතේ දීර්ඝ කාලයක් පාලනය ගෙන ගියාය.",
       },
       ta: {
-        economic: "மூடிய பொருளாதாரத்தை அமல்படுத்தினார்.",
-        social: "குடியரசு அரசியலமைப்பை அறிமுகப்படுத்தினார்.",
+        economic: "கடுமையான மூடிய பொருளாதாரம் மற்றும் இறக்குமதித் தடை.",
+        social: "அவசரகாலச் சட்டத்தின் கீழ் நீண்ட காலம் ஆட்சி செய்தார்.",
+      },
+    },
+  },
+  {
+    id: "dahanayake",
+    name: { en: "W. Dahanayake", si: "ඩබ්. දහනායක", ta: "டபிள்யூ. தகநாயக்க" },
+    x: -2.0,
+    y: 3.0,
+    party: "Independent",
+    color: "#808080",
+    image: "/images/politicians/W. Dahanayake.png",
+    reasoning: {
+      en: {
+        economic:
+          "Populist measures; lowered food prices artificially to please the public.",
+        social: "Unstable caretaker rule; dissolved parliament rapidly.",
+      },
+      si: {
+        economic: "ජනප්‍රියවාදී තීරණ; බඩු මිල අඩු කළේය.",
+        social: "අස්ථාවර භාරකාර පාලනය.",
+      },
+      ta: {
+        economic: "மக்கள் விரும்பும் வகையில் உணவு விலைகளை குறைத்தார்.",
+        social: "நிலையற்ற இடைக்கால ஆட்சி.",
       },
     },
   },
@@ -228,7 +375,7 @@ export const politicians = [
     id: "swrd",
     name: {
       en: "S.W.R.D. Bandaranaike",
-      si: "එස්.ඩබ්ලිව්.ආර්.ඩී. බණ්ඩාරනායක",
+      si: "එස්.ඩබ්.ආර්.ඩී. බණ්ඩාරනායක",
       ta: "எஸ்.டபிள்யூ.ஆர்.டி. பண்டாரநாயக்க",
     },
     x: -4.0,
@@ -239,27 +386,109 @@ export const politicians = [
     reasoning: {
       en: {
         economic:
-          "Advocated for nationalization (e.g., Bus transport, Port) and socialist welfare policies.",
+          "Socialist shift; nationalized the Bus service and Colombo Port.",
         social:
-          "Championed 'Sinhala Only' act; pivoted away from colonial elite structures.",
+          "Enacted the 'Sinhala Only' Act, shifting power to the rural majority but alienating minorities.",
       },
       si: {
-        economic: "ජනසතු කිරීමේ ප්‍රතිපත්ති (බස්, වරාය).",
-        social: "'සිංහල පමණක්' පනත ගෙන ආවේය.",
+        economic: "බස් සහ වරාය ජනසතු කිරීම.",
+        social: "'සිංහල පමණක්' පනත හරහා බහුතරවාදී බලය තහවුරු කිරීම.",
       },
       ta: {
-        economic: "தேசியமயமாக்கல் கொள்கைகளை ஆதரித்தார்.",
-        social: "'சிங்களம் மட்டும்' சட்டத்தை கொண்டு வந்தார்.",
+        economic: "பேருந்து மற்றும் துறைமுக சேவைகளை தேசியமயமாக்கல்.",
+        social:
+          "'சிங்களம் மட்டும்' சட்டத்தின் மூலம் பெரும்பான்மைவாதத்தை நிலைநிறுத்தியமை.",
+      },
+    },
+  },
+  {
+    id: "kotelawala",
+    name: {
+      en: "Sir John Kotelawala",
+      si: "සර් ජෝන් කොතලාවල",
+      ta: "சேர் ஜோன் கொத்தலாவல",
+    },
+    x: 6.0,
+    y: 5.0,
+    party: "UNP",
+    color: "#00A550",
+    image: "/images/politicians/Sir John Kotelawala.png",
+    reasoning: {
+      en: {
+        economic:
+          "Pro-Western capitalist; focused on hydroelectricity and trade.",
+        social: "Strong-man ruler; aggressively suppressed the 1953 Hartal.",
+      },
+      si: {
+        economic: "බටහිර හිතවාදී ධනවාදී ප්‍රතිපත්ති.",
+        social: "1953 හර්තාලය දරුණු ලෙස මර්දනය කළේය.",
+      },
+      ta: {
+        economic: "மேற்குலகச் சார்பு முதலாளித்துவம்.",
+        social: "1953 ஹர்த்தாலை வன்முறையாக ஒடுக்கியமை.",
+      },
+    },
+  },
+  {
+    id: "dudley",
+    name: {
+      en: "Dudley Senanayake",
+      si: "ඩඩ්ලි සේනානායක",
+      ta: "டட்லி சேனநாயக்க",
+    },
+    x: 4.0,
+    y: 1.0,
+    party: "UNP",
+    color: "#00A550",
+    image: "/images/politicians/Dudley Senanayake.png",
+    reasoning: {
+      en: {
+        economic:
+          "Liberal Democrat; focused on the 'Green Revolution' and agriculture.",
+        social: "Soft, democratic governance; resigned when violence erupted.",
+      },
+      si: {
+        economic: "හරිත විප්ලවය සහ කෘෂිකර්මය දියුණු කළේය.",
+        social: "මෘදු ප්‍රජාතන්ත්‍රවාදී පාලනයක් ගෙන ගියේය.",
+      },
+      ta: {
+        economic: "பசுமைப் புரட்சி மற்றும் விவசாயத்தை மேம்படுத்தினார்.",
+        social: "மென்மையான ஜனநாயக ஆட்சி.",
+      },
+    },
+  },
+  {
+    id: "ds",
+    name: {
+      en: "D.S. Senanayake",
+      si: "ඩී.එස්. සේනානායක",
+      ta: "டி.எஸ். சேனநாயக்க",
+    },
+    x: 5.0,
+    y: 3.0,
+    party: "UNP",
+    color: "#00A550",
+    image: "/images/politicians/D.S. Senanayake.png",
+    reasoning: {
+      en: {
+        economic:
+          "Agricultural colonization (Gal Oya); conservative liberal economics.",
+        social:
+          "Established citizenship laws that disenfranchised estate Tamils; focused on stability.",
+      },
+      si: {
+        economic: "ගොවි ජනපද ව්‍යාපාර සහ ලිබරල් ආර්ථිකය.",
+        social: "වතු දෙමළ ජනයාගේ පුරවැසිභාවය අහෝසි කිරීම.",
+      },
+      ta: {
+        economic: "விவசாய குடியேற்றத் திட்டங்கள் மற்றும் தாராளவாத பொருளாதாரம்.",
+        social: "மலையகத் தமிழர்களின் குடியுரிமையை பறித்தமை.",
       },
     },
   },
   {
     id: "rohana",
-    name: {
-      en: "Rohana Wijeweera",
-      si: "රෝහණ විජේවීර",
-      ta: "ரோஹண விஜேவீர",
-    },
+    name: { en: "Rohana Wijeweera", si: "රෝහණ විජේවීර", ta: "ரோஹண விஜேவீர" },
     x: -9.0,
     y: 8.5,
     party: "JVP",
@@ -268,50 +497,18 @@ export const politicians = [
     reasoning: {
       en: {
         economic:
-          "Hardline Marxist; advocated complete state control, land redistribution, and anti-capitalism.",
+          "Radical Marxist; advocated total state control and abolition of private property.",
         social:
-          "Led two armed insurrections; strictly authoritarian party structure and ideology.",
+          "Revolutionary authoritarian; led armed insurrections against the state.",
       },
       si: {
-        economic: "දැඩි මාක්ස්වාදී ආර්ථික ප්‍රතිපත්ති.",
-        social: "නැගිටීම් දෙකකට නායකත්වය දුන්නේය.",
-      },
-      ta: {
-        economic: "கடுமையான மார்க்சிய பொருளாதார கொள்கைகள்.",
-        social: "இரண்டு ஆயுதப் போராட்டங்களை வழிநடத்தினார்.",
-      },
-    },
-  },
-  {
-    id: "cbk",
-    name: {
-      en: "Chandrika Bandaranaike Kumaratunga",
-      si: "චන්ද්‍රිකා බණ්ඩාරනායක කුමාරතුංග",
-      ta: "சந்திரிகா பண்டாரநாயக்க குமாரதுங்க",
-    },
-    x: -2.5,
-    y: 2.5,
-    party: "SLFP",
-    color: "#0000FF",
-    image: "/images/politicians/Chandrika Bandaranaike Kumaratunga.png",
-    reasoning: {
-      en: {
-        economic:
-          "Promoted 'Open Economy with a Human Face', balancing privatization of state entities with social welfare preservation.",
-        social:
-          "Advocated for the 'Union of Regions' devolution package but governed with strong executive powers during the 'War for Peace'.",
-      },
-      si: {
-        economic:
-          "'මානුෂීය මුහුණුවරක් සහිත විවෘත ආර්ථිකය' සහ රාජ්‍ය ආයතන ප්‍රතිසංස්කරණය.",
-        social:
-          "බලය බෙදීමේ 'පැකේජය' යෝජනා කළ අතරම 'සාමය සඳහා යුද්ධය' මෙහෙයවීය.",
+        economic: "පුද්ගලික දේපල අහෝසි කිරීම සහ පූර්ණ සමාජවාදය.",
+        social: "රාජ්‍යයට එරෙහිව සන්නද්ධ කැරලි මෙහෙයවීය.",
       },
       ta: {
         economic:
-          "'மனிதாபிமான முகத்துடன் கூடிய திறந்த பொருளாதாரம்' மற்றும் அரச நிறுவன சீர்திருத்தங்கள்.",
-        social:
-          "அதிகாரப் பகிர்வுக்கான தீர்வினை முன்வைத்த அதேவேளை 'சமாதானத்துக்கான போரை' முன்னெடுத்தார்.",
+          "தனியார் சொத்துரிமையை ரத்து செய்தல் மற்றும் முழுமையான சோசலிசம்.",
+        social: "ஆயுதப் போராட்டங்களை வழிநடத்திய புரட்சிகர தலைவர்.",
       },
     },
   },
@@ -320,10 +517,6 @@ export const politicians = [
 /**
  * Finds the politician closest to the user's result on the 2D grid.
  * Uses Euclidean distance formula: √((x2-x1)² + (y2-y1)²)
- *
- * @param {number} userX - User's Economic Score (-10 to 10)
- * @param {number} userY - User's Social Score (-10 to 10)
- * @returns {Object|null} - The closest politician object and the distance value.
  */
 export const findClosestPolitician = (userX, userY) => {
   let closest = null;

@@ -14,11 +14,23 @@ export const leadersData = [
     },
     party: "UNP",
     color: "#00A550",
-    compass: { x: 5.0, y: 3.0 }, // Moderate Right, Moderate Auth
+    compass: { x: 5.0, y: 3.0 },
     desc: {
       en: "The 'Father of the Nation'. Followed pro-Western, liberal economic policies and initiated major irrigation schemes like Gal Oya.",
       si: "'ජාතියේ පියා'. බටහිර හිතවාදී ලිබරල් ආර්ථික ප්‍රතිපත්තියක් අනුගමනය කළ අතර ගල් ඔය වැනි ගොවි ජනපද ව්‍යාපාර ආරම්භ කළේය.",
       ta: "'தேசத்தின் தந்தை'. மேற்குலகச் சார்பு தாராளவாதப் பொருளாதாரக் கொள்கைகளைப் பின்பற்றியதுடன் விவசாயம் மற்றும் குடியேற்றத் திட்டங்களில் கவனம் செலுத்தினார்.",
+    },
+    quote: {
+      en: "Agriculture is the lifeblood of our nation.",
+      si: "කෘෂිකර්මාන්තය අපේ රටේ ජීවනාලියයි.",
+      ta: "விவசாயமே நமது தேசத்தின் உயிர்நாடி.",
+    },
+    tags: ["Independence", "Gal Oya", "Citizenship Act"],
+    allies: ["Dudley Senanayake", "Sir John Kotelawala"],
+    controversies: {
+      en: "Disenfranchisement of Indian Tamils (Citizenship Act 1948).",
+      si: "ඉන්දීය සම්භවයක් ඇති දෙමළ ජනයාගේ පුරවැසිභාවය අහෝසි කිරීම.",
+      ta: "மலையகத் தமிழர்களின் குடியுரிமை பறிப்பு (1948).",
     },
   },
   {
@@ -36,11 +48,23 @@ export const leadersData = [
     },
     party: "UNP",
     color: "#00A550",
-    compass: { x: 4.0, y: 1.0 }, // Moderate Right, Low Auth
+    compass: { x: 4.0, y: 1.0 },
     desc: {
-      en: "A liberal democrat who promoted the 'Green Revolution' in agriculture. Known for a softer, less confrontational governance style.",
-      si: "කෘෂිකාර්මික 'හරිත විප්ලවය' දිරිමත් කළ ලිබරල් ප්‍රජාතන්ත්‍රවාදියෙකි. මෘදු පාලන තන්ත්‍රයක් ගෙන ගිය නායකයෙකි.",
-      ta: "விவசாயத்தில் 'பசுமைப் புரட்சியை' ஊக்குவித்த மிதவாத ஜனநாயகவாதி. மென்மையான ஆட்சி முறைக்கு பெயர் பெற்றவர்.",
+      en: "A liberal democrat who promoted the 'Green Revolution'. Known for a softer, less confrontational governance style.",
+      si: "කෘෂිකාර්මික 'හරිත විප්ලවය' දිරිමත් කළ ලිබරල් ප්‍රජාතන්ත්‍රවාදියෙකි.",
+      ta: "விவசாயத்தில் 'பசுமைப் புரட்சியை' ஊக்குவித்த மிதவாத ஜனநாயகவாதி.",
+    },
+    quote: {
+      en: "The stomach is the engine of man.",
+      si: "මිනිසාගේ එන්ජිම බඩයි.",
+      ta: "மனிதனின் இயந்திரம் வயிறு.",
+    },
+    tags: ["Green Revolution", "Bath Amuna", "Rice Subsidy"],
+    allies: ["J.R. Jayewardene", "M.D. Banda"],
+    controversies: {
+      en: "Resigned after the 1953 Hartal protests turned violent.",
+      si: "1953 හර්තාලය ප්‍රචණ්ඩ වීමෙන් පසු ඉල්ලා අස්වීම.",
+      ta: "1953 ஹர்த்தால் வன்முறையைத் தொடர்ந்து பதவி விலகினார்.",
     },
   },
   {
@@ -58,11 +82,23 @@ export const leadersData = [
     },
     party: "UNP",
     color: "#00A550",
-    compass: { x: 6.0, y: 5.0 }, // Right, High Auth
+    compass: { x: 6.0, y: 5.0 },
     desc: {
-      en: "Staunchly anti-communist and pro-Western. Known for his blunt, authoritarian style and suppressing the 1953 Hartal.",
-      si: "දැඩි කොමියුනිස්ට් විරෝධී සහ බටහිර හිතවාදී අයෙකි. 1953 හර්තාලය මැඩපැවැත්වූ දැඩි පාලකයෙකි.",
-      ta: "கம்யூனிச எதிர்ப்பு மற்றும் மேற்குலகச் சார்பு கொண்டவர். 1953 ஹர்த்தாலை அடக்கிய கடுமையான ஆட்சியாளர்.",
+      en: "Staunchly anti-communist and pro-Western. Known for his blunt, authoritarian style.",
+      si: "දැඩි කොමියුනිස්ට් විරෝධී සහ බටහිර හිතවාදී අයෙකි.",
+      ta: "கம்யூனிச எதிர்ப்பு மற்றும் மேற்குலகச் சார்பு கொண்டவர்.",
+    },
+    quote: {
+      en: "I will not tolerate nonsense.",
+      si: "මම විකාර ඉවසා සිටින්නේ නැත.",
+      ta: "நான் முட்டாள்தனத்தை பொறுத்துக்கொள்ள மாட்டேன்.",
+    },
+    tags: ["Anti-Communist", "Bandung Conference", "Lakshapana"],
+    allies: ["E.L. Senanayake"],
+    controversies: {
+      en: "Aggressive suppression of the 1953 Hartal.",
+      si: "1953 හර්තාලය දරුණු ලෙස මර්දනය කිරීම.",
+      ta: "1953 ஹர்த்தாலை வன்முறையாக ஒடுக்கியமை.",
     },
   },
   {
@@ -80,21 +116,29 @@ export const leadersData = [
     },
     party: "SLFP",
     color: "#0000FF",
-    compass: { x: -4.0, y: 1.0 }, // Center-Left, Low Auth
+    compass: { x: -4.0, y: 1.0 },
     desc: {
-      en: "Shifted the country leftward with the 'Sinhala Only' act and nationalization of key services like buses and the port.",
-      si: "'සිංහල පමණක්' පනත සහ බස්/වරාය ජනසතු කිරීම හරහා රටේ දිශානතිය වාමාංශික ජාතිකත්වයක් වෙත යොමු කළේය.",
-      ta: "'சிங்களம் மட்டும்' சட்டம் மற்றும் பேருந்து, துறைமுகங்களை தேசியமயமாக்கியதன் மூலம் நாட்டை இடதுசாரிப் பாதைக்கு மாற்றினார்.",
+      en: "Shifted the country leftward with the 'Sinhala Only' act and nationalization of key services.",
+      si: "'සිංහල පමණක්' පනත සහ ජනසතු කිරීම හරහා රටේ දිශානතිය වෙනස් කළේය.",
+      ta: "'சிங்களம் மட்டும்' சட்டம் மற்றும் தேசியமயமாக்கல் மூலம் நாட்டை மாற்றினார்.",
+    },
+    quote: {
+      en: "This is the age of the common man.",
+      si: "මේ උදා වී ඇත්තේ සඟ, වෙද, ගුරු, ගොවි, කම්කරු යුගයයි.",
+      ta: "இது சாமானிய மனிதனின் காலம்.",
+    },
+    tags: ["Sinhala Only", "Nationalization", "1956 Revolution"],
+    allies: ["Philip Gunawardena", "D.A. Rajapaksa"],
+    controversies: {
+      en: "The 1958 ethnic riots and rising racial tensions.",
+      si: "1958 ජාතිවාදී කෝලාහල සහ ජාතීන් අතර අසමගිය ඇතිවීම.",
+      ta: "1958 இனக்கலவரம் மற்றும் இன முறுகல் நிலை.",
     },
   },
   {
     id: "dahanayake",
     image: "/images/politicians/W. Dahanayake.png",
-    name: {
-      en: "W. Dahanayake",
-      si: "ඩබ්. දහනායක",
-      ta: "டபிள்யூ. தகநாயக்க",
-    },
+    name: { en: "W. Dahanayake", si: "ඩබ්. දහනායක", ta: "டபிள்யூ. தகநாயக்க" },
     role: {
       en: "Prime Minister (1959–1960)",
       si: "අග්‍රාමාත්‍ය (1959–1960)",
@@ -102,11 +146,23 @@ export const leadersData = [
     },
     party: "Independent",
     color: "#808080",
-    compass: { x: -2.0, y: 3.0 }, // Populist Left, Moderate Auth
+    compass: { x: -2.0, y: 3.0 },
     desc: {
-      en: "The eccentric 'Caretaker PM' who took over after SWRD's assassination. Known for populist moves like lowering food prices overnight.",
-      si: "එස්.ඩබ්ලිව්.ආර්.ඩී. ඝාතනයෙන් පසු පත් විය. බඩු මිල අඩු කළ, සරල දිවි පෙවෙතක් ගත කළ 'මහජනතාවගේ මිනිසා' ලෙස ප්‍රකටය.",
-      ta: "பண்டாரநாயக்கவின் மறைவுக்குப் பின் பதவியேற்றார். உணவுப் பொருட்களின் விலையைக் குறைத்த எளிமையான தலைவர்.",
+      en: "The eccentric 'Caretaker PM' known for populist moves like lowering food prices overnight.",
+      si: "බඩු මිල අඩු කළ, සරල දිවි පෙවෙතක් ගත කළ 'මහජනතාවගේ මිනිසා'.",
+      ta: "உணவுப் பொருட்களின் விலையைக் குறைத்த எளிமையான தலைவர்.",
+    },
+    quote: {
+      en: "I am the servant of the people.",
+      si: "මම මහජනතාවගේ සේවකයා වෙමි.",
+      ta: "நான் மக்களின் சேவகன்.",
+    },
+    tags: ["Caretaker PM", "Pumpkin Price", "Simple Life"],
+    allies: ["None (Individualist)"],
+    controversies: {
+      en: "Rapid dissolution of Parliament and chaotic caretaker rule.",
+      si: "හදිසියේ පාර්ලිමේන්තුව විසුරුවා හැරීම.",
+      ta: "பாராளுமன்றத்தை திடீரென கலைத்தமை.",
     },
   },
   {
@@ -124,11 +180,23 @@ export const leadersData = [
     },
     party: "SLFP",
     color: "#0000FF",
-    compass: { x: -8.0, y: 2.0 }, // Deep Left, Moderate Auth
+    compass: { x: -8.0, y: 2.0 },
     desc: {
-      en: "World's first female PM. Implemented a strictly closed economy, import substitution industrialization, and republican constitution.",
-      si: "ලොව ප්‍රථම අගමැතිනියයි. දැඩි සංවෘත ආර්ථිකයක් සහ ආනයන ආදේශන ප්‍රතිපත්තියක් ක්‍රියාත්මක කළාය.",
-      ta: "உலகின் முதல் பெண் பிரதமர். கடுமையான மூடிய பொருளாதாரக் கொள்கையை அமுல்படுத்தினார் மற்றும் குடியரசு அரசியலமைப்பை அறிமுகப்படுத்தினார்.",
+      en: "World's first female PM. Implemented a strictly closed economy and republican constitution.",
+      si: "ලොව ප්‍රථම අගමැතිනිය. දැඩි සංවෘත ආර්ථිකයක් ක්‍රියාත්මක කළාය.",
+      ta: "உலகின் முதல் பெண் பிரதமர். கடுமையான மூடிய பொருளாதாரக் கொள்கையை அமுல்படுத்தினார்.",
+    },
+    quote: {
+      en: "Produce or perish.",
+      si: "වවන්න නැත්නම් මැරෙන්න (දේශීය දේ අගයන්න).",
+      ta: "உற்பத்தி செய் அல்லது அழிந்து போ.",
+    },
+    tags: ["Closed Economy", "Republic Constitution", "Land Reform"],
+    allies: ["Felix Dias Bandaranaike", "Dr. N.M. Perera"],
+    controversies: {
+      en: "Severe food shortages (Bread queues) and the 1971 Insurrection.",
+      si: "හාල් පොලු, පාන් පෝලිම් සහ 1971 කැරැල්ල.",
+      ta: "உணவுத் தட்டுப்பாடு (பாண் வரிசை) மற்றும் 1971 கிளர்ச்சி.",
     },
   },
   {
@@ -146,11 +214,23 @@ export const leadersData = [
     },
     party: "UNP",
     color: "#00A550",
-    compass: { x: 8.5, y: 8.0 }, // Deep Right, High Auth
+    compass: { x: 8.5, y: 8.0 },
     desc: {
-      en: "Introduced the Executive Presidency and the Open Economy. Known for crushing the 1980 general strike and the JVP insurrection.",
-      si: "විධායක ජනාධිපති ක්‍රමය සහ විවෘත ආර්ථිකය හඳුන්වා දුන්නේය. 1980 වැඩ වර්ජනය සහ ජවිපෙ කැරැල්ල මැඩපැවැත්වීය.",
-      ta: "நிறைவேற்று அதிகாரம் மற்றும் திறந்த பொருளாதாரத்தை அறிமுகப்படுத்தினார். 1980 வேலைநிறுத்தம் மற்றும் ஜேவிபி கிளர்ச்சியையும் ஒடுக்கினார்.",
+      en: "Introduced the Executive Presidency and the Open Economy. Crushed the 1980 strike.",
+      si: "විධායක ජනාධිපති ක්‍රමය සහ විවෘත ආර්ථිකය හඳුන්වා දුන්නේය.",
+      ta: "நிறைவேற்று அதிகாரம் மற்றும் திறந்த பொருளாதாரத்தை அறிமுகப்படுத்தினார்.",
+    },
+    quote: {
+      en: "Let the robber barons come.",
+      si: "ඕනෑම කෙනෙකුට ඇවිත් ආයෝජනය කරන්න ඉඩ දෙන්න.",
+      ta: "கொள்ளையடிக்கும் பிரபுக்கள் வரட்டும் (முதலீட்டை வரவேற்றல்).",
+    },
+    tags: ["Open Economy", "Mahaweli", "1978 Constitution"],
+    allies: ["Lalith Athulathmudali", "Gamini Dissanayake"],
+    controversies: {
+      en: "1983 Black July riots, 1982 Referendum (Canceling elections), 1980 Strikers crackdown.",
+      si: "1983 කළු ජූලිය, 1982 ජනමත විචාරණය සහ 1980 වැඩ වර්ජකයන් දොට්ට දැමීම.",
+      ta: "1983 கறுப்பு யூலை மற்றும் 1982 சர்வஜன வாக்கெடுப்பு.",
     },
   },
   {
@@ -168,11 +248,23 @@ export const leadersData = [
     },
     party: "UNP",
     color: "#00A550",
-    compass: { x: 4.0, y: 9.0 }, // Moderate Right, Extreme Auth
+    compass: { x: 4.0, y: 9.0 },
     desc: {
-      en: "Combined capitalist export zones (200 Garment Factories) with socialist-style welfare (Gam Udawa). Ruled with an iron fist.",
-      si: "ඇඟලුම් කම්හල් 200 වැනි ධනවාදී ව්‍යාපෘති සහ ගම් උදාව වැනි සුබසාධන ව්‍යාපෘති එකවර ක්‍රියාත්මක කළ දැඩි පාලකයෙකි.",
-      ta: "ஆடைத் தொழிற்சாலை திட்டங்களுடன் காம் உதாவ போன்ற நலன்புரித் திட்டங்களையும் இணைத்து கடுமையான ஆட்சி நடத்தினார்.",
+      en: "Combined capitalist export zones with socialist-style welfare. Ruled with an iron fist.",
+      si: "ධනවාදී ව්‍යාපෘති සහ සමාජවාදී සුබසාධන ව්‍යාපෘති එකවර ක්‍රියාත්මක කළ දැඩි පාලකයෙකි.",
+      ta: "முதலாளித்துவ மற்றும் சோசலிசக் கொள்கைகளை இணைத்து கடுமையான ஆட்சி நடத்தினார்.",
+    },
+    quote: {
+      en: "Awadiyawu! (Wake up!)",
+      si: "අවදිවව්!",
+      ta: "விழித்தெழுங்கள்!",
+    },
+    tags: ["Janasaviya", "200 Garment Factories", "Gam Udawa"],
+    allies: ["Sirisena Cooray"],
+    controversies: {
+      en: "The brutal crackdown on the 88/89 JVP insurrection (Death Squads).",
+      si: "88/89 භීෂණ යුගය සහ අතුරුදහන් වීම්.",
+      ta: "88/89 கிளர்ச்சியை வன்முறையாக ஒடுக்கியமை.",
     },
   },
   {
@@ -190,11 +282,23 @@ export const leadersData = [
     },
     party: "UNP",
     color: "#00A550",
-    compass: { x: 6.0, y: 4.0 }, // Right, Moderate Auth
+    compass: { x: 6.0, y: 4.0 },
     desc: {
-      en: "Assumed power after Premadasa's assassination. Known for his non-confrontational style and continuing open economic policies.",
-      si: "ප්‍රේමදාස ඝාතනයෙන් පසු පත් විය. සරල, ගැටුම්වලින් තොර පාලන රටාවක් සහ විවෘත ආර්ථිකය ඉදිරියට ගෙන ගියේය.",
-      ta: "பிரேமதாசவின் படுகொலைக்குப் பின் பதவியேற்றார். எளிமையான, முரண்பாடற்ற ஆட்சி மற்றும் திறந்த பொருளாதாரக் கொள்கைகளைத் தொடர்ந்தார்.",
+      en: "Assumed power after Premadasa's assassination. Known for his non-confrontational style.",
+      si: "සරල, ගැටුම්වලින් තොර පාලන රටාවක් සහ විවෘත ආර්ථිකය ඉදිරියට ගෙන ගියේය.",
+      ta: "எளிமையான, முரண்பாடற்ற ஆட்சி மற்றும் திறந்த பொருளாதாரக் கொள்கைகளைத் தொடர்ந்தார்.",
+    },
+    quote: {
+      en: "The tree is there, the creeper is there.",
+      si: "ගසයි වැලයි වගේ (ජාතික සමගිය ගැන විවාදාත්මක ප්‍රකාශය).",
+      ta: "மரம் இருக்கிறது, கொடி இருக்கிறது.",
+    },
+    tags: ["Silver Decade", "Transition", "Peacemaker"],
+    allies: ["Ranil Wickremesinghe"],
+    controversies: {
+      en: "Controversial 'Tree and Creeper' statement regarding minorities.",
+      si: "සුළු ජාතීන් සම්බන්ධයෙන් කළ ආන්දෝලනාත්මක ප්‍රකාශය.",
+      ta: "சிறுபான்மையினர் குறித்து தெரிவித்த சர்ச்சைக்குரிய கருத்து.",
     },
   },
   {
@@ -212,11 +316,23 @@ export const leadersData = [
     },
     party: "SLFP",
     color: "#0000FF",
-    compass: { x: -2.5, y: 2.5 }, // Center Left, Moderate Auth
+    compass: { x: -2.5, y: 2.5 },
     desc: {
-      en: "Promoted 'Open Economy with a Human Face' and proposed a federal solution (Union of Regions) to the ethnic conflict.",
-      si: "'මානුෂීය මුහුණුවරක් සහිත විවෘත ආර්ථිකය' සහ ජනවාර්ගික අර්බුදයට ෆෙඩරල් විසඳුමක් යෝජනා කළාය.",
-      ta: "'மனிதாபிமான முகத்துடன் கூடிய திறந்த பொருளாதாரம்' மற்றும் இனப்பிரச்சினைக்கு அதிகாரப் பகிர்வுத் தீர்வை முன்வைத்தார்.",
+      en: "Promoted 'Open Economy with a Human Face' and proposed a federal solution.",
+      si: "'මානුෂීය මුහුණුවරක් සහිත විවෘත ආර්ථිකය' සහ ෆෙඩරල් විසඳුමක් යෝජනා කළාය.",
+      ta: "'மனிதாபிமான முகத்துடன் கூடிய திறந்த பொருளாதாரம்' மற்றும் அதிகாரப் பகிர்வை முன்வைத்தார்.",
+    },
+    quote: {
+      en: "We must achieve peace with dignity.",
+      si: "ගෞරවනීය සාමයක් අප දිනා ගත යුතුය.",
+      ta: "கௌரவமான சமாதானத்தை நாம் அடைய வேண்டும்.",
+    },
+    tags: ["Human Face Economy", "Sudu Nelum", "Union of Regions"],
+    allies: ["Mangala Samaraweera", "Lakshman Kadirgamar"],
+    controversies: {
+      en: "The Wayamba election violence and failure to abolish the Executive Presidency.",
+      si: "වයඹ ඡන්ද කොල්ලය සහ විධායක ක්‍රමය අහෝසි නොකිරීම.",
+      ta: "வயம்ப தேர்தல் வன்முறை மற்றும் நிறைவேற்று அதிகாரத்தை நீக்கத் தவறியமை.",
     },
   },
   {
@@ -234,11 +350,23 @@ export const leadersData = [
     },
     party: "SLPP",
     color: "#800000",
-    compass: { x: -3.0, y: 7.5 }, // Center Left, High Auth
+    compass: { x: -3.0, y: 7.5 },
     desc: {
-      en: "Ended the 30-year civil war. Focused on massive debt-funded state infrastructure and centralized family power.",
-      si: "30 වසරක යුද්ධය අවසන් කළේය. ණය මත පදනම් වූ දැවැන්ත යටිතල පහසුකම් සහ පවුල වටා බලය කේන්ද්‍රගත කිරීම කෙරෙහි අවධානය යොමු කළේය.",
-      ta: "30 வருட போரை முடிவுக்கு கொண்டு வந்தார். கடன் நிதியிலான பாரிய உட்கட்டமைப்பு மற்றும் அதிகாரத்தை மையப்படுத்துவதில் கவனம் செலுத்தினார்.",
+      en: "Ended the 30-year civil war. Focused on massive debt-funded state infrastructure.",
+      si: "30 වසරක යුද්ධය අවසන් කළේය. ණය මත පදනම් වූ දැවැන්ත යටිතල පහසුකම් ගොඩනැගුවේය.",
+      ta: "30 வருட போரை முடிவுக்கு கொண்டு வந்தார். கடன் நிதியிலான பாரிய உட்கட்டமைப்பை உருவாக்கினார்.",
+    },
+    quote: {
+      en: "There are no minorities in this country.",
+      si: "මේ රටේ සුළු ජාතීන් කියා කොටසක් නැත.",
+      ta: "இந்த நாட்டில் சிறுபான்மையினர் என்று யாரும் இல்லை.",
+    },
+    tags: ["War Victory", "Mattala/Hambantota", "Expressways"],
+    allies: ["Gotabaya Rajapaksa", "Basil Rajapaksa"],
+    controversies: {
+      en: "Removal of term limits (18th Amendment), white van abductions, and debt crisis.",
+      si: "18 වන සංශෝධනය, සුදු වෑන් සංස්කෘතිය සහ ණය අර්බුදය.",
+      ta: "18வது திருத்தம், வெள்ளை வான் கடத்தல்கள் மற்றும் கடன் நெருக்கடி.",
     },
   },
   {
@@ -256,11 +384,23 @@ export const leadersData = [
     },
     party: "SLFP",
     color: "#0000FF",
-    compass: { x: -1.0, y: 1.0 }, // Center, Low Auth
+    compass: { x: -1.0, y: 1.0 },
     desc: {
-      en: "Enacted the 19th Amendment reducing presidential powers. His term was marred by the Easter Sunday attacks and political instability.",
-      si: "19 වන සංශෝධනය හරහා ජනාධිපති බලතල අඩු කළේය. පාස්කු ප්‍රහාරය සහ දේශපාලන අස්ථාවරත්වය ඔහුගේ ධුර කාලයේ සිදුවිය.",
-      ta: "19வது திருத்தத்தின் மூலம் ஜனாதிபதி அதிகாரங்களைக் குறைத்தார். ஈஸ்டர் தாக்குதல் மற்றும் அரசியல் உறுதியற்றன்மை இவர் காலத்தில் நிகழ்ந்தது.",
+      en: "Enacted the 19th Amendment reducing presidential powers. Term marred by instability.",
+      si: "19 වන සංශෝධනය හරහා ජනාධිපති බලතල අඩු කළේය. දේශපාලන අස්ථාවරත්වය බහුල විය.",
+      ta: "19வது திருத்தத்தின் மூலம் ஜனாதிபதி அதிகாரங்களைக் குறைத்தார்.",
+    },
+    quote: {
+      en: "I ate hoppers and left.",
+      si: "මම ආප්ප කාලා එළියට බැස්සා.",
+      ta: "நான் அப்பம் சாப்பிட்டுவிட்டு வெளியேறினேன்.",
+    },
+    tags: ["19th Amendment", "Yahapalanaya", "Drug War"],
+    allies: ["Ranil Wickremesinghe (Initially)"],
+    controversies: {
+      en: "The 2018 Constitutional Coup (52 Days) and failure to prevent Easter Attacks.",
+      si: "දින 52 කුමන්ත්‍රණය සහ පාස්කු ප්‍රහාරය වළක්වා නොගැනීම.",
+      ta: "52 நாள் அரசியல் குழப்பம் மற்றும் ஈஸ்டர் தாக்குதலைத் தடுக்கத் தவறியமை.",
     },
   },
   {
@@ -278,11 +418,23 @@ export const leadersData = [
     },
     party: "SLPP",
     color: "#800000",
-    compass: { x: -6.0, y: 8.5 }, // Left-Leaning (Import Bans), High Auth
+    compass: { x: -6.0, y: 8.5 },
     desc: {
-      en: "Technocratic authoritarian. Banned chemical fertilizers and imports, leading to a massive economic crisis and his resignation.",
-      si: "තාක්ෂණික මර්දනකාරී පාලනයක් ගෙන ගියේය. රසායනික පොහොර සහ ආනයන තහනම් කිරීම ආර්ථික කඩාවැටීමට හේතු විය.",
-      ta: "இரசாயன உரங்கள் மற்றும் இறக்குமதியை தடை செய்தது பாரிய பொருளாதார நெருக்கடிக்கு வழிவகுத்தது.",
+      en: "Technocratic authoritarian. Banned chemical fertilizers leading to economic collapse.",
+      si: "රසායනික පොහොර තහනම් කිරීම ආර්ථික කඩාවැටීමට හේතු විය.",
+      ta: "இரசாயன உரத் தடை பொருளாதார வீழ்ச்சிக்கு வழிவகுத்தது.",
+    },
+    quote: {
+      en: "I am the one who worked.",
+      si: "මම තමයි වැඩ කළේ.",
+      ta: "வேலை செய்தது நான்தான்.",
+    },
+    tags: ["Technocracy", "Organic Fertilizer", "Beautification"],
+    allies: ["P.B. Jayasundera", "Ali Sabry"],
+    controversies: {
+      en: "The abrupt fertilizer ban, 2022 Economic Crisis, and fleeing the country.",
+      si: "පොහොර තහනම සහ 2022 ආර්ථික අර්බුදය.",
+      ta: "திடீர் உரத் தடை மற்றும் 2022 பொருளாதார நெருக்கடி.",
     },
   },
   {
@@ -300,11 +452,23 @@ export const leadersData = [
     },
     party: "UNP",
     color: "#00A550",
-    compass: { x: 7.5, y: 6.0 }, // High Right, High Auth
+    compass: { x: 7.5, y: 6.0 },
     desc: {
-      en: "Implemented strict IMF austerity measures, privatization, and suppressed the Aragalaya protests to stabilize the economy.",
+      en: "Implemented strict IMF austerity measures and suppressed protests to stabilize the economy.",
       si: "දැඩි IMF කොන්දේසි ක්‍රියාත්මක කළ අතර අරගලය මර්දනය කර ආර්ථිකය ස්ථාවර කළේය.",
-      ta: "கடுமையான IMF நிபந்தனைகளை அமுல்படுத்தி, போராட்டங்களை ஒடுக்கி பொருளாதாரத்தை ஸ்திரப்படுத்தினார்.",
+      ta: "கடுமையான IMF நிபந்தனைகளை அமுல்படுத்தி பொருளாதாரத்தை ஸ்திரப்படுத்தினார்.",
+    },
+    quote: {
+      en: "We must cross the bridge while building it.",
+      si: "පාලම හදන ගමන් අපට ගඟෙන් එගොඩ වෙන්න වෙනවා.",
+      ta: "பாலத்தைக் கட்டிக்கொண்டே நாம் கடக்க வேண்டும்.",
+    },
+    tags: ["IMF Deal", "Economic Recovery", "Austerity"],
+    allies: ["Vajira Abeywardena", "Sagala Ratnayaka"],
+    controversies: {
+      en: "Crackdown on Aragalaya protesters and the Central Bank Bond Scam (during PM term).",
+      si: "අරගලය මර්දනය කිරීම සහ මහ බැංකු බැඳුම්කර වංචාව.",
+      ta: "போராட்டக்காரர்களை ஒடுக்கியமை மற்றும் பிணைமுறி மோசடி.",
     },
   },
   {
@@ -313,7 +477,7 @@ export const leadersData = [
     name: {
       en: "Anura Kumara Dissanayake",
       si: "අනුර කුමාර දිසානායක",
-      ta: "අනුර කුමාර දිසානායක",
+      ta: "அனுர குமார திஸாநாயக்க",
     },
     role: {
       en: "President (2024–Present)",
@@ -322,11 +486,23 @@ export const leadersData = [
     },
     party: "NPP",
     color: "#FF0000",
-    compass: { x: -5.0, y: -4.0 }, // Left, Libertarian (Reformist)
+    compass: { x: -5.0, y: -4.0 },
     desc: {
-      en: "Elected on a mandate for 'System Change', promising to end corruption, abolish executive powers, and renegotiate debt.",
-      si: "'ක්‍රමයේ වෙනසක්' (System Change) උදෙසා පත් විය. දූෂණය තුරන් කිරීම සහ විධායක බලතල අහෝසි කිරීම ප්‍රධාන පොරොන්දු වේ.",
-      ta: "'கட்டமைப்பு மாற்றம்' (System Change) மற்றும் ஊழலை ஒழித்தல் எனும் ஆணைக்கமைய தெரிவு செய்யப்பட்டார்.",
+      en: "Elected on a mandate for 'System Change', promising to end corruption and abolish executive powers.",
+      si: "'ක්‍රමයේ වෙනසක්' (System Change) උදෙසා පත් විය. දූෂණය තුරන් කිරීම ප්‍රධාන පොරොන්දුවයි.",
+      ta: "'கட்டமைப்பு மாற்றம்' மற்றும் ஊழலை ஒழித்தல் எனும் ஆணைக்கமைய தெரிவு செய்யப்பட்டார்.",
+    },
+    quote: {
+      en: "Where is the country's money?",
+      si: "කෝ මේ රටේ සල්ලි?",
+      ta: "நாட்டின் பணம் எங்கே?",
+    },
+    tags: ["System Change", "Anti-Corruption", "Renaissance"],
+    allies: ["Harini Amarasuriya", "Vijitha Herath"],
+    controversies: {
+      en: "Concerns over JVP's violent past and inexperience in governance.",
+      si: "ජවිපෙ අතීත ක්‍රියාකාරකම් සහ රාජ්‍ය පාලන අත්දැකීම් පිළිබඳ ගැටළු.",
+      ta: "ஜேவிபியின் கடந்தகால வன்முறைகள் பற்றிய அச்சம்.",
     },
   },
 ];

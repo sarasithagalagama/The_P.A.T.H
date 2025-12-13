@@ -12,17 +12,20 @@ import "../globals.css";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-inter",
 });
 
 const notoSansSinhala = Noto_Sans_Sinhala({
   subsets: ["sinhala"],
   display: "swap",
+  variable: "--font-noto-sans-sinhala",
 });
 
 const notoSansTamil = Noto_Sans_Tamil({
   subsets: ["tamil"],
   weight: ["400", "700"],
   display: "swap",
+  variable: "--font-noto-sans-tamil",
 });
 
 const locales = ["en", "si", "ta"];
@@ -65,7 +68,7 @@ export default async function LocaleLayout({ children, params }) {
   return (
     <html lang={locale} suppressHydrationWarning>
       <body
-        className={`${inter.className} ${notoSansSinhala.className} ${notoSansTamil.className} min-h-screen flex flex-col bg-background text-foreground`}
+        className={`${inter.variable} ${notoSansSinhala.variable} ${notoSansTamil.variable} min-h-screen flex flex-col bg-background text-foreground`}
         suppressHydrationWarning
       >
         {/*
