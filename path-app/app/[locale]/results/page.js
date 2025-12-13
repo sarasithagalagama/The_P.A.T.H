@@ -100,19 +100,35 @@ export default function ResultsPage() {
     if (!ref.current) return;
     try {
       setIsDownloading(true);
+      // Wait a moment ensuring styles are settled
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
       const dataUrl = await toPng(ref.current, {
         cacheBust: true,
+        quality: 0.95,
+        pixelRatio: 2, // Higher quality
         backgroundColor: null,
+        // Filter out elements that might cause issues if needed
+        filter: (node) => !node.classList?.contains("no-print"),
       });
+
+      // Convert Base64 result to Blob to handle large files better and prevent browser crashes
+      const res = await fetch(dataUrl);
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+
       const link = document.createElement("a");
-      link.href = dataUrl;
+      link.href = url;
       link.download = `${filename}-${new Date()
         .toISOString()
         .slice(0, 10)}.png`;
+      document.body.appendChild(link);
       link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error("Download failed:", error);
-      alert("Download failed: " + error.message);
+      alert("Download failed. Please try again or take a screenshot.");
     } finally {
       setIsDownloading(false);
     }
@@ -250,10 +266,7 @@ export default function ResultsPage() {
 
   return (
     <div className="relative min-h-screen">
-      <div
-        ref={contentRef}
-        className="relative z-10 mx-auto max-w-[1200px] px-6 py-12"
-      >
+      <div className="relative z-10 mx-auto max-w-[1200px] px-6 py-12">
         {/* Header */}
         <div className="mb-16 text-center" data-html2canvas-ignore>
           <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">

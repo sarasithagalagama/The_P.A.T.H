@@ -603,6 +603,39 @@ export const politicians = [
       },
     },
   },
+  {
+    id: "amirthalingam",
+    name: {
+      en: "Appapillai Amirthalingam",
+      si: "අප්පාපිල්ලෙයි අමිර්තලිංගම්",
+      ta: "அப்பாப்பிள்ளை அமிர்தலிங்கம்",
+    },
+    x: -3.0,
+    y: -6.0,
+    party: "TULF",
+    color: "#FFA500", // Orange
+    image: "/images/politicians/Appapillai Amirthalingam.png",
+    reasoning: {
+      en: {
+        economic:
+          "Followed a moderate socialist path typical of the TULF, prioritizing regional development and welfare over capitalist expansion.",
+        social:
+          "A democratic voice for Tamil self-determination (Vaddukoddai Resolution); sought a federal solution but was eventually caught between the state and militant separatism.",
+      },
+      si: {
+        economic:
+          "ප්‍රාදේශීය සංවර්ධනය සහ සුබසාධනය මුල් කරගත් මධ්‍යස්ථ සමාජවාදී මාවතක් අනුගමනය කළේය.",
+        social:
+          "දෙමළ ජනතාවගේ ස්වයං නිර්ණය අයිතිය වෙනුවෙන් පෙනී සිටි ප්‍රජාතන්ත්‍රවාදී නායකයෙකි (වඩුක්කොඩෙයි යෝජනාව); ෆෙඩරල් විසඳුමක් අපේක්ෂා කළේය.",
+      },
+      ta: {
+        economic:
+          "பிராந்திய அபிவிருத்தி மற்றும் மக்கள் நலனுக்கு முன்னுரிமை அளிக்கும் மிதவாத சோசலிசப் பாதையைப் பின்பற்றினார்.",
+        social:
+          "தமிழ் மக்களின் சுயநிர்ணய உரிமைக்காகக் குரல் கொடுத்த ஜனநாயகத் தலைவர் (வட்டுக்கோட்டைத் தீர்மானம்); சமஷ்டித் தீர்வை நாடினார்.",
+      },
+    },
+  },
   // --- AUTHORITARIAN LEADERS (State-Centric / Security Focused) ---
   {
     id: "kadirgamar",
