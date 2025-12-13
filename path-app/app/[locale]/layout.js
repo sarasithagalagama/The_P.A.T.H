@@ -66,6 +66,7 @@ export default async function LocaleLayout({ children, params }) {
     <html lang={locale} suppressHydrationWarning>
       <body
         className={`${inter.className} ${notoSansSinhala.className} ${notoSansTamil.className} min-h-screen flex flex-col bg-background text-foreground`}
+        suppressHydrationWarning
       >
         {/*
           ThemeProvider: Manages Dark/Light mode preferences.

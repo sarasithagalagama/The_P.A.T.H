@@ -1,8 +1,7 @@
 export const leadersData = [
   {
     id: "ds",
-    image:
-      "https://ui-avatars.com/api/?name=D+S+Senanayake&background=00A550&color=fff&size=128&bold=true",
+    image: "/images/politicians/D.S. Senanayake.png",
     name: {
       en: "D.S. Senanayake",
       si: "ඩී.එස්. සේනානායක",
@@ -24,8 +23,7 @@ export const leadersData = [
   },
   {
     id: "dudley",
-    image:
-      "https://ui-avatars.com/api/?name=Dudley+Senanayake&background=00A550&color=fff&size=128&bold=true",
+    image: "/images/politicians/Dudley Senanayake.png",
     name: {
       en: "Dudley Senanayake",
       si: "ඩඩ්ලි සේනානායක",
@@ -47,8 +45,7 @@ export const leadersData = [
   },
   {
     id: "kotelawala",
-    image:
-      "https://ui-avatars.com/api/?name=Sir+John&background=00A550&color=fff&size=128&bold=true",
+    image: "/images/politicians/Sir John Kotelawala.png",
     name: {
       en: "Sir John Kotelawala",
       si: "සර් ජෝන් කොතලාවල",
@@ -70,8 +67,7 @@ export const leadersData = [
   },
   {
     id: "swrd",
-    image:
-      "https://ui-avatars.com/api/?name=S+W+R+D&background=0000FF&color=fff&size=128&bold=true",
+    image: "/images/politicians/S.W.R.D. Bandaranaike.png",
     name: {
       en: "S.W.R.D. Bandaranaike",
       si: "එස්.ඩබ්.ආර්.ඩී. බණ්ඩාරනායක",
@@ -93,8 +89,7 @@ export const leadersData = [
   },
   {
     id: "dahanayake",
-    image:
-      "https://ui-avatars.com/api/?name=W+Dahanayake&background=808080&color=fff&size=128&bold=true",
+    image: "/images/politicians/W. Dahanayake.png",
     name: {
       en: "W. Dahanayake",
       si: "ඩබ්. දහනායක",
@@ -116,8 +111,7 @@ export const leadersData = [
   },
   {
     id: "sirimavo",
-    image:
-      "https://ui-avatars.com/api/?name=Sirimavo&background=0000FF&color=fff&size=128&bold=true",
+    image: "/images/politicians/Sirimavo Bandaranaike.png",
     name: {
       en: "Sirimavo Bandaranaike",
       si: "සිරිමාවෝ බණ්ඩාරනායක",
@@ -139,8 +133,7 @@ export const leadersData = [
   },
   {
     id: "jr",
-    image:
-      "https://ui-avatars.com/api/?name=J+R&background=00A550&color=fff&size=128&bold=true",
+    image: "/images/politicians/J.R. Jayewardene.png",
     name: {
       en: "J.R. Jayewardene",
       si: "ජේ.ආර්. ජයවර්ධන",
@@ -162,8 +155,7 @@ export const leadersData = [
   },
   {
     id: "premadasa",
-    image:
-      "https://ui-avatars.com/api/?name=R+P&background=00A550&color=fff&size=128&bold=true",
+    image: "/images/politicians/Ranasinghe Premadasa.png",
     name: {
       en: "Ranasinghe Premadasa",
       si: "රණසිංහ ප්‍රේමදාස",
@@ -185,8 +177,7 @@ export const leadersData = [
   },
   {
     id: "dbw",
-    image:
-      "https://ui-avatars.com/api/?name=D+B+Wijetunga&background=00A550&color=fff&size=128&bold=true",
+    image: "/images/politicians/D.B. Wijetunga.png",
     name: {
       en: "D.B. Wijetunga",
       si: "ඩී.බී. විජේතුංග",
@@ -208,8 +199,7 @@ export const leadersData = [
   },
   {
     id: "chandrika",
-    image:
-      "https://ui-avatars.com/api/?name=C+B+K&background=0000FF&color=fff&size=128&bold=true",
+    image: "/images/politicians/Chandrika Bandaranaike Kumaratunga.png",
     name: {
       en: "Chandrika Bandaranaike",
       si: "චන්ද්‍රිකා බණ්ඩාරනායක",
@@ -231,8 +221,7 @@ export const leadersData = [
   },
   {
     id: "mahinda",
-    image:
-      "https://ui-avatars.com/api/?name=Mahinda+R&background=800000&color=fff&size=128&bold=true",
+    image: "/images/politicians/Mahinda Rajapaksa.png",
     name: {
       en: "Mahinda Rajapaksa",
       si: "මහින්ද රාජපක්ෂ",
@@ -254,8 +243,7 @@ export const leadersData = [
   },
   {
     id: "maithri",
-    image:
-      "https://ui-avatars.com/api/?name=Maithripala&background=0000FF&color=fff&size=128&bold=true",
+    image: "/images/politicians/Maithripala Sirisena.png",
     name: {
       en: "Maithripala Sirisena",
       si: "මෛත්‍රීපාල සිරිසේන",
@@ -277,8 +265,7 @@ export const leadersData = [
   },
   {
     id: "gota",
-    image:
-      "https://ui-avatars.com/api/?name=Gotabaya&background=800000&color=fff&size=128&bold=true",
+    image: "/images/politicians/Gotabaya Rajapaksa.png",
     name: {
       en: "Gotabaya Rajapaksa",
       si: "ගෝඨාභය රාජපක්ෂ",
@@ -300,8 +287,7 @@ export const leadersData = [
   },
   {
     id: "ranil",
-    image:
-      "https://ui-avatars.com/api/?name=Ranil+W&background=00A550&color=fff&size=128&bold=true",
+    image: "/images/politicians/Ranil Wickremesinghe.png",
     name: {
       en: "Ranil Wickremesinghe",
       si: "රනිල් වික්‍රමසිංහ",
@@ -323,8 +309,7 @@ export const leadersData = [
   },
   {
     id: "anura",
-    image:
-      "https://ui-avatars.com/api/?name=Anura+K+D&background=FF0000&color=fff&size=128&bold=true",
+    image: "/images/politicians/Anura Kumara Dissanayake.png",
     name: {
       en: "Anura Kumara Dissanayake",
       si: "අනුර කුමාර දිසානායක",
