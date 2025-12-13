@@ -5,7 +5,7 @@ A production-ready, trilingual (English, Sinhala, Tamil) political compass web a
 ## 🌟 Features
 
 - **Trilingual Support**: Full support for English, Sinhala, and Tamil
-- **40 Curated Questions**: 20 economic and 20 social questions specific to Sri Lankan politics
+- **20 Curated Questions**: 10 economic and 10 social questions specific to Sri Lankan politics
 - **Interactive Quiz**: Smooth slider-based interface for answering questions
 - **Political Compass Visualization**: Beautiful scatter plot showing user position and historical politicians
 - **Dynamic Floating Hero**: Immersive home page featuring floating historical figures with parallax-like organic motion
