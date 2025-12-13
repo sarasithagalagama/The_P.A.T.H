@@ -63,6 +63,90 @@ export default function IssuesPage() {
         ta: "இலங்கை கடனைத் திருப்பிச் செலுத்தத் தவறிவிட்டது, நாணயம் மற்றும் பொருளாதாரத்தை ஸ்திரப்படுத்த IMF தற்போதுள்ள ஒரே முக்கிய வழியாகும்.",
       },
     },
+    {
+      id: "executive-presidency",
+      title: {
+        en: "Executive Presidency",
+        si: "විධායක ජනාධිපති ධුරය",
+        ta: "நிறைவேற்று அதிகாரம் கொண்ட ஜனாதிபதி",
+      },
+      description: {
+        en: "The system where the Head of State holds dominant power independent of Parliament.",
+        si: "පාර්ලිමේන්තුවෙන් ස්වාධීනව රාජ්‍ය නායකයා සතුව ප්‍රබල බලතල පවතින ක්‍රමය.",
+        ta: "பாராளுமன்றத்திற்கு அப்பால் அரச தலைவரிடம் அதிகாரம் குவிந்துள்ள முறைமை.",
+      },
+      for: {
+        en: "Ensures stability and quick decision-making, which was crucial for ending the war and handling crises.",
+        si: "යුද්ධය අවසන් කිරීමට සහ අර්බුද කළමනාකරණයට අත්‍යවශ්‍ය වූ ස්ථාවරත්වය සහ ඉක්මන් තීරණ ගැනීමේ හැකියාව ලබා දෙයි.",
+        ta: "யுத்தத்தை முடிவுக்குக் கொண்டுவரவும் நெருக்கடிகளைச் சமாளிக்கவும் அவசியமான ஸ்திரத்தன்மை மற்றும் துரித முடிவெடுக்கும் திறனை வழங்குகிறது.",
+      },
+      against: {
+        en: "Concentrates too much power in one person, leading to dictatorship, family rule, and weakened democracy.",
+        si: "එක් පුද්ගලයෙකු වටා අධික බලයක් කේන්ද්‍රගත වීම තුළින් ඒකාධිපතිත්වයට සහ පවුල් පාලනයට මග පාදයි.",
+        ta: "ஒருவரிடம் அதிகாரம் குவிவது சர்வாதிகாரம் மற்றும் குடும்ப ஆட்சிக்கு வழிவகுப்பதுடன் ஜனநாயகத்தைப் பலவீனப்படுத்துகிறது.",
+      },
+      reality: {
+        en: "Almost every President since 1994 promised to abolish it, but once in power, they retained or strengthened it.",
+        si: "1994 සිට සෑම ජනාධිපතිවරයෙකුම එය අහෝසි කරන බවට පොරොන්දු වූ නමුත්, බලයට පැමිණි පසු එය ආරක්ෂා කර ගත්තේය.",
+        ta: "1994 முதல் ஒவ்வொரு ஜனாதிபதியும் இதை ஒழிப்பதாக உறுதியளித்தனர், ஆனால் அதிகாரத்திற்கு வந்ததும் அதைத் தக்க வைத்துக் கொண்டனர்.",
+      },
+    },
+    {
+      id: "privatization",
+      title: {
+        en: "Privatization of SOEs",
+        si: "රාජ්‍ය ආයතන පෞද්ගලීකරණය",
+        ta: "அரச நிறுவனங்களை தனியார்மயமாக்கல்",
+      },
+      description: {
+        en: "Selling or restructuring loss-making state enterprises (like SriLankan Airlines, CEB) to private sectors.",
+        si: "පාඩු ලබන රාජ්‍ය ආයතන (ශ්‍රීලංකන් ගුවන් සමාගම, විදුලිබල මණ්ඩලය වැනි) පුද්ගලික අංශයට විකිණීම හෝ ප්‍රතිව්‍යුහගත කිරීම.",
+        ta: "நட்டத்திலியங்கும் அரச நிறுவனங்களை (ஶ்ரீலங்கன் ஏர்லைன்ஸ், மின்சார சபை போன்றவை) தனியாரிடம் விற்றல் அல்லது மறுசீரமைத்தல்.",
+      },
+      for: {
+        en: "Reduces burden on taxpayers, eliminates corruption/political appointments, and improves efficiency.",
+        si: "බදු ගෙවන්නන්ගේ බර අඩු කරයි, දේශපාලන පත්වීම් සහ දූෂණය නතර කරයි, කාර්යක්ෂමතාව වැඩි කරයි.",
+        ta: "வரி செலுத்துவோரின் சுமையைக் குறைக்கிறது, ஊழல்/அரசியல் நியமனங்களை ஒழிக்கிறது மற்றும் வினைத்திறனை மேம்படுத்துகிறது.",
+      },
+      against: {
+        en: "Strategic national assets are sold to foreigners; leads to job losses and higher prices for essential services.",
+        si: "ජාතික සම්පත් විදේශිකයන්ට විකිණීමක් සිදුවන අතර, රැකියා අහිමි වීම සහ සේවා ගාස්තු ඉහළ යාම සිදුවිය හැක.",
+        ta: "தேசிய சொத்துக்கள் வெளிநாட்டவருக்கு விற்கப்படுகின்றன; வேலை இழப்புகள் மற்றும் அத்தியாவசிய சேவைகளின் விலை உயர்வுக்கு வழிவகுக்கும்.",
+      },
+      reality: {
+        en: "SOEs lose billions of Rupees annually, which is currently paid for by the public through high VAT and taxes.",
+        si: "රාජ්‍ය ආයතන වාර්ෂිකව රුපියල් බිලියන ගණනක් පාඩු ලබන අතර, එය පියවන්නේ ජනතාවගේ බදු මුදල් වලිනි.",
+        ta: "அரச நிறுவனங்கள் ஆண்டுதோறும் பில்லியன் கணக்கான ரூபா நட்டமடைகின்றன, இது மக்களின் வரிப்பணத்திலிருந்தே ஈடுசெய்யப்படுகிறது.",
+      },
+    },
+    {
+      id: "pta",
+      title: {
+        en: "Prevention of Terrorism Act (PTA)",
+        si: "ත්‍රස්තවාදය වැළැක්වීමේ පනත (PTA)",
+        ta: "பயங்கரவாதத் தடைச் சட்டம் (PTA)",
+      },
+      description: {
+        en: "A law allowing the government to arrest and detain suspects for long periods without charge or trial.",
+        si: "නඩු පැවරීමකින් තොරව සැකකරුවන් දීර්ඝ කාලයක් රඳවා තබා ගැනීමට රජයට ඉඩ ලබා දෙන නීතියකි.",
+        ta: "குற்றச்சாட்டு அல்லது விசாரணையின்றி சந்தேக நபர்களை நீண்ட காலம் தடுத்து வைக்க அரசை அனுமதிக்கும் சட்டம்.",
+      },
+      for: {
+        en: "Necessary to combat extremism, prevent resurgence of terrorism (LTTE/ISIS), and maintain national security.",
+        si: "අන්තවාදය මැඩපැවැත්වීමට සහ ත්‍රස්තවාදය නැවත ඇතිවීම වැළැක්වීමට (LTTE/ISIS) අත්‍යවශ්‍ය වේ.",
+        ta: "தீவிரவாதத்தை எதிர்த்துப் போராடவும், பயங்கரவாதம் மீண்டும் தலைதூக்குவதைத் தடுக்கவும் அவசியம்.",
+      },
+      against: {
+        en: "Draconian law used to suppress political dissent, journalists, and protesters; violates fundamental human rights.",
+        si: "දේශපාලන විරුද්ධවාදීන්, මාධ්‍යවේදීන් සහ අරගලකරුවන් මර්දනය කිරීමට යොදා ගන්නා අතර මානව හිමිකම් උල්ලංඝනය කරයි.",
+        ta: "அரசியல் எதிர்ப்பாளர்கள் மற்றும் ஊடகவியலாளர்களை ஒடுக்கப் பயன்படும் கொடூரமான சட்டம்; அடிப்படை மனித உரிமைகளை மீறுகிறது.",
+      },
+      reality: {
+        en: "Despite promises to repeal it, it remains active and was used to detain student leaders during the 2022 Aragalaya.",
+        si: "එය අහෝසි කරන බවට පොරොන්දු වුවද, 2022 අරගලයේදී ශිෂ්‍ය නායකයින් අත්අඩංගුවට ගැනීමට මෙය භාවිතා කෙරිණි.",
+        ta: "இதை நீக்குவதாக உறுதியளித்த போதிலும், 2022 போராட்டத்தின் போது மாணவர் தலைவர்களைக் கைது செய்ய இது பயன்படுத்தப்பட்டது.",
+      },
+    },
   ];
 
   return (

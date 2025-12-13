@@ -8,10 +8,17 @@ A production-ready, trilingual (English, Sinhala, Tamil) political compass web a
 - **40 Curated Questions**: 20 economic and 20 social questions specific to Sri Lankan politics
 - **Interactive Quiz**: Smooth slider-based interface for answering questions
 - **Political Compass Visualization**: Beautiful scatter plot showing user position and historical politicians
-- **Leadership Archive**: Detailed profiles of historical and current leaders with localized biographies, quotes, controversies, and key allies
+- **Dynamic Floating Hero**: Immersive home page featuring floating historical figures with parallax-like organic motion
+- **Leadership Archive**: Detailed profiles of historical and current leaders with localized biographies, quotes, controversies, and key allies. Divided into "Parliamentary Era" and "Executive Presidency".
+- **Civic Education Modules**: A dedicated "Learn" section tailored for Sri Lankan citizens:
+  - **Timeline of Turning Points**: A scrollable "Metro Map" style timeline of Sri Lanka's political history (1948-2022).
+  - **Fundamental Rights**: Interactive cards explaining key constitutional rights (Articles 10-14A).
+  - **Glossary**: Key political terms (e.g., "Unitary State", "Neoliberalism") defined in all three languages.
+  - **MythBusters**: Common political myths debunked with economic realities.
+  - **Government Structures**: Visual guides to the Executive, Legislature, and Judiciary.
 - **Politician Matching**: Algorithm to find the closest historical Sri Lankan politician to your ideology
-- **Social Sharing**: Generate shareable OG images with your results
-- **Dark/Gold Theme**: Premium classy design with black backgrounds and gold accents
+- **Unified Profile Card**: Generate high-quality, downloadable profile cards combining your archetype and compass result
+- **Dark/Gold Theme**: Premium classy design with black backgrounds and gold accents, consistent across all new modules
 - **Fully Client-Side**: No database required, runs entirely in the browser
 
 ## 🛠️ Tech Stack
@@ -38,9 +45,9 @@ A production-ready, trilingual (English, Sinhala, Tamil) political compass web a
 
 ## 🏛️ Leadership Archive
 
-Including detailed profiles for:
+Includes detailed profiles for:
 
-**Executive Presidents:**
+**The Executive Presidency (1978–Present):**
 
 1. **J.R. Jayewardene** (UNP)
 2. **Ranasinghe Premadasa** (UNP)
@@ -52,7 +59,7 @@ Including detailed profiles for:
 8. **Ranil Wickremesinghe** (UNP)
 9. **Anura Kumara Dissanayake** (NPP)
 
-**Prime Ministers (Parliamentary Era):**
+**The Parliamentary Era (1947–1978):**
 
 1. **D.S. Senanayake** (UNP)
 2. **Dudley Senanayake** (UNP)
@@ -61,7 +68,7 @@ Including detailed profiles for:
 5. **W. Dahanayake** (Ind)
 6. **Sirimavo Bandaranaike** (SLFP)
 
-## � Screenshots
+## 📷 Screenshots
 
 ### Home Page & Language Selection
 
@@ -79,7 +86,7 @@ Including detailed profiles for:
 
 ![leaders](path-app/public/screenshots/leaders.png)
 
-## �🚀 Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -116,13 +123,17 @@ npm run build
 npm start
 ```
 
-## � Project Structure
+## 📂 Project Structure
 
 ```
 path-app/
 ├── app/
 │   ├── [locale]/           # Locale-based routing
 │   │   ├── page.js         # Home page
+│   │   ├── learn/          # NEW: Educational modules
+│   │   │   ├── history/    # Timeline page
+│   │   │   ├── civics/     # Civics page
+│   │   │   └── myths/      # MythBusters page
 │   │   ├── quiz/
 │   │   │   └── page.js     # Quiz page
 │   │   └── results/
@@ -133,7 +144,14 @@ path-app/
 │   └── globals.css         # Global styles
 ├── data/
 │   ├── questions.js        # Question bank
-│   └── politicians.js      # Politicians data
+│   ├── politicians.js      # Compass data
+│   ├── leaders.js          # Leadership profiles
+│   ├── history.js          # Timeline data
+│   ├── rights.js           # Fundamental rights data
+│   ├── ideologies.js       # Political ideologies data
+│   ├── glossary.js         # Glossary terms
+│   ├── myths.js            # Political myths
+│   └── structures.js       # Govt structure data
 ├── i18n/
 │   └── routing.js          # i18n routing config
 ├── messages/

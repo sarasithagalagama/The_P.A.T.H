@@ -512,6 +512,164 @@ export const politicians = [
       },
     },
   },
+  // --- LIBERTARIAN RIGHT (Social Liberals / Free Market Democrats) ---
+  {
+    id: "mangala",
+    name: { en: "Mangala Samaraweera", si: "මංගල සමරවීර", ta: "மங்கள சமரவீர" },
+    x: 6.5,
+    y: -7.0,
+    party: "UNP/SJB/Independent",
+    color: "#800080", // Purple
+    image: "/images/politicians/Mangala Samaraweera.png",
+    reasoning: {
+      en: {
+        economic:
+          "True Neoliberal; advocated for full privatization of SOEs, open borders, and carbon taxes.",
+        social:
+          "The boldest social liberal; championed LGBTQ+ rights, reconciliation, and opposed religious extremism.",
+      },
+      si: {
+        economic:
+          "සත්‍ය නව ලිබරල්වාදියෙකි; රාජ්‍ය ආයතන පෞද්ගලීකරණය සහ විවෘත වෙළඳපොල වෙනුවෙන් පෙනී සිටියේය.",
+        social:
+          "ප්‍රබල සමාජ ලිබරල්වාදියෙකි; LGBTQ+ අයිතිවාසිකම් සහ ජාතික සංහිඳියාව වෙනුවෙන් නිර්භීතව පෙනී සිටියේය.",
+      },
+      ta: {
+        economic:
+          "உண்மையான நவதாராளவாதி; அரச நிறுவனங்களை தனியார்மயமாக்கல் மற்றும் திறந்த சந்தையை ஆதரித்தார்.",
+        social:
+          "துணிச்சலான சமூக தாராளவாதி; LGBTQ+ உரிமைகள் மற்றும் இன நல்லிணக்கக்காக குரல் கொடுத்தார்.",
+      },
+    },
+  },
+
+  // --- LIBERTARIAN LEFT (Progressives / Federalists) ---
+  {
+    id: "harini",
+    name: {
+      en: "Harini Amarasuriya",
+      si: "හරිනි අමරසූරිය",
+      ta: "ஹரிணி அமரசூரிய",
+    },
+    x: -4.5,
+    y: -5.5,
+    party: "NPP",
+    color: "#FF0000", // Red/Green Mix
+    image: "/images/politicians/Harini Amarasuriya.png",
+    reasoning: {
+      en: {
+        economic:
+          "Focuses on education rights and state welfare, but strictly opposes the corruption of the traditional left.",
+        social:
+          "Socially progressive feminist; advocates for gender equality, non-violence, and secular education.",
+      },
+      si: {
+        economic:
+          "අධ්‍යාපන අයිතීන් සහ සුබසාධනය වෙනුවෙන් පෙනී සිටී; නමුත් සාම්ප්‍රදායික දේශපාලනය ප්‍රතික්ෂේප කරයි.",
+        social:
+          "ස්ත්‍රී පුරුෂ සමානාත්මතාවය සහ ලෞකික අධ්‍යාපනය වෙනුවෙන් පෙනී සිටින ප්‍රගතිශීලී නායිකාවකි.",
+      },
+      ta: {
+        economic: "கல்வி உரிமைகள் மற்றும் மக்கள் நலனில் கவனம் செலுத்துகிறார்.",
+        social:
+          "பால்நிலை சமத்துவம் மற்றும் மதச்சார்பற்ற கல்விக்காக குரல் கொடுக்கும் முற்போக்குவாதி.",
+      },
+    },
+  },
+  {
+    id: "sampanthan",
+    name: { en: "R. Sampanthan", si: "ආර්. සම්බන්ධන්", ta: "ஆர். சம்பந்தன்" },
+    x: -1.0,
+    y: -8.0,
+    party: "TNA",
+    color: "#FFA500", // Orange
+    image: "/images/politicians/R. Sampanthan.png",
+    reasoning: {
+      en: {
+        economic:
+          "Moderate socialist background but prioritized political solution over economic ideology.",
+        social:
+          "Lifelong advocate for Federalism (Devolution); strictly anti-authoritarian regarding central government power.",
+      },
+      si: {
+        economic: "මධ්‍යස්ථ ආර්ථික ප්‍රතිපත්තියක් අනුගමනය කළේය.",
+        social:
+          "මධ්‍යම රජයේ බලය බෙදා හැරීම (ෆෙඩරල් ක්‍රමය) වෙනුවෙන් ජීවිත කාලය පුරාම පෙනී සිටියේය.",
+      },
+      ta: {
+        economic: "மிதவாத பொருளாதாரக் கொள்கை.",
+        social:
+          "மத்திய அரசின் அதிகாரத்தைக் குறைத்து சமஷ்டி முறைக்காக வாழ்நாள் முழுவதும் போராடியவர்.",
+      },
+    },
+  },
+  // --- AUTHORITARIAN LEADERS (State-Centric / Security Focused) ---
+  {
+    id: "kadirgamar",
+    name: {
+      en: "Lakshman Kadirgamar",
+      si: "ලක්ෂ්මන් කදිරගාමර්",
+      ta: "லக்ஷமன் கதிர்காமர்",
+    },
+    x: 3.5,
+    y: 7.5,
+    party: "SLFP/PA",
+    color: "#0000FF",
+    image: "/images/politicians/Lakshman Kadirgamar.png",
+    reasoning: {
+      en: {
+        economic:
+          "A liberal intellectual who supported international trade and diplomacy; advocated for a modern, globally integrated economy rather than socialism.",
+        social:
+          "A fierce defender of the Unitary State and the Prevention of Terrorism Act (PTA). He successfully led the global campaign to ban the LTTE.",
+      },
+      si: {
+        economic:
+          "ජාත්‍යන්තර වෙළඳාම සහ රාජ්‍ය තාන්ත්‍රිකත්වය විශ්වාස කළ ලිබරල් බුද්ධිමතෙකි; සමාජවාදයට වඩා ගෝලීය ආර්ථිකය අගය කළේය.",
+        social:
+          "ඒකීය රාජ්‍යයේ සහ ත්‍රස්තවාදය වැළැක්වීමේ පනතේ (PTA) ප්‍රබල ආරක්ෂකයෙකි. LTTE සංවිධානය ජාත්‍යන්තරව තහනම් කිරීමට පෙරමුණ ගත්තේය.",
+      },
+      ta: {
+        economic:
+          "சர்வதேச வர்த்தகம் மற்றும் இராஜதந்திரத்தை ஆதரித்த ஒரு தாராளவாத புத்திஜீவி; சோசலிசத்தை விட உலகளாவிய பொருளாதாரத்தை விரும்பினார்.",
+        social:
+          "ஒற்றையாட்சி மற்றும் பயங்கரவாதத் தடைச் சட்டத்தின் (PTA) தீவிர பாதுகாவலர். புலிகள் அமைப்பை சர்வதேச ரீதியாக தடை செய்வதில் முக்கிய பங்காற்றினார்.",
+      },
+    },
+  },
+  {
+    id: "prabhakaran",
+    name: {
+      en: "Velupillai Prabhakaran",
+      si: "වේලුපිල්ලේ ප්‍රභාකරන්",
+      ta: "வேலுப்பிள்ளை பிரபாகரன்",
+    },
+    x: -8.5,
+    y: 9.5, // Extreme Authoritarian (Military Rule)
+    party: "LTTE",
+    color: "#000000", // Black or Dark Grey
+    image: "/images/politicians/Velupillai Prabhakaran.png",
+    reasoning: {
+      en: {
+        economic:
+          "Enforced a centralized, protectionist economy within LTTE-controlled areas, collecting taxes and running cooperatives; opposed open-market capitalism.",
+        social:
+          "Totalitarian military ruler who eliminated political dissent, enforced conscription, and fought for a separate state (Eelam) through armed struggle.",
+      },
+      si: {
+        economic:
+          "LTTE පාලන ප්‍රදේශ තුළ බදු අය කරමින් සහ සමුපකාර පවත්වාගෙන යමින් මධ්‍යගත ආර්ථිකයක් ක්‍රියාත්මක කළේය.",
+        social:
+          "වෙනම රාජ්‍යයක් (ඊළාම්) වෙනුවෙන් සන්නද්ධව සටන් කළ, දේශපාලන විරුද්ධවාදීන් ඉවත් කළ ඒකාධිපති මිලිටරි නායකයෙකි.",
+      },
+      ta: {
+        economic:
+          "வரி அறவீடு மற்றும் கூட்டுறவு சங்கங்கள் மூலம் மத்தியப்படுத்தப்பட்ட பொருளாதாரத்தை நிர்வகித்தார்; திறந்த சந்தை பொருளாதாரத்தை எதிர்த்தார்.",
+        social:
+          "தனியரசுக்காக (ஈழம்) ஆயுதப் போராட்டம் நடத்தியவர்; மாற்றுக்கருத்துக்களுக்கு இடமளிக்காத கடுமையான இராணுவத் தலைவர்.",
+      },
+    },
+  },
 ];
 
 /**

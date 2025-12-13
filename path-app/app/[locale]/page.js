@@ -121,60 +121,190 @@ export default function HomePage() {
   const currentMethodology =
     methodologyContent[locale] || methodologyContent.en;
 
+  const floatingLeaders = [
+    {
+      src: "D.S. Senanayake.png",
+      size: 120,
+      top: "5%",
+      left: "3%",
+      duration: "25s",
+      animation: "float-1",
+    },
+    {
+      src: "S.W.R.D. Bandaranaike.png",
+      size: 110,
+      top: "12%",
+      right: "8%",
+      duration: "28s",
+      animation: "float-2",
+    },
+    {
+      src: "Sirimavo Bandaranaike.png",
+      size: 115,
+      top: "48%",
+      left: "-4%",
+      duration: "30s",
+      animation: "float-3",
+    },
+    {
+      src: "J.R. Jayewardene.png",
+      size: 125,
+      top: "32%",
+      right: "-6%",
+      duration: "22s",
+      animation: "float-1",
+    },
+    {
+      src: "Ranasinghe Premadasa.png",
+      size: 110,
+      bottom: "12%",
+      left: "8%",
+      duration: "26s",
+      animation: "float-2",
+    },
+    {
+      src: "Mahinda Rajapaksa.png",
+      size: 130,
+      bottom: "6%",
+      right: "4%",
+      duration: "24s",
+      animation: "float-3",
+    },
+    {
+      src: "Ranil Wickremesinghe.png",
+      size: 100,
+      top: "4%",
+      left: "42%",
+      duration: "35s",
+      animation: "float-1",
+      opacity: 0.1,
+    },
+    {
+      src: "Anura Kumara Dissanayake.png",
+      size: 110,
+      bottom: "22%",
+      right: "28%",
+      duration: "32s",
+      animation: "float-2",
+      opacity: 0.1,
+    },
+  ];
+
   return (
     <div className="relative min-h-screen">
+      <style jsx>{`
+        @keyframes float-1 {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          25% {
+            transform: translate(30px, -30px) rotate(3deg);
+          }
+          50% {
+            transform: translate(0, -50px) rotate(0deg);
+          }
+          75% {
+            transform: translate(-30px, -20px) rotate(-3deg);
+          }
+        }
+        @keyframes float-2 {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          33% {
+            transform: translate(-30px, 30px) rotate(-3deg);
+          }
+          66% {
+            transform: translate(25px, 15px) rotate(2deg);
+          }
+        }
+        @keyframes float-3 {
+          0%,
+          100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          50% {
+            transform: translate(40px, 40px) rotate(3deg);
+          }
+        }
+      `}</style>
+
       <div className="relative z-10 mx-auto max-w-[1200px] px-6">
         {/*
           Hero Section:
-          Centerpiece of the home page with glassmorphism background and primary CTA.
+          Centerpiece of the home page with floating politicians background.
         */}
-        <section className="relative flex flex-col items-start justify-center overflow-hidden rounded-[32px] px-8 py-20 text-left md:min-h-[600px] md:px-16">
-          {/* Background Layers */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/hero-bg-new.jpg"
-              alt="Background"
-              fill
-              className="object-cover opacity-20 dark:opacity-30 mix-blend-multiply dark:mix-blend-overlay"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+        <section className="relative flex flex-col items-center justify-center overflow-hidden rounded-[32px] px-8 py-24 text-center md:min-h-[650px] md:px-16 border border-foreground/5 bg-background/50 backdrop-blur-sm">
+          {/* Dynamic Floating Background */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            {/* Radial Gradient for Center Focus */}
+            <div className="absolute inset-0 bg-radial-gradient from-transparent via-background/80 to-background z-10" />
+
+            {/* Floating Heads */}
+            {floatingLeaders.map((leader, index) => (
+              <div
+                key={index}
+                className="absolute opacity-20 dark:opacity-15 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700 ease-in-out"
+                style={{
+                  top: leader.top,
+                  left: leader.left,
+                  right: leader.right,
+                  bottom: leader.bottom,
+                  width: `${leader.size}px`,
+                  height: `${leader.size}px`,
+                  animation: `${leader.animation} ${leader.duration} ease-in-out infinite`,
+                  opacity: leader.opacity, // Optional override
+                }}
+              >
+                <Image
+                  src={`/images/politicians/${leader.src}`}
+                  alt="Leader"
+                  fill
+                  className="object-contain drop-shadow-2xl"
+                />
+              </div>
+            ))}
           </div>
 
-          <div className="relative z-10 max-w-[650px]">
-            <div className="mb-6 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+          <div className="relative z-20 max-w-[800px]">
+            <div className="mb-6 inline-flex items-center justify-center rounded-full border border-gold/30 bg-gold/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[2px] text-gold-text shadow-[0_0_15px_rgba(253,185,19,0.2)]">
               {tApp("subtitle")}
             </div>
 
-            <h1 className="mb-8 text-5xl font-extrabold leading-[1.1] tracking-tight text-foreground md:text-[72px]">
+            <h1 className="mb-8 text-5xl font-extrabold leading-[1.1] tracking-tight text-foreground md:text-[80px]">
               The P.A.T.H.
-              <span className="block text-gold-text">Political Alignment</span>
-              <span className="block text-gold-text">Testing Hub</span>
+              <span className="mt-2 block bg-gradient-to-r from-[#FDB913] via-[#ffdda0] to-[#FDB913] bg-clip-text text-transparent drop-shadow-sm">
+                Political Alignment
+              </span>
+              <span className="block text-foreground/90">Testing Hub</span>
             </h1>
 
-            <p className="mb-12 text-xl leading-[1.7] text-foreground/80 font-medium">
+            <p className="mx-auto mb-12 max-w-2xl text-xl leading-[1.7] text-foreground/70 font-medium">
               {t("intro")}
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/quiz"
-                className="relative overflow-hidden rounded-xl bg-gradient-to-br from-[#FDB913] to-[#f5a623] px-10 py-[18px] text-lg font-bold text-black shadow-[0_4px_20px_rgba(253,185,19,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_30px_rgba(253,185,19,0.5)] text-center"
+                className="group relative overflow-hidden rounded-xl bg-gold px-12 py-5 text-lg font-bold text-black shadow-[0_4px_20px_rgba(253,185,19,0.3)] transition-all hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(253,185,19,0.5)]"
               >
-                {t("startQuiz")}
+                <span className="relative z-10">{t("startQuiz")}</span>
+                <div className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-500 group-hover:translate-x-0" />
               </Link>
 
               <button
                 onClick={() => scrollToSection("how-it-works")}
-                className="rounded-xl border border-foreground/20 bg-white/5 backdrop-blur-sm px-8 py-[18px] text-base font-semibold text-foreground transition-all hover:bg-foreground/10 hover:border-gold/50"
+                className="rounded-xl border border-foreground/10 bg-foreground/5 backdrop-blur-md px-10 py-5 text-base font-semibold text-foreground transition-all hover:bg-foreground/10 hover:border-foreground/20"
               >
                 {t("howItWorks")}
               </button>
             </div>
 
-            <div className="mt-4 text-sm text-foreground/60 font-medium">
+            <div className="mt-6 flex items-center justify-center gap-2 text-sm text-foreground/40 font-medium tracking-wide">
+              <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse" />
               Takes approximately 5 minutes
             </div>
           </div>
@@ -208,21 +338,21 @@ export default function HomePage() {
             ].map((step) => (
               <div
                 key={step.num}
-                className="theme-card group relative overflow-hidden rounded-[20px] p-8 transition-all duration-400 hover:-translate-y-2 hover:border-gold/30"
+                className="theme-card group relative overflow-hidden rounded-[24px] p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/5"
               >
-                <div className="absolute top-0 left-0 right-0 h-[3px] scale-x-0 bg-gradient-to-r from-[#FDB913] to-[#f5a623] transition-transform duration-400 group-hover:scale-x-100" />
+                <div className="absolute top-0 left-0 right-0 h-[4px] scale-x-0 bg-gradient-to-r from-gold via-yellow-200 to-gold transition-transform duration-500 group-hover:scale-x-100" />
                 <div className="mb-6 flex items-center gap-4">
-                  <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full border-[2px] border-gold/30 bg-gold/10 text-2xl font-extrabold text-gold-text">
+                  <div className="flex h-[64px] w-[64px] items-center justify-center rounded-2xl bg-foreground/5 text-2xl font-black text-gold-text group-hover:bg-gold group-hover:text-black transition-colors duration-500 shadow-inner">
                     {step.num}
                   </div>
-                  <div className="text-3xl opacity-60 grayscale transition-all group-hover:grayscale-0">
+                  <div className="text-4xl opacity-50 grayscale transition-all duration-500 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110">
                     {step.icon}
                   </div>
                 </div>
-                <h3 className="mb-3 text-2xl font-bold text-foreground">
+                <h3 className="mb-3 text-2xl font-bold text-foreground group-hover:text-gold-text transition-colors">
                   {t(step.titleKey)}
                 </h3>
-                <p className="text-base leading-[1.6] text-foreground/70">
+                <p className="text-base leading-[1.7] text-foreground/60 transition-colors group-hover:text-foreground/80">
                   {t(step.textKey)}
                 </p>
               </div>
@@ -237,33 +367,34 @@ export default function HomePage() {
         */}
         <section
           id="methodology"
-          className="pb-24 pt-12 border-t border-foreground/10"
+          className="pb-24 pt-12 border-t border-foreground/5"
         >
-          <div className="mb-12 text-center">
+          <div className="mb-16 text-center">
             <h2 className="mb-6 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
               {currentMethodology.headline}
             </h2>
-            <div className="h-1 w-20 bg-[#FDB913] mx-auto rounded-full" />
+            <div className="h-1.5 w-24 bg-gold mx-auto rounded-full opacity-80" />
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2 mb-12">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2 mb-16">
             {currentMethodology.generalSections.map((section, index) => (
               <div
                 key={index}
-                className="theme-card relative rounded-[20px] p-8"
+                className="theme-card relative rounded-[24px] p-10 hover:bg-foreground/5 transition-colors"
               >
+                <div className="absolute top-10 left-0 w-1 h-12 bg-gold/50 rounded-r-full" />
                 <h3 className="mb-4 text-xl font-bold text-foreground">
                   {section.title}
                 </h3>
-                <p className="text-sm leading-relaxed text-foreground/70">
+                <p className="text-base leading-relaxed text-foreground/70">
                   {section.body}
                 </p>
               </div>
             ))}
           </div>
 
-          <div className="mb-8 text-center mt-16">
-            <h3 className="text-2xl font-bold tracking-tight text-gold-text">
+          <div className="mb-12 text-center">
+            <h3 className="text-2xl font-bold tracking-tight text-gold-text uppercase tracking-widest opacity-90">
               {currentMethodology.criteriaHeadline}
             </h3>
           </div>
@@ -272,12 +403,12 @@ export default function HomePage() {
             {currentMethodology.criteriaSections.map((section, index) => (
               <div
                 key={index}
-                className="theme-card relative rounded-[20px] p-8 border border-gold/10"
+                className="theme-card relative rounded-[24px] p-8 border border-foreground/10 hover:border-gold/30 transition-all duration-300 group"
               >
-                <h4 className="mb-4 text-lg font-bold text-foreground">
+                <h4 className="mb-4 text-lg font-bold text-foreground group-hover:text-gold-text transition-colors">
                   {section.title}
                 </h4>
-                <p className="text-sm leading-relaxed text-foreground/70">
+                <p className="text-sm leading-relaxed text-foreground/60 group-hover:text-foreground/80 transition-colors">
                   {section.body}
                 </p>
               </div>

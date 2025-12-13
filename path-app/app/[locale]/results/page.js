@@ -8,6 +8,8 @@ import { questions } from "@/data/questions";
 import { toPng } from "html-to-image";
 import { useTheme } from "next-themes";
 
+// ... (existing imports)
+
 /**
  * Avatar Helper
  * Renders politician image or a fallback initial.
@@ -50,6 +52,8 @@ export default function ResultsPage() {
   // Refs for capturing the DOM for image download
   const contentRef = useRef(null);
   const personaRef = useRef(null);
+  const compassRef = useRef(null);
+  const exportRef = useRef(null);
 
   const [results, setResults] = useState(null);
   const [closestMatch, setClosestMatch] = useState(null);
@@ -58,7 +62,6 @@ export default function ResultsPage() {
 
   const [selectedPolitician, setSelectedPolitician] = useState(null);
   const [showPersona, setShowPersona] = useState(false);
-  const [showClosestMatch, setShowClosestMatch] = useState(false);
 
   // Load results from Session Storage on mount
   useEffect(() => {
@@ -122,26 +125,37 @@ export default function ResultsPage() {
     const safeX = Number(x) || 0;
     const safeY = Number(y) || 0;
 
-    if (safeX < -2 && safeY > 2)
+    // Define Center range (strict center)
+    if (Math.abs(safeX) < 1.5 && Math.abs(safeY) < 1.5) {
+      return {
+        title: "Centrist Moderate (Center)",
+        desc: "You see value in both sides and prefer pragmatic, gradual reform over radical change.",
+      };
+    }
+
+    // Quadrants (Prioritize these if outside the small center box)
+    if (safeX <= 0 && safeY >= 0)
       return {
         title: "Statist Nationalist (Authoritarian Left)",
         desc: "You believe in a strong government that controls the economy and protects national sovereignty. You prefer state-owned industries over privatization.",
       };
-    if (safeX > 2 && safeY > 2)
+    if (safeX >= 0 && safeY >= 0)
       return {
         title: "Conservative Capitalist (Authoritarian Right)",
         desc: "You support a free market and open economy but believe in strong leadership and traditional values. You prioritize stability and growth.",
       };
-    if (safeX < -2 && safeY < -2)
+    if (safeX <= 0 && safeY <= 0)
       return {
         title: "Democratic Socialist (Libertarian Left)",
         desc: "You value social equality and civil rights. You support wealth redistribution but strongly oppose authoritarianism and corruption.",
       };
-    if (safeX > 2 && safeY < -2)
+    if (safeX >= 0 && safeY <= 0)
       return {
         title: "Social Liberal (Libertarian Right)",
         desc: "You believe in individual freedom in both the economy and personal life. You want less government interference in business and rights.",
       };
+
+    // Fallback
     return {
       title: "Centrist Moderate (Center)",
       desc: "You see value in both sides and prefer pragmatic, gradual reform over radical change.",
@@ -173,6 +187,7 @@ export default function ResultsPage() {
     if (archetypeTitle.includes("Statist")) icon = "🛡️";
     else if (archetypeTitle.includes("Socialist")) icon = "✊";
     else if (archetypeTitle.includes("Liberal")) icon = "🕊️";
+    else if (archetypeTitle.includes("Conservative")) icon = "🏛️";
 
     const isLight = resolvedTheme === "light";
 
@@ -253,37 +268,37 @@ export default function ResultsPage() {
           </p>
         </div>
 
-        <div className="grid gap-12 lg:grid-cols-12 items-start">
-          {/* CONCEPT 1: RPG CARD (Left Column) */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
-            <div
-              ref={personaRef}
-              id="persona-card-capture"
-              className={`relative overflow-hidden rounded-[40px] border-[1px] ${theme.border} ${theme.bg} p-8 shadow-2xl ${theme.glow} transition-all`}
-            >
-              {/* Subtle Gold Gradient Mesh */}
-              <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 w-[200px] h-[200px] bg-gold/5 blur-[80px] rounded-full pointer-events-none"></div>
+        <div className="grid gap-8 justify-items-center">
+          {/* UNIFIED PROFILE CARD */}
+          <div
+            ref={contentRef}
+            id="unified-result-card"
+            className={`relative w-full overflow-hidden rounded-[40px] border-[1px] ${theme.border} ${theme.bg} p-8 lg:p-12 shadow-2xl ${theme.glow} transition-all`}
+          >
+            {/* Background Effects */}
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-gold/5 blur-[100px] rounded-full pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-              <div className="relative z-10 flex flex-col items-center text-center">
-                {/* 3D Icon */}
-                <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-3xl bg-gold/10 text-[5rem] shadow-[inset_0_0_20px_rgba(253,185,19,0.1)] border border-gold/20 backdrop-blur-sm">
+            <div className="grid gap-12 lg:grid-cols-12 items-center relative z-10">
+              {/* LEFT COLUMN: Archetype Info */}
+              <div className="lg:col-span-5 flex flex-col text-center lg:text-left">
+                <div className="mb-6 mx-auto lg:mx-0 flex h-24 w-24 items-center justify-center rounded-3xl bg-gold/10 text-[5rem] shadow-[inset_0_0_20px_rgba(253,185,19,0.1)] border border-gold/20 backdrop-blur-sm">
                   {theme.icon}
                 </div>
 
                 <h2
-                  className={`text-3xl font-black ${theme.text} leading-tight mb-2`}
+                  className={`text-4xl font-black ${theme.text} leading-tight mb-2`}
                 >
                   {archetype.title.split("(")[0]}
                 </h2>
                 <div
-                  className={`text-sm font-bold uppercase tracking-[2px] ${theme.accent} mb-8`}
+                  className={`text-sm font-bold uppercase tracking-[2px] ${theme.accent} mb-6`}
                 >
                   {archetype.title.split("(")[1]?.replace(")", "")}
                 </div>
 
                 <p
-                  className={`${theme.subtext} font-medium leading-relaxed mb-8 text-base px-2`}
+                  className={`${theme.subtext} font-medium leading-relaxed mb-8 text-lg`}
                 >
                   "{archetype.desc}"
                 </p>
@@ -310,7 +325,7 @@ export default function ResultsPage() {
                       </span>
                     </div>
                     <div
-                      className={`h-4 w-full rounded-full ${theme.barTrack} overflow-hidden relative border border-white/5`}
+                      className={`h-3 w-full rounded-full ${theme.barTrack} overflow-hidden relative border border-white/5`}
                     >
                       {/* Middle Marker */}
                       <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/20 z-10"></div>
@@ -351,7 +366,7 @@ export default function ResultsPage() {
                       </span>
                     </div>
                     <div
-                      className={`h-4 w-full rounded-full ${theme.barTrack} overflow-hidden relative border border-white/5`}
+                      className={`h-3 w-full rounded-full ${theme.barTrack} overflow-hidden relative border border-white/5`}
                     >
                       {/* Middle Marker */}
                       <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-white/20 z-10"></div>
@@ -379,273 +394,187 @@ export default function ResultsPage() {
                       <span>Authoritarian</span>
                     </div>
                   </div>
-
-                  {/* Closest Match Stat */}
-                  {showClosestMatch && (
-                    <div className="pt-4 border-t border-white/10 mt-4 flex items-center justify-between">
-                      <span
-                        className={`text-xs font-bold uppercase ${theme.subtext} opacity-50`}
-                      >
-                        Closest Match
-                      </span>
-                      <div className="flex items-center gap-3">
-                        <div className="h-8 w-8 rounded-full border border-gold/30 overflow-hidden bg-black/50">
-                          <PoliticianAvatar
-                            politician={closestMatch.politician}
-                          />
-                        </div>
-                        <div className="flex flex-col items-end">
-                          <span
-                            className={`text-sm font-bold ${theme.text} leading-none`}
-                          >
-                            {getPoliticianName(closestMatch.politician)}
-                          </span>
-                          <span className="text-[10px] text-gold-text opacity-80 mt-1 font-medium">
-                            {(100 - closestMatch.distance * 5).toFixed(0)}%
-                            Match
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
 
-              {/* Card Footer Branding */}
-              <div className="absolute bottom-6 left-0 right-0 text-center opacity-30">
-                <span className="text-[10px] uppercase tracking-[4px] font-bold text-gold-text">
-                  The P.A.T.H. Sri Lanka
-                </span>
+              {/* RIGHT COLUMN: Compass View */}
+              <div className="lg:col-span-7 flex flex-col relative">
+                <div className="w-full text-left mb-2 z-20 flex justify-between items-start">
+                  <div>
+                    <div
+                      className={`text-xs font-bold uppercase tracking-wider ${theme.subtext} opacity-70 mb-1`}
+                    >
+                      Compass View
+                    </div>
+                    <h3 className={`text-xl font-bold ${theme.text}`}>
+                      Where you stand
+                    </h3>
+                  </div>
+                </div>
+
+                <div
+                  ref={compassRef}
+                  className={`relative aspect-square w-full max-w-full lg:max-w-[500px] mx-auto overflow-visible ${theme.text}`}
+                >
+                  {/* Quadrant Colors */}
+                  <div className="absolute inset-0 z-0 opacity-30 rounded-3xl overflow-hidden">
+                    <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-red-500/40" />
+                    <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-500/40" />
+                    <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-green-500/40" />
+                    <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-yellow-500/40" />
+                  </div>
+
+                  {/* Grid Lines */}
+                  <div
+                    className="absolute inset-0 z-0 opacity-20"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
+                                    linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
+                      backgroundSize: "10% 10%",
+                      maskImage:
+                        "radial-gradient(circle, black 60%, transparent 100%)",
+                      WebkitMaskImage:
+                        "radial-gradient(circle, black 60%, transparent 100%)",
+                    }}
+                  />
+                  <div className="absolute top-0 bottom-0 left-1/2 w-[2px] bg-current opacity-30 z-0" />
+                  <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-current opacity-30 z-0" />
+
+                  {/* Labels */}
+                  <div
+                    className={`absolute top-2 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+                  >
+                    Authoritarian
+                  </div>
+                  <div
+                    className={`absolute bottom-2 left-1/2 -translate-x-1/2 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+                  >
+                    Libertarian
+                  </div>
+                  <div
+                    className={`absolute left-2 top-1/2 -translate-y-1/2 -rotate-90 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+                  >
+                    Left
+                  </div>
+                  <div
+                    className={`absolute right-2 top-1/2 -translate-y-1/2 rotate-90 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+                  >
+                    Right
+                  </div>
+
+                  {politicians.map((p) => {
+                    // Clamp values to keep avatars inside the grid visual (5% to 95%)
+                    const rawL = ((p.x + 10) / 20) * 100;
+                    const rawT = ((10 - p.y) / 20) * 100;
+                    const l = Math.max(5, Math.min(95, rawL));
+                    const t = Math.max(5, Math.min(95, rawT));
+                    return (
+                      <button
+                        key={p.id}
+                        onClick={() => setSelectedPolitician(p)}
+                        className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 z-20 group scale-100 hover:scale-110 opacity-70 hover:opacity-100`}
+                        style={{ left: `${l}%`, top: `${t}%` }}
+                      >
+                        <div
+                          className={`relative h-10 w-10 rounded-full border-2 overflow-hidden shadow-md bg-white border-white/50`}
+                        >
+                          <PoliticianAvatar politician={p} />
+                        </div>
+                        <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white px-2 py-1 rounded shadow-lg text-[10px] font-bold text-black opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                          {p.name[locale] || p.name["en"]}
+                        </div>
+                      </button>
+                    );
+                  })}
+
+                  {/* YOU Marker */}
+                  <div
+                    className="absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 z-40 transform hover:scale-125 transition-transform cursor-pointer"
+                    style={{ left: `${leftPercent}%`, top: `${topPercent}%` }}
+                  >
+                    <div className="absolute inset-0 rounded-full bg-red-600 border-2 border-white shadow-[0_0_20px_rgba(220,38,38,0.6)] animate-pulse"></div>
+                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-red-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
+                      YOU
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Actions */}
-            <div className="grid grid-cols-2 gap-3" data-html2canvas-ignore>
-              <button
-                onClick={() => setShowClosestMatch(!showClosestMatch)}
-                className={`col-span-2 rounded-xl border py-4 text-center font-bold transition-all shadow-md ${
-                  showClosestMatch
-                    ? "border-foreground/10 bg-foreground/5 text-foreground hover:bg-foreground/10" // Muted when shown
-                    : "bg-white text-black border-white hover:bg-gray-200" // Prominent when hidden (White button)
-                }`}
-              >
-                {showClosestMatch ? "Hide Match" : "Reveal Closest Match"}
-              </button>
-
-              <button
-                onClick={() => handleDownload(personaRef, "My-Political-Card")}
-                disabled={isDownloading}
-                className="col-span-2 rounded-xl bg-[#FDB913] py-4 text-center font-bold text-black hover:bg-[#ffc845] active:scale-95 transition-all shadow-lg"
-              >
-                {isDownloading ? "Generating..." : "Download Card"}
-              </button>
-
-              <button
-                onClick={() => router.push("/")}
-                className="col-span-2 rounded-xl border border-foreground/10 bg-foreground/5 py-4 text-center font-semibold text-foreground hover:bg-foreground/10 transition-all text-sm"
-              >
-                Retake Quiz
-              </button>
+            {/* Footer Branding */}
+            <div className="absolute bottom-4 left-0 right-0 text-center opacity-30">
+              <span className="text-[10px] uppercase tracking-[4px] font-bold text-gold-text">
+                The P.A.T.H. Sri Lanka
+              </span>
             </div>
           </div>
 
-          {/* RIGHT COLUMN: CONCEPT 2 (The Grid) */}
-          <div
-            className={`relative rounded-[40px] border-[1px] ${theme.border} ${theme.bg} p-8 lg:col-span-7 shadow-2xl ${theme.glow} overflow-hidden flex flex-col`}
-          >
-            <div className="w-full text-left mb-2 z-20">
-              <div
-                className={`text-xs font-bold uppercase tracking-wider ${theme.subtext} opacity-70 mb-1`}
-              >
-                Compass View
-              </div>
-              <h3 className={`text-xl font-bold ${theme.text}`}>
-                Where you stand
-              </h3>
-            </div>
-
-            <div
-              className={`relative aspect-square w-full max-w-full lg:max-w-[450px] mx-auto overflow-visible my-auto ${theme.text}`}
+          {/* ACTION BUTTONS (Outside Unified Card) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl px-4">
+            <button
+              onClick={() => handleDownload(contentRef, "My-Political-Profile")}
+              disabled={isDownloading}
+              className="rounded-xl bg-[#FDB913] py-4 text-center font-bold text-black hover:bg-[#ffc845] active:scale-95 transition-all shadow-lg"
             >
-              {/* Quadrant Colors */}
-              <div className="absolute inset-0 z-0 opacity-40">
-                <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-red-500/40" />
-                <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-blue-500/40" />
-                <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-green-500/40" />
-                <div className="absolute bottom-0 right-0 w-1/2 h-1/2 bg-yellow-500/40" />
-              </div>
+              {isDownloading ? "Saving..." : "Download Profile"}
+            </button>
 
-              {/* Grid Background */}
+            <button
+              onClick={() => router.push("/")}
+              className="rounded-xl border border-foreground/10 bg-foreground/5 py-4 text-center font-semibold text-foreground hover:bg-foreground/10 transition-all text-sm"
+            >
+              Retake Quiz
+            </button>
+          </div>
+
+          {selectedPolitician && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-6 animate-in fade-in duration-200"
+              onClick={() => setSelectedPolitician(null)}
+            >
               <div
-                className="absolute inset-0 z-0 opacity-20"
-                style={{
-                  backgroundImage: `linear-gradient(to right, currentColor 1px, transparent 1px),
-                                    linear-gradient(to bottom, currentColor 1px, transparent 1px)`,
-                  backgroundSize: "10% 10%",
-                  maskImage:
-                    "radial-gradient(circle, black 60%, transparent 100%)",
-                }}
-              />
-
-              {/* Axes */}
-              <div className="absolute top-0 bottom-0 left-1/2 w-[2px] bg-current opacity-20 z-0" />
-              <div className="absolute left-0 right-0 top-1/2 h-[2px] bg-current opacity-20 z-0" />
-
-              {/* Quadrant Labels */}
-              <div
-                className={`absolute top-0 left-1/2 -translate-x-1/2 -translate-y-6 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
+                className="theme-card relative w-full max-w-md rounded-[32px] p-8 shadow-2xl animate-in zoom-in-95 duration-200 border border-white/10 bg-[#1a1a1a]"
+                onClick={(e) => e.stopPropagation()}
               >
-                Authoritarian
-              </div>
-              <div
-                className={`absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-6 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
-              >
-                Libertarian
-              </div>
-              <div
-                className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 -rotate-90 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
-              >
-                Left
-              </div>
-              <div
-                className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 rotate-90 text-[10px] font-bold uppercase tracking-widest ${theme.subtext} opacity-60`}
-              >
-                Right
-              </div>
-
-              {/* Nearest Neighbor Line (SVG) */}
-              {showClosestMatch && (
-                <svg className="absolute inset-0 pointer-events-none z-10 w-full h-full overflow-visible">
-                  <line
-                    x1={`${leftPercent}%`}
-                    y1={`${topPercent}%`}
-                    x2={`${matchLeft}%`}
-                    y2={`${matchTop}%`}
-                    stroke={
-                      theme.accent.replace("text-", "#") === "text-yellow-400"
-                        ? "#FACC15"
-                        : "currentColor"
-                    } // Fallback color logic simplified, easier to just use class if possible or inline style
-                    className={`${theme.accent} opacity-50`}
-                    strokeWidth="2"
-                    strokeDasharray="5,5"
-                  />
-                  <circle
-                    cx={`${matchLeft}%`}
-                    cy={`${matchTop}%`}
-                    r="4"
-                    fill="currentColor"
-                    className={`${theme.accent} animate-ping opacity-20`}
-                  />
-                </svg>
-              )}
-
-              {/* Politicians */}
-              {politicians.map((p) => {
-                const l = ((p.x + 10) / 20) * 100;
-                const t = ((10 - p.y) / 20) * 100;
-                const isClosest =
-                  showClosestMatch && p.id === closestMatch.politician.id;
-
-                return (
-                  <button
-                    key={p.id}
-                    onClick={() => setSelectedPolitician(p)}
-                    className={`absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 z-20 group ${
-                      isClosest
-                        ? "scale-125 z-30"
-                        : "scale-100 hover:scale-110 opacity-70 hover:opacity-100"
-                    }`}
-                    style={{ left: `${l}%`, top: `${t}%` }}
-                  >
-                    <div
-                      className={`relative h-10 w-10 rounded-full border-2 overflow-hidden shadow-md bg-white ${
-                        isClosest
-                          ? "border-gold shadow-[0_0_15px_rgba(253,185,19,0.6)]"
-                          : "border-white/50"
-                      }`}
-                    >
-                      <PoliticianAvatar politician={p} />
+                <div className="flex items-start justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="h-16 w-16 rounded-full border-2 border-gold/30 overflow-hidden shadow-lg">
+                      <PoliticianAvatar politician={selectedPolitician} />
                     </div>
-                    {isClosest && (
-                      <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 px-2 py-1 rounded text-[10px] font-bold text-gold-text pointer-events-none">
-                        Closest Match
+                    <div>
+                      <h3 className="text-2xl font-bold text-white">
+                        {getPoliticianName(selectedPolitician)}
+                      </h3>
+                      <div className="inline-block rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-black bg-[#FDB913]">
+                        {selectedPolitician.party}
                       </div>
-                    )}
-                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap bg-white px-2 py-1 rounded shadow-lg text-[10px] font-bold text-black opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
-                      {p.name[locale] || p.name["en"]}
                     </div>
-                  </button>
-                );
-              })}
-
-              {/* YOU Marker */}
-              <div
-                className="absolute h-6 w-6 -translate-x-1/2 -translate-y-1/2 z-40 transform hover:scale-125 transition-transform cursor-pointer"
-                style={{ left: `${leftPercent}%`, top: `${topPercent}%` }}
-              >
-                <div className="absolute inset-0 rounded-full bg-red-600 border-2 border-white shadow-[0_0_20px_rgba(220,38,38,0.6)] animate-pulse"></div>
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-red-600 px-3 py-1 text-xs font-bold text-white shadow-lg">
-                  YOU
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-12 text-center">
-              <p className="text-sm text-foreground/60">
-                You are{" "}
-                <span className="font-bold text-foreground">
-                  {(100 - closestMatch.distance * 5).toFixed(0)}% similar
-                </span>{" "}
-                to{" "}
-                <span className="font-bold text-gold-text">
-                  {getPoliticianName(closestMatch.politician)}
-                </span>
-                .
-              </p>
-            </div>
-
-            {selectedPolitician && (
-              <div
-                className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-6"
-                onClick={() => setSelectedPolitician(null)}
-              >
-                <div
-                  className="theme-card relative w-full max-w-sm rounded-[24px] p-6 shadow-2xl animate-in zoom-in-95 duration-200"
-                  onClick={(e) => e.stopPropagation()}
-                >
+                  </div>
                   <button
                     onClick={() => setSelectedPolitician(null)}
-                    className="absolute top-4 right-4 h-8 w-8 rounded-full bg-foreground/10 text-foreground/60 flex items-center justify-center hover:bg-foreground/20"
+                    className="h-8 w-8 rounded-full bg-white/10 text-white/60 flex items-center justify-center hover:bg-white/20 transition-colors"
                   >
                     ✕
                   </button>
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold text-foreground">
-                      {getPoliticianName(selectedPolitician)}
-                    </h3>
-                    <div className="text-sm font-bold text-gold-text">
-                      {selectedPolitician.party}
-                    </div>
+                </div>
+
+                <div className="space-y-4 text-sm text-white/80 leading-relaxed">
+                  <div className="rounded-2xl bg-white/5 p-4 border border-white/5">
+                    <strong className="block text-xs uppercase tracking-wider text-[#FDB913] mb-2 opacity-90">
+                      Economic Philosophy
+                    </strong>
+                    {getReasoning(selectedPolitician, "economic")}
                   </div>
-                  <div className="space-y-4 text-sm text-foreground/80">
-                    <div className="rounded-xl bg-foreground/5 p-3">
-                      <strong className="block text-xs uppercase tracking-wider text-foreground/50 mb-1">
-                        {locale === "en" ? "Economic Position" : "Economic"}
-                      </strong>
-                      {getReasoning(selectedPolitician, "economic")}
-                    </div>
-                    <div className="rounded-xl bg-foreground/5 p-3">
-                      <strong className="block text-xs uppercase tracking-wider text-foreground/50 mb-1">
-                        {locale === "en" ? "Social Position" : "Social"}
-                      </strong>
-                      {getReasoning(selectedPolitician, "social")}
-                    </div>
+                  <div className="rounded-2xl bg-white/5 p-4 border border-white/5">
+                    <strong className="block text-xs uppercase tracking-wider text-[#FDB913] mb-2 opacity-90">
+                      Social Philosophy
+                    </strong>
+                    {getReasoning(selectedPolitician, "social")}
                   </div>
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

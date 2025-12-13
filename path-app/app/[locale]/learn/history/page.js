@@ -3,6 +3,7 @@
 import { useLocale } from "next-intl";
 import { useRef, useState } from "react";
 import { Link } from "@/i18n/routing";
+import { timeline } from "@/data/history";
 
 /**
  * History Page (Timeline)
@@ -11,125 +12,6 @@ import { Link } from "@/i18n/routing";
  */
 export default function HistoryPage() {
   const locale = useLocale();
-
-  const events = [
-    {
-      year: "1948",
-      title: {
-        en: "Independence & The UNP Era",
-        si: "නිදහස සහ එජාප යුගය",
-        ta: "சுதந்திரம் மற்றும் ஐ.தே.க காலம்",
-      },
-      desc: {
-        en: "Sri Lanka gains independence. The UNP governs with a pro-Western, capitalist outlook.",
-        si: "ශ්‍රී ලංකාවට නිදහස ලැබේ. බටහිර හිතවාදී, ධනවාදී ප්‍රතිපත්ති අනුගමනය කළ එක්සත් ජාතික පක්ෂය (UNP) බලයට පත්වේ.",
-        ta: "இலங்கை சுதந்திரம் அடைகிறது. மேலைத்தேய சார்பான, முதலாளித்துவக் கொள்கைகளைக் கொண்ட ஐக்கிய தேசியக் கட்சி (UNP) ஆட்சிக்கு வருகிறது.",
-      },
-      type: "political",
-      icon: "🕊️",
-    },
-    {
-      year: "1956",
-      title: {
-        en: "The 'Sinhala Only' Revolution",
-        si: "භාෂා පෙරළිය",
-        ta: "தனிச் சிங்களச் சட்டம்",
-      },
-      desc: {
-        en: "S.W.R.D. Bandaranaike passes the 'Sinhala Only' Act. Shift towards Nationalism and Welfare.",
-        si: "එස්.ඩබ්ලිව්.ආර්.ඩී. බණ්ඩාරනායක 'සිංහල පමණක්' පනත සම්මත කරයි. ජාතිකවාදය සහ ජනසතු කිරීම ඇරඹේ.",
-        ta: "பண்டாரநாயக்க 'தனிச் சிங்களச் சட்டத்தை' நிறைவேற்றுகிறார். தேசியவாதம் மற்றும் மக்கள் நலன் சார்ந்த கொள்கைகள்.",
-      },
-      type: "conflict",
-      icon: "🗣️",
-    },
-    {
-      year: "1970",
-      title: {
-        en: "The Closed Economy",
-        si: "සංවෘත ආර්ථිකය",
-        ta: "மூடிய பொருளாதாரம்",
-      },
-      desc: {
-        en: "Sirimavo Bandaranaike implements strict socialism. Imports banned, bread lines form.",
-        si: "සිරිමාවෝ බණ්ඩාරනායක දැඩි සමාජවාදී ආර්ථිකයක් ක්‍රියාත්මක කරයි. හාල් පොලු සහ පාන් පෝලිම් නිර්මාණය වේ.",
-        ta: "சிறிமாவோ பண்டாரநாயக்க கடுமையான சோசலிசப் பொருளாதாரத்தை நடைமுறைப்படுத்துகிறார். இறக்குமதிகள் தடை.",
-      },
-      type: "economical",
-      icon: "🔒",
-    },
-    {
-      year: "1977",
-      title: {
-        en: "The Open Economy",
-        si: "විවෘත ආර්ථිකය",
-        ta: "திறந்த பொருளாதாரம்",
-      },
-      desc: {
-        en: "J.R. Jayewardene opens the economy (Free Trade) and creating the powerful Executive Presidency.",
-        si: "ජේ.ආර්. ජයවර්ධන ආර්ථිකය ලෝකයට විවෘත කරයි (විවෘත ආර්ථිකය). විධායක ජනාධිපති ධුරය ඇති කරයි.",
-        ta: "ஜே.ஆர். ஜெயவர்த்தன பொருளாதாரத்தைத் திறந்து விடுகிறார். நிறைவேற்று அதிகாரம் கொண்ட ஜனாதிபதி முறை உருவாக்கம்.",
-      },
-      type: "economical",
-      icon: "📈",
-    },
-    {
-      year: "1983",
-      title: {
-        en: "Black July & Civil War",
-        si: "කලු ජූලිය සහ යුද්ධය",
-        ta: "கறுப்பு யூலை மற்றும் யுத்தம்",
-      },
-      desc: {
-        en: "Anti-Tamil pogroms trigger a 26-year civil war. Prevention of Terrorism Act (PTA) becomes permanent.",
-        si: "දමිළ විරෝධී ප්‍රචණ්ඩත්වය වසර 26ක යුද්ධයකට මුල පුරයි. ත්‍රස්තවාදය වැළැක්වීමේ පනත (PTA) පාලන මෙවලමක් වේ.",
-        ta: "வன்முறைகள் 26 வருடகால யுத்தத்தைத் தூண்டுகின்றன. பயங்கரவாதத் தடைச் சட்டம் (PTA) நிரந்தரமாகிறது.",
-      },
-      type: "conflict",
-      icon: "🔥",
-    },
-    {
-      year: "1987",
-      title: {
-        en: "Insurrection & 13A",
-        si: "භීෂණ යුගය සහ 13",
-        ta: "கிளர்ச்சி மற்றும் 13A",
-      },
-      desc: {
-        en: "Indo-Lanka Accord introduces Provincial Councils (13A). JVP violent Marxist insurrection crushed.",
-        si: "ඉන්දු-ලංකා ගිවිසුම හරහා පළාත් සභා (13) එයි. ජවිපෙ කැරැල්ල දරුණු ලෙස මර්දනය කෙරේ.",
-        ta: "இந்திய-இலங்கை ஒப்பந்தம் மூலம் மாகாண சபைகள் (13A). ஜே.வி.பி கிளர்ச்சி ஒடுக்கப்படுகிறது.",
-      },
-      type: "conflict",
-      icon: "⚔️",
-    },
-    {
-      year: "2009",
-      title: { en: "End of War", si: "යුද්ධයේ අවසානය", ta: "போரின் முடிவு" },
-      desc: {
-        en: "Mahinda Rajapaksa ends the war but consolidates power. 18th Amendment removes term limits.",
-        si: "මහින්ද රාජපක්ෂ යුද්ධය අවසන් කරයි, නමුත් බලය තවදුරටත් කේන්ද්‍රගත කරගනී. 18 වන සංශෝධනය එයි.",
-        ta: "மஹிந்த ராஜபக்ஷ யுத்தத்தை முடிவுக்குக் கொண்டுவருகிறார், ஆனால் அதிகாரத்தை வலுப்படுத்துகிறார். 18வது திருத்தம்.",
-      },
-      type: "neutral",
-      icon: "🏳️",
-    },
-    {
-      year: "2022",
-      title: {
-        en: "Economic Crisis & Aragalaya",
-        si: "ආර්ථික අර්බුදය සහ අරගලය",
-        ta: "பொருளாதார நெருக்கடி & போராட்டம்",
-      },
-      desc: {
-        en: "Economy collapses. Massive 'Aragalaya' uprising forces President to flee. Call for System Change.",
-        si: "ආර්ථිකය කඩා වැටේ. ජනතා අරගලය හමුවේ ජනාධිපති පලා යයි. 'ක්‍රමයේ වෙනසක්' ඉල්ලා සිටී.",
-        ta: "பொருளாதாரம் வீழ்ச்சி. மக்கள் போராட்டத்தால் ஜனாதிபதி தப்பியோட்டம். 'கட்டமைப்பு மாற்றம்' கோரிக்கை.",
-      },
-      type: "uprising",
-      icon: "✊",
-    },
-  ];
 
   const getCardBorder = (type) => {
     switch (type) {
@@ -196,97 +78,174 @@ export default function HistoryPage() {
 
   return (
     <div className="relative min-h-screen">
-      <div className="relative z-10 mx-auto max-w-[1200px] px-6">
+      <div className="relative z-10 mx-auto max-w-[1400px] px-6">
         <div className="py-12">
           {/* Header Section */}
-          <div className="mb-16 text-center">
-            <div className="mb-4 text-sm font-semibold uppercase tracking-[2px] text-gold-text opacity-90">
+          <div className="mb-12 text-center">
+            <div className="mb-4 text-sm font-semibold uppercase tracking-[3px] text-gold-text opacity-90">
               Sri Lankan History
             </div>
             <h1 className="mb-6 text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
               Timeline of <span className="text-gold-text">Turning Points</span>
             </h1>
             <p className="mx-auto max-w-2xl text-lg text-foreground/70 leading-relaxed">
-              From Independence to the Aragalaya: The events that defined us and
-              shaped our political landscape.
+              From Independence to the Aragalaya
             </p>
           </div>
 
-          {/* Navigation Content */}
-          <div className="relative">
-            {/* Nav Buttons */}
-            <div className="absolute top-1/2 -left-4 -translate-y-1/2 z-30 hidden lg:block">
+          {/* Navigation & Timeline Container */}
+          <div className="relative group/container">
+            {/* 
+              -------------------------------------------------------------------------
+              DESKTOP VIEW: Horizontal Scrollable "Metro Map" (Hidden on Mobile)
+              -------------------------------------------------------------------------
+            */}
+            <div className="hidden lg:block">
+              {/* Nav Buttons (Visible on Hover/Desktop) */}
               <button
                 onClick={() => scroll("left")}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 bg-background/80 text-2xl backdrop-blur-md transition-all hover:bg-foreground hover:text-background shadow-lg"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 hidden lg:flex h-14 w-14 items-center justify-center rounded-full theme-card text-3xl transition-all hover:scale-110 hover:border-gold-text/50 shadow-2xl opacity-0 group-hover/container:opacity-100"
                 aria-label="Scroll Left"
               >
                 ‹
               </button>
-            </div>
-            <div className="absolute top-1/2 -right-4 -translate-y-1/2 z-30 hidden lg:block">
               <button
                 onClick={() => scroll("right")}
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/10 bg-background/80 text-2xl backdrop-blur-md transition-all hover:bg-foreground hover:text-background shadow-lg"
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 hidden lg:flex h-14 w-14 items-center justify-center rounded-full theme-card text-3xl transition-all hover:scale-110 hover:border-gold-text/50 shadow-2xl opacity-0 group-hover/container:opacity-100"
                 aria-label="Scroll Right"
               >
                 ›
               </button>
+
+              {/* Scrollable Timeline Area */}
+              <div
+                ref={scrollRef}
+                className="relative w-full overflow-x-auto py-16 hide-scrollbar cursor-grab active:cursor-grabbing select-none"
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+              >
+                <div className="flex min-w-max px-12 relative items-start">
+                  {/* The Continuous Timeline "Rail" */}
+                  <div className="absolute top-[3rem] left-0 w-full h-[4px] bg-foreground/10 rounded-full z-0">
+                    <div className="absolute top-0 left-0 h-full bg-gradient-to-r from-gold-text/20 via-primary/20 to-gold-text/20 w-full opacity-50" />
+                  </div>
+
+                  {timeline.map((event, index) => (
+                    <div
+                      key={index}
+                      className="relative z-10 w-[380px] shrink-0 flex flex-col items-center group px-4"
+                    >
+                      {/* 1. The Timeline Node & Year */}
+                      <div className="relative flex flex-col items-center justify-center mb-6">
+                        {/* Year Label (Floating above) */}
+                        <div className="absolute -top-12 text-3xl font-black text-foreground/20 group-hover:text-gold-text transition-colors duration-300 tracking-tighter">
+                          {event.year}
+                        </div>
+
+                        {/* The Node Icon */}
+                        <div
+                          className={`
+                              relative z-20 h-24 w-24 rounded-full border-[6px] bg-background shadow-xl flex items-center justify-center text-4xl transition-all duration-500
+                              ${getBadgeColor(
+                                event.type
+                              )} group-hover:scale-110 group-hover:border-gold-text
+                          `}
+                        >
+                          {event.icon}
+                        </div>
+                      </div>
+
+                      {/* 2. Vertical Connector Stem */}
+                      <div className="h-8 w-[2px] bg-foreground/20 group-hover:bg-gold-text/50 transition-colors mb-4" />
+
+                      {/* 3. The Content Card */}
+                      <div className="w-full">
+                        <div
+                          className={`theme-card h-full rounded-[20px] p-6 border transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-gradient-to-b from-white/5 to-transparent
+                          ${getCardBorder(event.type)}`}
+                        >
+                          {/* Title */}
+                          <h3 className="mb-3 text-xl font-bold text-foreground leading-tight group-hover:text-gold-text transition-colors text-center">
+                            {event.title[locale] || event.title.en}
+                          </h3>
+
+                          {/* Description */}
+                          <p className="text-sm text-foreground/70 leading-relaxed text-center font-medium">
+                            {event.desc[locale] || event.desc.en}
+                          </p>
+
+                          {/* Type Tag (Small) */}
+                          <div className="mt-4 flex justify-center">
+                            <span
+                              className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border ${getBadgeColor(
+                                event.type
+                              )} bg-transparent`}
+                            >
+                              {event.type}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Timeline Scroll Area */}
-            <div
-              ref={scrollRef}
-              className="relative w-full overflow-x-auto py-12 hide-scrollbar cursor-grab active:cursor-grabbing select-none"
-              onMouseDown={handleMouseDown}
-              onMouseLeave={handleMouseLeave}
-              onMouseUp={handleMouseUp}
-              onMouseMove={handleMouseMove}
-            >
-              {/* Horizontal Line through the Center */}
-              <div className="absolute top-[104px] left-0 h-[3px] w-[3000px] bg-foreground/5 z-0" />
+            {/* 
+              -------------------------------------------------------------------------
+              MOBILE VIEW: Vertical Timeline (Visible on < lg)
+              -------------------------------------------------------------------------
+            */}
+            <div className="block lg:hidden relative px-4 text-center">
+              {/* Vertical Rail */}
+              <div className="absolute top-0 bottom-0 left-[50%] w-[3px] -translate-x-1/2 bg-foreground/10 rounded-full z-0">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-gold-text/20 via-primary/20 to-gold-text/20 opacity-50" />
+              </div>
 
-              <div className="flex gap-12 min-w-max px-12">
-                {events.map((event, index) => (
-                  <div
-                    key={index}
-                    className="relative z-10 w-[360px] group pointer-events-none flex flex-col items-center"
-                  >
-                    {/* Timeline Node (On the Line) */}
-                    <div className="relative z-10 mb-8 pointer-events-auto transition-transform duration-300 group-hover:scale-110">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-background border-4 border-foreground/5 shadow-xl text-3xl">
+              <div className="flex flex-col gap-16 relative z-10 py-8">
+                {timeline.map((event, index) => (
+                  <div key={index} className="flex flex-col items-center">
+                    {/* Node & Year Group */}
+                    <div className="relative mb-6">
+                      <div className="text-3xl font-black text-foreground/40 mb-2 tracking-tighter">
+                        {event.year}
+                      </div>
+                      <div
+                        className={`
+                          relative z-10 h-20 w-20 rounded-full border-[4px] bg-background shadow-lg flex items-center justify-center text-3xl
+                          ${getBadgeColor(event.type)}
+                      `}
+                      >
                         {event.icon}
                       </div>
                     </div>
 
-                    {/* Card (Below the Line) */}
-                    <div className="pointer-events-auto w-full">
-                      <div
-                        className={`theme-card relative h-full rounded-[24px] p-8 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-transparent ${getCardBorder(
-                          event.type
-                        )}`}
-                      >
-                        {/* Year Badge at Top of Card */}
-                        <div className="flex justify-between items-center mb-6">
-                          <span className="text-3xl font-black text-foreground tracking-tight">
-                            {event.year}
-                          </span>
-                          <span
-                            className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border ${getBadgeColor(
-                              event.type
-                            )}`}
-                          >
-                            {event.type}
-                          </span>
-                        </div>
+                    {/* Content Card */}
+                    <div
+                      className={`theme-card w-full rounded-[20px] p-6 border bg-gradient-to-b from-white/5 to-transparent relative
+                      ${getCardBorder(event.type)}`}
+                    >
+                      {/* Little arrow pointing up to the node */}
+                      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-b-[10px] border-b-foreground/10"></div>
 
-                        <h3 className="mb-4 text-xl font-bold text-foreground leading-tight group-hover:text-gold-text transition-colors">
-                          {event.title[locale] || event.title.en}
-                        </h3>
+                      <h3 className="mb-2 text-lg font-bold text-foreground leading-tight">
+                        {event.title[locale] || event.title.en}
+                      </h3>
+                      <p className="text-sm text-foreground/70 leading-relaxed font-medium">
+                        {event.desc[locale] || event.desc.en}
+                      </p>
 
-                        <p className="text-base text-foreground/70 leading-relaxed font-medium">
-                          {event.desc[locale] || event.desc.en}
-                        </p>
+                      <div className="mt-3 inline-block">
+                        <span
+                          className={`text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full border ${getBadgeColor(
+                            event.type
+                          )} bg-transparent`}
+                        >
+                          {event.type}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -294,10 +253,11 @@ export default function HistoryPage() {
               </div>
             </div>
           </div>
-          <div className="mt-16 text-center">
+
+          <div className="mt-8 text-center">
             <Link
               href="/learn"
-              className="inline-flex items-center gap-2 rounded-xl border border-foreground/20 px-8 py-4 text-sm font-bold transition-all hover:bg-foreground hover:text-background"
+              className="inline-flex items-center gap-2 rounded-xl text-foreground/60 hover:text-gold-text transition-colors text-sm font-bold uppercase tracking-widest"
             >
               ← {locale === "si" ? "නැවත පාඩම් මාලාවට" : "Back to Classroom"}
             </Link>
