@@ -1,6 +1,6 @@
 # The P.A.T.H. - Political Alignment Testing Hub (Sri Lanka)
 
-A production-ready, trilingual (English, Sinhala, Tamil) political compass web application for Sri Lanka. Built with Next.js 14, this app measures users on two axes (Economic: Left/Right, Social: Authoritarian/Liberal) and matches them to historical Sri Lankan politicians.
+A production-ready, trilingual (English, Sinhala, Tamil) political compass web application for Sri Lanka. Built with Next.js 16, this app measures users on two axes (Economic: Left/Right, Social: Authoritarian/Liberal) and matches them to historical Sri Lankan politicians.
 
 ## 🌟 Features
 
@@ -23,7 +23,7 @@ A production-ready, trilingual (English, Sinhala, Tamil) political compass web a
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Language**: JavaScript (ES6+)
 - **Styling**: Tailwind CSS v4
 - **UI Components**: Custom components with Shadcn/UI principles
@@ -40,7 +40,7 @@ A production-ready, trilingual (English, Sinhala, Tamil) political compass web a
 
 ### Social Axis (Y-axis)
 
-- **Liberal (-10)**: Decentralization, civil liberties, democratic reforms
+- **Libertarian (-10)**: Decentralization, civil liberties, democratic reforms
 - **Authoritarian (+10)**: Centralization, security focus, traditional values
 
 ## 🏛️ Leadership Archive
@@ -133,11 +133,17 @@ path-app/
 │   │   ├── learn/          # NEW: Educational modules
 │   │   │   ├── history/    # Timeline page
 │   │   │   ├── civics/     # Civics page
-│   │   │   └── myths/      # MythBusters page
+│   │   │   ├── myths/      # MythBusters page
+│   │   │   ├── constitution/ # Constitution page
+│   │   │   └── elections/    # Elections page
 │   │   ├── quiz/
 │   │   │   └── page.js     # Quiz page
-│   │   └── results/
-│   │       └── page.js     # Results page
+│   │   ├── results/
+│   │   │   └── page.js     # Results page
+│   │   ├── leaders/        # Leadership Archive
+│   │   ├── glossary/       # Glossary
+│   │   ├── methodology/    # Methodology
+│   │   └── issues/         # Issues page
 │   ├── api/
 │   │   └── og/
 │   │       └── route.js    # OG image generation
@@ -193,9 +199,9 @@ Language switching is automatic based on URL, with a language selector on the ho
 
 ## 📊 Scoring Algorithm
 
-1. Each question has a value from -2 to +2
+1. Each question has a specific effect (+1 or -1) on an axis
 2. User answers range from -2 (Strongly Disagree) to +2 (Strongly Agree)
-3. Score = Answer × Question Value / 2
+3. Score = Answer × Question Effect / 2
 4. Final scores are normalized to -10 to +10 range
 5. Euclidean distance is used to find the closest politician
 
