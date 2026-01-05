@@ -15,7 +15,14 @@ export function Footer() {
         {/* Developer Credit */}
         <p className="text-sm text-neutral-500">
           Designed & Developed by{" "}
-          <span className="text-[#FDB913] font-medium">Sarasitha Galagama</span>
+          <a
+            href="https://sarasitha.me/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#FDB913] font-medium hover:underline"
+          >
+            Sarasitha Galagama
+          </a>
         </p>
 
         {/* Social Media Icons */}
