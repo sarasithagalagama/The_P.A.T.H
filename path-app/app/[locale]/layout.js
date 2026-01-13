@@ -1,4 +1,5 @@
 import { Inter, Noto_Sans_Sinhala, Noto_Sans_Tamil } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -96,6 +97,7 @@ export default async function LocaleLayout({ children, params }) {
             <SiteHeader />
             <div className="flex-1 flex flex-col pt-28">{children}</div>
             <Footer />
+            <Analytics />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
