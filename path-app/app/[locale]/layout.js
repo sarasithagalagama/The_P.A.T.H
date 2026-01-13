@@ -40,11 +40,63 @@ export function generateStaticParams() {
 }
 
 export const metadata = {
-  title: "The P.A.T.H. - Political Alignment Testing Hub",
-  description: "Discover where you stand on the Sri Lankan political spectrum",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL || "https://thepathsl.sarasitha.me"
+  ),
+  title: {
+    default: "The P.A.T.H. - Political Alignment Testing Hub",
+    template: "%s | The P.A.T.H.",
+  },
+  description:
+    "Discover where you stand on the Sri Lankan political spectrum with The P.A.T.H. Take our quiz to find your political alignment in the context of Sri Lankan politics.",
+  keywords: [
+    "Sri Lanka",
+    "Politics",
+    "Political Test",
+    "The PATH",
+    "JVP",
+    "SJB",
+    "SLPP",
+    "UNP",
+    "Political Compass",
+    "Sri Lanka Elections",
+    "Buddhism",
+    "Socialism",
+    "Liberalism",
+  ],
+  authors: [{ name: "The P.A.T.H. Team" }],
+  creator: "The P.A.T.H. Team",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "/",
+    title: "The P.A.T.H. - Political Alignment Testing Hub",
+    description:
+      "Discover where you stand on the Sri Lankan political spectrum. Take the quiz now!",
+    siteName: "The P.A.T.H.",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "The P.A.T.H. - Political Alignment Testing Hub",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The P.A.T.H. - Political Alignment Testing Hub",
+    description:
+      "Discover where you stand on the Sri Lankan political spectrum. Take the quiz now!",
+    images: ["/og-image.png"],
+    creator: "@thepathlanka",
+  },
   icons: {
     icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/apple-icon.png",
   },
+  manifest: "/site.webmanifest",
 };
 
 /**
